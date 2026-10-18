@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=https://www.arkipelagos.com/">
+  <link rel="canonical" href="https://www.arkipelagos.com/">
+  <!-- No indexing — this is a redirect, not a real page -->
+  <meta name="robots" content="noindex">
+  <title>Redirecting — Arkipelagos</title>
+</head>
+<body>
+  <!-- Visible only if both meta refresh and JS fail -->
+  <p>Redirecting to <a href="https://www.arkipelagos.com/">arkipelagos.com</a></p>
+  <script>location.replace("https://www.arkipelagos.com/");</script>
+</body>
+</html>

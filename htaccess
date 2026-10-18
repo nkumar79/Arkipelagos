@@ -1,0 +1,41 @@
+# ═══════════════════════════════════════════════════════
+#  Arkipelagos — Apache Response Headers
+#
+#  Use this instead of _headers on Apache hosts.
+#
+#  CSP here mirrors the <meta> CSP in index.html with
+#  one addition: frame-ancestors 'none' — which is
+#  silently ignored in <meta> tags per the W3C spec
+#  and MUST be set via HTTP header.
+#
+#  If you update CSP in index.html, update it here too.
+# ═══════════════════════════════════════════════════════
+
+# ── Security ───────────────────────────────────────────
+
+<IfModule mod_headers.c>
+  Header set X-Frame-Options "DENY"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  Header set Referrer-Policy "no-referrer"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()"
+  Header set Content-Security-Policy "default-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'none'; object-src 'none'; form-action 'none'; frame-ancestors 'none'; img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://*.google-analytics.com; upgrade-insecure-requests"
+</IfModule>
+
+# ── Caching ────────────────────────────────────────────
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — 1 hour, revalidate
+  ExpiresByType text/html "access plus 1 hour"
+
+  # Icons and images — 30 days
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType image/png    "access plus 30 days"
+
+  # Machine-readable — 1 day
+  ExpiresByType application/xml "access plus 1 day"
+  ExpiresByType text/plain      "access plus 1 day"
+  ExpiresByType text/markdown   "access plus 1 day"
+</IfModule>

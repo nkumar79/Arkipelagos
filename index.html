@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- 
+    ===========================================================================
+    SECTION 1: SITE METADATA & CONFIGURATION
+    ===========================================================================
+    [EDIT GUIDE] Update your fund details, metadata, social preview cards, and GA4 ID below.
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Security Policy (Enforce frame-ancestors 'none' and nonces in production HTTP response headers) -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    base-uri 'none';
+    object-src 'none';
+    form-action 'none';
+    frame-src 'none';
+    worker-src 'none';
+    manifest-src 'self';
+    connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+    img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com data:;
+    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com;
+    script-src-attr 'none';
+    upgrade-insecure-requests;
+  ">
+  <meta name="referrer" content="no-referrer">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Core Page Metadata -->
+  <title>Arkipelagos</title>
+  <meta name="description" content="Arkipelagos — Patient, concentrated, long-only owners.">
+  <meta name="author" content="Arkipelagos">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://www.arkipelagos.com/">
+
+  <!-- Mobile Theme Colors & Adaptive Favicon SVG -->
+  <meta name="theme-color" content="#fafafa">
+  <meta id="theme-color-light" name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta id="theme-color-dark" name="theme-color" content="#0d0d10" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23141416%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
+
+  <!-- Fonts & CDN Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link id="inter-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+
+  <!-- OpenGraph / Twitter Social Previews -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Arkipelagos">
+  <meta property="og:title" content="Arkipelagos">
+  <meta property="og:description" content="Arkipelagos — Patient, concentrated, long-only owners.">
+  <meta property="og:url" content="https://www.arkipelagos.com/">
+  <meta property="og:image" content="https://www.arkipelagos.com/og.png">
+  <meta property="og:image:secure_url" content="https://www.arkipelagos.com/og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Arkipelagos">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arkipelagos">
+  <meta name="twitter:description" content="Arkipelagos — Patient, concentrated, long-only owners.">
+  <meta name="twitter:image" content="https://www.arkipelagos.com/og.png">
+  <meta name="twitter:image:alt" content="Arkipelagos">
+
+  <!-- Schema.org JSON-LD Institutional Markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Arkipelagos",
+      "url": "https://www.arkipelagos.com/",
+      "description": "Arkipelagos — Patient, concentrated, long-only owners.",
+      "foundingDate": "2010-09-07",
+      "logo": "https://www.arkipelagos.com/og.png"
+    }
+  </script>
+
+  <!-- Google Analytics GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MRY99NLBK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ window.dataLayer.push(arguments); }
+
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      analytics_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      wait_for_update: 500
+    });
+
+    gtag("js", new Date());
+    gtag("config", "G-8MRY99NLBK", {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+  </script>
+
+  <!-- 
+    ===========================================================================
+    SECTION 2: EXECUTIVE DESIGN SYSTEM & HIGH-CRAFT CSS
+    ===========================================================================
+  -->
+  <style>
+    /* Zero-CLS Fallback Font Metric Alignment for Inter */
+    @font-face {
+      font-family: "Inter Fallback";
+      src: local("Arial"), local("Helvetica"), local("Segoe UI");
+      size-adjust: 98.2%;
+      ascent-override: 95.0%;
+      descent-override: 22.0%;
+      line-gap-override: 0%;
+    }
+
+    /* Core Design Tokens & Obsidian-Titanium Palette */
+    :root {
+      --bg: #fafafa;
+      --fg-strong: #141416;
+      --fg: #3e3f46;
+      --muted: #6e707a;
+      --muted-soft: #80828d;
+
+      --line: rgba(20, 20, 22, 0.08);
+      --row-hover: rgba(20, 20, 22, 0.025);
+
+      --bar-start: rgba(20, 20, 22, 0.075);
+      --bar-end: rgba(20, 20, 22, 0.010);
+
+      --spotlight: rgba(20, 20, 22, 0.018);
+      --vignette: rgba(20, 20, 22, 0.020);
+
+      /* 8px Metric Rhythm Tokens */
+      --space-1: 0.50rem;  /* 8px */
+      --space-2: 1.00rem;  /* 16px */
+      --space-3: 1.50rem;  /* 24px */
+      --space-4: 2.25rem;  /* 36px */
+      --space-5: 3.50rem;  /* 56px */
+      
+      --space-divider: clamp(1.50rem, 3.5svh, 2.25rem);
+      --space-row: 0.55rem;
+
+      --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --fs-fine: clamp(0.72rem, 0.68rem + 0.18vw, 0.80rem);
+      --fs-body: clamp(0.92rem, 0.88rem + 0.20vw, 1.00rem);
+      --fs-head: clamp(1.05rem, 0.98rem + 0.35vw, 1.20rem);
+      --fs-sub: clamp(1.18rem, 1.08rem + 0.45vw, 1.35rem);
+      --fs-display: clamp(2.60rem, 2.00rem + 3.0vw, 4.00rem);
+
+      --track-display: -0.06em;
+      --track-tight: -0.018em;
+      --track-body: -0.011em;
+
+      --radius: 0.375rem;
+      --radius-sm: 0.25rem;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-1: 160ms;
+      --dur-2: 240ms;
+      --dur-3: 640ms;
+      --dur-4: 900ms;
+      --stagger: 45ms;
+
+      --page-max: 36.00rem; /* Executive Editorial Measure */
+      --pad: clamp(1.25rem, 5vw, 3.00rem);
+
+      /* High-Precision OpenType Engine Settings */
+      --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
+      --font-features-numeric: "tnum" 1, "lnum" 1, "zero" 1, "cv05" 1;
+    }
+
+    /* OKLCH Color Engine Integration */
+    @supports (color: oklch(0% 0 0)) {
+      :root {
+        --bg: oklch(0.995 0.002 85);
+        --fg-strong: oklch(0.130 0.012 260);
+        --fg: oklch(0.320 0.010 260);
+        --muted: oklch(0.520 0.008 260);
+        --muted-soft: oklch(0.580 0.008 260);
+
+        --line: oklch(0.130 0.012 260 / 0.08);
+        --row-hover: oklch(0.130 0.012 260 / 0.025);
+
+        --bar-start: oklch(0.130 0.012 260 / 0.075);
+        --bar-end: oklch(0.130 0.012 260 / 0.010);
+
+        --spotlight: oklch(0.130 0.012 260 / 0.018);
+        --vignette: oklch(0.130 0.012 260 / 0.020);
+      }
+    }
+
+    /* Dark Mode Theme Extensions */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d0d10;
+        --fg-strong: #fcfcfd;
+        --fg: #d1d2d8;
+        --muted: #9496a1;
+        --muted-soft: #81838e;
+
+        --line: rgba(252, 252, 253, 0.10);
+        --row-hover: rgba(252, 252, 253, 0.035);
+
+        --bar-start: rgba(252, 252, 253, 0.090);
+        --bar-end: rgba(252, 252, 253, 0.015);
+
+        --spotlight: rgba(252, 252, 253, 0.035);
+        --vignette: rgba(0, 0, 0, 0.28);
+      }
+
+      @supports (color: oklch(0% 0 0)) {
+        :root {
+          --bg: oklch(0.110 0.008 260);
+          --fg-strong: oklch(0.985 0.002 90);
+          --fg: oklch(0.820 0.006 260);
+          --muted: oklch(0.600 0.006 260);
+          --muted-soft: oklch(0.520 0.006 260);
+
+          --line: oklch(0.985 0.002 90 / 0.10);
+          --row-hover: oklch(0.985 0.002 90 / 0.035);
+
+          --bar-start: oklch(0.985 0.002 90 / 0.090);
+          --bar-end: oklch(0.985 0.002 90 / 0.015);
+
+          --spotlight: oklch(0.985 0.002 90 / 0.035);
+          --vignette: oklch(0 0 0 / 0.28);
+        }
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      font-size: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overscroll-behavior-x: none;
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 18.5rem;
+      min-height: 100dvh;
+      margin: 0;
+      padding: var(--pad);
+      padding-top: max(var(--pad), env(safe-area-inset-top));
+      padding-right: max(var(--pad), env(safe-area-inset-right));
+      padding-bottom: max(clamp(1.25rem, 3.2svh, 2.25rem), env(safe-area-inset-bottom));
+      padding-left: max(var(--pad), env(safe-area-inset-left));
+      color: var(--fg);
+      background:
+        radial-gradient(120rem 70rem at 50% -45rem, var(--spotlight), transparent 60%),
+        var(--bg);
+      font-family: var(--font-body);
+      font-feature-settings: var(--font-features-numeric);
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      line-height: 1.55;
+      overflow-x: clip;
+      overflow-wrap: break-word;
+      position: relative;
+      isolation: isolate;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ambient Cursor Spotlight & Subtle Texture Layer */
+    .spotlight-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(
+        46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
+        var(--spotlight),
+        transparent 66%
+      );
+      contain: strict;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, transparent 60%, var(--vignette) 100%);
+    }
+
+    .noise-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      pointer-events: none;
+      opacity: 0.40;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");
+      contain: strict;
+    }
+
+    h1, h2, p, ul, li { margin: 0; padding: 0; }
+    ::selection { color: var(--bg); background: var(--fg-strong); }
+    a { color: inherit; text-decoration: none; }
+
+    :focus-visible {
+      outline: 2px solid var(--fg-strong);
+      outline-offset: 3px;
+    }
+
+    sup {
+      font-size: 0.70em;
+      line-height: 0;
+      vertical-align: super;
+    }
+
+    sup a {
+      position: relative;
+      display: inline-block;
+      padding: 0 0.12em;
+      color: var(--muted);
+      text-align: center;
+      transition: color var(--dur-1) ease;
+    }
+
+    sup a::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2.75rem;
+      height: 2.75rem;
+      transform: translate(-50%, -50%);
+    }
+
+    sup a:hover, sup a:focus-visible { color: var(--fg-strong); }
+
+    #footnote-fmv:target {
+      padding-inline: 0.25rem;
+      margin-inline: -0.25rem;
+      background-color: var(--row-hover);
+      border-radius: var(--radius-sm);
+      scroll-margin-block: 2rem;
+    }
+
+    .skip {
+      position: fixed;
+      inset-block-start: -4rem;
+      inset-inline-start: 0;
+      z-index: 9999;
+      padding: var(--space-1) var(--space-2);
+      color: var(--bg);
+      background: var(--fg-strong);
+      font-weight: 700;
+      transition: inset-block-start 180ms ease;
+    }
+    .skip:focus-visible {
+      inset-block-start: 0;
+      outline: 3px solid var(--fg-strong);
+      outline-offset: 2px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--page-max));
+      margin-inline: auto;
+    }
+
+    @keyframes entrance {
+      from { opacity: 0; transform: translateY(0.35rem); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bar-grow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    header, section, footer {
+      contain: layout style;
+      animation: entrance var(--dur-3) var(--ease) both;
+    }
+
+    header { animation-delay: 30ms; padding-block-start: clamp(0.20rem, 1.2vh, var(--space-2)); }
+    section:nth-of-type(1) { animation-delay: 90ms; }
+    section:nth-of-type(2) { animation-delay: 150ms; }
+    footer { animation-delay: 210ms; }
+
+    .title, .heading { text-wrap: balance; }
+    .subtitle, .note { text-wrap: pretty; }
+
+    .title {
+      margin-block-end: var(--space-1);
+      color: var(--fg-strong);
+      font-size: var(--fs-display);
+      font-weight: 700;
+      font-feature-settings: var(--font-features-display);
+      letter-spacing: var(--track-display);
+      line-height: 0.98;
+    }
+
+    .subtitle {
+      color: var(--fg);
+      font-size: var(--fs-sub);
+      font-weight: 400;
+      letter-spacing: var(--track-tight);
+      line-height: 1.35;
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      margin-block: var(--space-divider);
+      margin-inline: 0;
+      border: 0;
+      background: linear-gradient(90deg, transparent 0%, var(--line) 15%, var(--line) 85%, transparent 100%);
+      opacity: 0.9;
+    }
+
+    .heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-2);
+      padding-block-end: 0.50rem;
+      margin-block: 0 var(--space-2);
+      border-bottom: 1px solid var(--line);
+      line-height: 1.20;
+    }
+
+    .heading-title {
+      color: var(--muted);
+      font-size: var(--fs-fine);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .heading-meta {
+      color: var(--muted-soft);
+      font-size: var(--fs-fine);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .perf, .holdings {
+      list-style: none;
+      margin-block: var(--space-1);
+      font-size: var(--fs-body);
+      letter-spacing: var(--track-body);
+    }
+
+    .perf li, .holdings li {
+      --weight: 0%;
+      --delay-idx: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      min-height: 2.75rem;
+      margin: 0 calc(var(--space-1) * -1) 0.10rem;
+      padding: var(--space-row) var(--space-2);
+      overflow: hidden;
+      color: var(--fg);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+    }
+
+    /* Primary Anchor Row (Net Portfolio IRR Highlight) */
+    .perf li:first-child {
+      color: var(--fg-strong);
+      background: var(--row-hover);
+      border-color: var(--line);
+    }
+    .perf li:first-child .name { font-weight: 500; }
+    .perf li:first-child .val { font-weight: 700; color: var(--fg-strong); }
+
+    .perf li:not(:first-child) { color: var(--muted); font-weight: 400; }
+    .perf li:not(:first-child) .val { color: var(--muted); font-weight: 400; }
+
+    .perf li .name, .holdings li .name {
+      position: relative;
+      z-index: 1;
+      flex: 1 1 auto;
+      min-width: 0;
+      padding-inline-end: 0.25rem;
+      font-weight: 400;
+      white-space: nowrap;
+      overflow: visible;
+    }
+
+    .perf li .val, .holdings li .val {
+      position: relative;
+      z-index: 1;
+      flex: 0 0 auto;
+      font-variant-numeric: tabular-nums lining-nums;
+      font-feature-settings: "tnum" 1, "lnum" 1;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* Holdings Bar Graph Animations */
+    .holdings li::before {
+      content: "";
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      z-index: 0;
+      width: var(--weight);
+      pointer-events: none;
+      background: linear-gradient(90deg, var(--bar-start) 0%, var(--bar-end) 100%);
+      border-radius: var(--radius);
+      transform-origin: left center;
+      animation: bar-grow var(--dur-4) var(--ease) forwards;
+      animation-delay: calc((var(--delay-idx) * var(--stagger)) + 180ms);
+      transition: opacity var(--dur-2) ease;
+    }
+
+    .count-num { transition: opacity var(--dur-2) ease; }
+    .count-num.is-animating { opacity: 0; }
+    .count-num.is-visible { opacity: 1; }
+
+    @media (hover: hover) and (pointer: fine) {
+      .holdings:hover li:not(:hover)::before { opacity: 0.60; }
+      .holdings li:hover { background: var(--row-hover); }
+    }
+
+    .note {
+      display: block;
+      margin-block: 0.22rem;
+      color: var(--muted);
+      font-size: var(--fs-body);
+      font-variant-numeric: tabular-nums lining-nums;
+      font-feature-settings: "tnum" 1, "lnum" 1;
+      letter-spacing: var(--track-body);
+      line-height: 1.50;
+    }
+    .note.sm { color: var(--muted-soft); font-size: var(--fs-fine); line-height: 1.45; }
+
+    @media (max-width: 34rem) {
+      :root { --pad: clamp(1.00rem, 4vw, 1.35rem); }
+      .perf li, .holdings li {
+        margin-inline: calc(var(--space-1) * -1);
+        padding-inline: var(--space-1);
+      }
+    }
+
+    /* Accessibility Overrides */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      *, *::before, *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+      header, section, footer { animation: none !important; }
+      .holdings li::before { transform: scaleX(1) !important; }
+    }
+
+    @media (forced-colors: active) {
+      body { background: Canvas; }
+      body::before, body::after, .noise-bg, .holdings li::before, .spotlight-layer { display: none; }
+      .perf li, .holdings li, .heading { border-color: CanvasText; }
+      hr { background: CanvasText !important; }
+      .title, .heading, .heading-title, .perf li .val, .holdings li .val { color: CanvasText; }
+    }
+
+    /* Institutional Print Mode */
+    @page { size: portrait; margin: 1.2cm; }
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --fg: #000000;
+        --fg-strong: #000000;
+        --muted: #000000;
+        --muted-soft: #000000;
+        --line: #000000;
+      }
+      body { min-height: 0; padding: 0; color: #000000; background: #ffffff; overflow: visible; }
+      body::before, body::after, .noise-bg, .holdings li::before, .skip, .spotlight-layer { display: none !important; }
+      .page { width: auto; max-width: none; margin: 0; padding: 0; }
+      header, section, footer { contain: none !important; animation: none !important; }
+      .heading { border-color: #000000; }
+      hr { background: #000000 !important; }
+      section, li { break-inside: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="spotlight-layer" aria-hidden="true"></div>
+  <div class="noise-bg" aria-hidden="true"></div>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- 
+    ===========================================================================
+    SECTION 3: EDITABLE CONTENT & LEDGER DATA
+    ===========================================================================
+  -->
+  <main id="main" class="page" tabindex="-1" aria-label="Arkipelagos summary">
+    <!-- Header: Title & Tagline -->
+    <header>
+      <h1 class="title">Arkipelagos</h1>
+      <p class="subtitle">Patient, concentrated, long-only owners</p>
+    </header>
+
+    <hr>
+
+    <!-- Performance Table -->
+    <section aria-labelledby="perf-heading">
+      <h2 id="perf-heading" class="heading">
+        <span class="heading-title">Performance</span>
+        <span class="heading-meta">(annualized)</span>
+      </h2>
+
+      <ul class="perf" aria-label="Annualized performance">
+        <!-- EDIT IRR: Update data-value="32.1", aria-label="32.1%", and text content "32.1%" -->
+        <li style="--delay-idx: 0;"><span class="name">Net Portfolio IRR</span> <span class="val count-num" data-value="32.1" aria-label="32.1%">32.1%</span></li>
+        <li style="--delay-idx: 1;"><span class="name">Nasdaq-100 Total Return</span> <span class="val">20.1%</span></li>
+        <li style="--delay-idx: 2;"><span class="name">S&amp;P 500 Total Return</span> <span class="val">15.2%</span></li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <!-- Holdings Allocation Ledger -->
+    <section aria-labelledby="holdings-heading">
+      <h2 id="holdings-heading" class="heading">
+        <span class="heading-title">Holdings</span>
+        <span class="heading-meta">(allocation)</span>
+      </h2>
+
+      <!-- EDIT HOLDINGS: Adjust --weight: XX.X% and corresponding text percentage -->
+      <ul id="holdings" class="holdings" aria-label="Portfolio holdings">
+        <li style="--weight: 50.6%; --delay-idx: 0;"><span class="name">SpaceX</span> <span class="val">50.6%</span></li>
+        <li style="--weight: 12.2%; --delay-idx: 1;"><span class="name">Microsoft</span> <span class="val">12.2%</span></li>
+        <li style="--weight: 11.5%; --delay-idx: 2;"><span class="name">Alphabet</span> <span class="val">11.5%</span></li>
+        <li style="--weight: 10.0%; --delay-idx: 3;"><span class="name">Anthropic<sup><a href="#footnote-fmv" role="doc-noteref" aria-label="Private valuation note for Anthropic">*</a></sup></span> <span class="val">10.0%</span></li>
+        <li style="--weight: 7.8%; --delay-idx: 4;"><span class="name">OpenAI<sup><a href="#footnote-fmv" role="doc-noteref" aria-label="Private valuation note for OpenAI">*</a></sup></span> <span class="val">7.8%</span></li>
+        <li style="--weight: 5.4%; --delay-idx: 5;"><span class="name">Tesla</span> <span class="val">5.4%</span></li>
+        <li style="--weight: 2.5%; --delay-idx: 6;"><span class="name">Zipline<sup><a href="#footnote-fmv" role="doc-noteref" aria-label="Private valuation note for Zipline">*</a></sup></span> <span class="val">2.5%</span></li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <!-- Footer: Timestamp & Footnote Metadata -->
+    <footer class="notes">
+      <p class="note">
+        As of <time datetime="2026-08-07">Aug 7, 2026</time>
+        <span aria-hidden="true">·</span>
+        Inception <time datetime="2010-09-07">Sep 7, 2010</time>
+      </p>
+      <p id="footnote-fmv" class="note sm" role="doc-footnote" tabindex="-1">*Private holdings at fair market value. Informational only.</p>
+    </footer>
+  </main>
+
+  <!-- 
+    ===========================================================================
+    SECTION 4: JAVASCRIPT ANIMATION & HYDRATION ENGINE
+    ===========================================================================
+  -->
+  <script type="module">
+    const bodyNode = document.body;
+    const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    /* Locale Percentage Formatter */
+    let pctFormatter;
+    try {
+      pctFormatter = new Intl.NumberFormat("en-US", {
+        style: "percent",
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      });
+    } catch (_) {
+      pctFormatter = { format: (num) => `${(num * 100).toFixed(1)}%` };
+    }
+    const formatPct = (value) => pctFormatter.format(value / 100);
+
+    /* Ambient Cursor Tracking */
+    if (finePointerQuery.matches && !reduceMotionQuery.matches) {
+      let ticking = false;
+      window.addEventListener("pointermove", (event) => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          bodyNode.style.setProperty("--mouse-x", `${event.clientX}px`);
+          bodyNode.style.setProperty("--mouse-y", `${event.clientY}px`);
+          ticking = false;
+        });
+      }, { passive: true });
+    }
+
+    /* Smooth Count-Up Animation System */
+    const animateValue = (element, targetValue, delay = 0, duration = 850) => {
+      window.setTimeout(() => {
+        element.textContent = formatPct(0);
+        element.classList.remove("is-animating");
+        element.classList.add("is-visible");
+
+        const start = performance.now();
+        let lastFormatted = "";
+
+        const frame = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4); // Quartic Ease-Out
+          const current = Math.round(targetValue * eased * 10) / 10;
+          const formatted = formatPct(current);
+
+          if (formatted !== lastFormatted) {
+            element.textContent = formatted;
+            lastFormatted = formatted;
+          }
+
+          if (progress < 1) {
+            window.requestAnimationFrame(frame);
+          } else {
+            element.textContent = formatPct(targetValue);
+          }
+        };
+
+        window.requestAnimationFrame(frame);
+      }, delay);
+    };
+
+    /* Hydrate Number Animations */
+    const hydrate = () => {
+      document.querySelectorAll(".count-num").forEach((element) => {
+        const rawValue = Number.parseFloat(element.dataset.value);
+        if (!Number.isFinite(rawValue) || reduceMotionQuery.matches) {
+          element.classList.add("is-visible");
+          return;
+        }
+
+        const parentItem = element.closest("li");
+        const delayIndex = parentItem
+          ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10)
+          : 0;
+
+        element.classList.add("is-animating");
+        animateValue(element, rawValue, (delayIndex * 45) + 260);
+      });
+    };
+
+    hydrate();
+
+    /* Local Audit Engine: Logs warning if allocations do not sum to 100.0% */
+    if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash === "#debug") {
+      const weights = [...document.querySelectorAll("#holdings li")]
+        .map((item) => Number.parseFloat(item.style.getPropertyValue("--weight")))
+        .filter(Number.isFinite);
+
+      if (weights.length > 0) {
+        const total = Number(weights.reduce((sum, weight) => sum + weight, 0).toFixed(1));
+        if (total !== 100.0) {
+          console.warn(`[Arkipelagos Audit] Rendered holdings allocation sum is ${total}%; expected 100.0%.`);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
