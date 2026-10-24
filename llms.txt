@@ -1,25 +1,26 @@
 # Arkipelagos
-> Patient, concentrated, long-only owners. Compute, intelligence, and robotics.
 
-## Performance (Sep 7, 2010 – Aug 7, 2026)
-- Net Portfolio IRR: 32.1%
-- Nasdaq-100 Total Return: 20.1%
-- S&P 500 Total Return: 15.2%
+> Patient, concentrated, long-only owners.
 
-## Holdings (% of portfolio)
-- SpaceX: 50.6%
-- Microsoft: 12.2%
-- Alphabet: 11.5%
-- Anthropic*: 10.0%
-- OpenAI*: 7.8%
-- Tesla: 5.4%
-- Zipline*: 2.5%
+## Overview
+Arkipelagos is a private investment firm focused on patient, long-term ownership of high-conviction, concentrated holdings across foundational technology infrastructure.
 
-## Notes
-- Inception: Sep 7, 2010
-- Updated: Aug 7, 2026
-- *Private holdings at fair market value
-- Informational only; not investment advice.
+## Performance Track Record
+- **Inception Date:** September 7, 2010
+- **Reporting Date:** August 7, 2026
+- **Net Portfolio IRR:** 32.1%
+- **Nasdaq-100 Total Return Benchmark:** 20.1%
+- **S&P 500 Total Return Benchmark:** 15.2%
 
-## Links
-- Website: https://www.arkipelagos.com/
+## Holdings & Asset Allocation
+- **SpaceX:** 50.6%
+- **Microsoft:** 12.2%
+- **Alphabet:** 11.5%
+- **Anthropic:** 10.0% *(Private company; valuation at fair market value)*
+- **OpenAI:** 7.8% *(Private company; valuation at fair market value)*
+- **Tesla:** 5.4%
+- **Zipline:** 2.5% *(Private company; valuation at fair market value)*
+
+## Institutional Links
+- Canonical Website: https://www.arkipelagos.com/
+- AI Machine-Readable Summary: https://www.arkipelagos.com/llms.txt
