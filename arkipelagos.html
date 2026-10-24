@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <!-- 
     ===========================================================================
@@ -11,21 +12,20 @@
 
   <!-- Security Policy (Enforce frame-ancestors 'none' in production HTTP headers) -->
   <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    base-uri 'none';
-    object-src 'none';
-    form-action 'none';
-    frame-src 'none';
-    worker-src 'none';
-    manifest-src 'self';
-    connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
-    img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com data:;
-    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com;
-    script-src-attr 'none';
-    upgrade-insecure-requests;
-  ">
+  default-src 'self';
+  base-uri 'none';
+  object-src 'none';
+  form-action 'none';
+  worker-src 'none';
+  manifest-src 'self';
+  connect-src 'self' https://cdn.jsdelivr.net https://api.github.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+  img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com data:;
+  script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com;
+  script-src-attr 'none';
+  upgrade-insecure-requests;
+">
   <meta name="referrer" content="no-referrer">
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light dark">
@@ -46,15 +46,18 @@
   <meta name="theme-color" content="#ffffff">
   <meta id="theme-color-light" name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta id="theme-color-dark" name="theme-color" content="#0a0a0d" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23111113%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0d'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23111113%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0d'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
 
   <!-- Fonts & CDN Preconnects -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link id="inter-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
+  <link id="inter-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
   <link rel="preconnect" href="https://www.googletagmanager.com">
 
   <!-- OpenGraph / Twitter Social Previews -->
@@ -93,7 +96,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MRY99NLBK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ window.dataLayer.push(arguments); }
+    function gtag() { window.dataLayer.push(arguments); }
 
     gtag("consent", "default", {
       ad_storage: "denied",
@@ -139,7 +142,7 @@
       /* Allocation Bar Fills */
       --bar-start: rgba(17, 17, 19, 0.06);
       --bar-end: rgba(17, 17, 19, 0.008);
-      
+
       --bar-hover-start: rgba(17, 17, 19, 0.12);
       --bar-hover-end: rgba(17, 17, 19, 0.02);
 
@@ -147,12 +150,17 @@
       --vignette: rgba(17, 17, 19, 0.015);
 
       /* Precise Metric Rhythm Tokens */
-      --space-1: 0.50rem;  /* 8px */
-      --space-2: 1.00rem;  /* 16px */
-      --space-3: 1.50rem;  /* 24px */
-      --space-4: 2.25rem;  /* 36px */
-      --space-5: 3.50rem;  /* 56px */
-      
+      --space-1: 0.50rem;
+      /* 8px */
+      --space-2: 1.00rem;
+      /* 16px */
+      --space-3: 1.50rem;
+      /* 24px */
+      --space-4: 2.25rem;
+      /* 36px */
+      --space-5: 3.50rem;
+      /* 56px */
+
       --space-divider: clamp(1.10rem, 2.5svh, 1.85rem);
       --space-row: 0.52rem;
 
@@ -173,8 +181,10 @@
       --dur-1: 180ms;
       --dur-2: 240ms;
       --dur-3: 640ms;
-      --dur-4: 1300ms; /* Unhurried, deliberate bar expansion */
-      --stagger: 55ms;   /* Distinct cascade rhythm between ledger rows */
+      --dur-4: 1300ms;
+      /* Unhurried, deliberate bar expansion */
+      --stagger: 55ms;
+      /* Distinct cascade rhythm between ledger rows */
 
       --page-max: 35.50rem;
       --pad: clamp(1.25rem, 6vw, 3.50rem);
@@ -252,12 +262,17 @@
       body {
         font-variation-settings: "wght" 385;
       }
+
       .title {
         font-variation-settings: "opsz" 36, "wght" 680, "cv05" 1, "cv08" 1, "ss01" 1;
       }
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
     /* Dynamic Theme-Aware Selection Token */
     ::selection {
@@ -316,7 +331,8 @@
     }
 
     /* Mobile Device Viewport Fitting & Touch Ergonomics */
-    @media (max-width: 48rem), (max-height: 52rem) {
+    @media (max-width: 48rem),
+    (max-height: 52rem) {
       :root {
         --pad: clamp(0.85rem, 3.5vw, 1.25rem);
         --space-divider: clamp(0.70rem, 2.0vh, 1.10rem);
@@ -324,8 +340,11 @@
         --fs-display: clamp(2.10rem, 1.70rem + 2.4vw, 2.85rem);
         --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
       }
-      .perf li, .holdings li {
-        min-height: 2.35rem; /* iOS Touch Target Compliance */
+
+      .perf li,
+      .holdings li {
+        min-height: 2.35rem;
+        /* iOS Touch Target Compliance */
       }
     }
 
@@ -339,11 +358,9 @@
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       will-change: transform;
-      background: radial-gradient(
-        46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
-        var(--spotlight),
-        transparent 66%
-      );
+      background: radial-gradient(46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
+          var(--spotlight),
+          transparent 66%);
       contain: strict;
     }
 
@@ -372,8 +389,19 @@
       contain: strict;
     }
 
-    h1, h2, p, ul, li { margin: 0; padding: 0; }
-    a { color: inherit; text-decoration: none; }
+    h1,
+    h2,
+    p,
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     :focus-visible {
       outline: 2px solid var(--fg-strong);
@@ -409,9 +437,19 @@
       transform: translate(-50%, -50%);
     }
 
-    sup a:hover, sup a:focus-visible { color: var(--fg-strong); }
-    sup a:focus:not(:focus-visible) { outline: none; }
-    sup a:active { transform: scale(1.15); color: var(--fg-strong); }
+    sup a:hover,
+    sup a:focus-visible {
+      color: var(--fg-strong);
+    }
+
+    sup a:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    sup a:active {
+      transform: scale(1.15);
+      color: var(--fg-strong);
+    }
 
     /* Seamless Footnote Target Anchor (No Box Highlight) */
     #footnote-fmv:target {
@@ -429,6 +467,7 @@
       font-weight: 700;
       transition: inset-block-start 180ms ease;
     }
+
     .skip:focus-visible {
       inset-block-start: 0;
       outline: 3px solid var(--fg-strong);
@@ -436,27 +475,60 @@
     }
 
     @keyframes entrance {
-      from { opacity: 0; transform: translateY(0.30rem); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(0.30rem);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes bar-grow {
-      from { transform: scaleX(0); }
-      to { transform: scaleX(1); }
+      from {
+        transform: scaleX(0);
+      }
+
+      to {
+        transform: scaleX(1);
+      }
     }
 
-    header, section, footer {
+    header,
+    section,
+    footer {
       contain: layout style;
       animation: entrance var(--dur-3) var(--ease) both;
     }
 
-    header { animation-delay: 30ms; padding-block-start: clamp(0.10rem, 0.8vh, var(--space-1)); }
-    section:nth-of-type(1) { animation-delay: 90ms; }
-    section:nth-of-type(2) { animation-delay: 150ms; }
-    footer { animation-delay: 210ms; }
+    header {
+      animation-delay: 30ms;
+      padding-block-start: clamp(0.10rem, 0.8vh, var(--space-1));
+    }
 
-    .title, .heading { text-wrap: balance; }
-    .subtitle, .note { text-wrap: pretty; }
+    section:nth-of-type(1) {
+      animation-delay: 90ms;
+    }
+
+    section:nth-of-type(2) {
+      animation-delay: 150ms;
+    }
+
+    footer {
+      animation-delay: 210ms;
+    }
+
+    .title,
+    .heading {
+      text-wrap: balance;
+    }
+
+    .subtitle,
+    .note {
+      text-wrap: pretty;
+    }
 
     /* Typographic Optical Sizing Lock */
     .title {
@@ -519,7 +591,8 @@
       white-space: nowrap;
     }
 
-    .perf, .holdings {
+    .perf,
+    .holdings {
       list-style: none;
       margin-block: 0.20rem;
       font-size: var(--fs-body);
@@ -527,7 +600,8 @@
       letter-spacing: var(--track-body);
     }
 
-    .perf li, .holdings li {
+    .perf li,
+    .holdings li {
       --weight: 0%;
       --delay-idx: 0;
       position: relative;
@@ -549,15 +623,24 @@
       font-weight: 600;
       color: var(--fg-strong);
     }
+
     .perf li:first-child .val {
       font-weight: 700;
       color: var(--fg-strong);
     }
 
-    .perf li:not(:first-child) { color: var(--muted); font-weight: 400; }
-    .perf li:not(:first-child) .val { color: var(--muted); font-weight: 400; }
+    .perf li:not(:first-child) {
+      color: var(--muted);
+      font-weight: 400;
+    }
 
-    .perf li .name, .holdings li .name {
+    .perf li:not(:first-child) .val {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .perf li .name,
+    .holdings li .name {
       position: relative;
       z-index: 1;
       flex: 1 1 auto;
@@ -569,7 +652,8 @@
       transition: color var(--dur-1) ease, font-variation-settings var(--dur-1) ease;
     }
 
-    .perf li .val, .holdings li .val {
+    .perf li .val,
+    .holdings li .val {
       position: relative;
       z-index: 1;
       flex: 0 0 auto;
@@ -607,9 +691,17 @@
       animation-delay: calc((var(--delay-idx) * var(--stagger)) + 140ms);
     }
 
-    .count-num { transition: opacity var(--dur-2) ease; }
-    .count-num.is-animating { opacity: 0; }
-    .count-num.is-visible { opacity: 1; }
+    .count-num {
+      transition: opacity var(--dur-2) ease;
+    }
+
+    .count-num.is-animating {
+      opacity: 0;
+    }
+
+    .count-num.is-visible {
+      opacity: 1;
+    }
 
     /* Allocation Bar-Only Hover & Touch Feedback with Zero-Reflow Variable Font Bolding */
     .holdings li:active::before,
@@ -632,6 +724,7 @@
         box-shadow: inset -1px 0 0 rgba(17, 17, 19, 0.15);
         opacity: 1.0;
       }
+
       .holdings li:hover .name,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
@@ -656,6 +749,7 @@
       letter-spacing: var(--track-body);
       line-height: 1.45;
     }
+
     .note.sm {
       color: var(--muted-soft);
       font-size: var(--fs-fine);
@@ -664,7 +758,9 @@
     }
 
     @media (max-width: 34rem) {
-      .perf li, .holdings li {
+
+      .perf li,
+      .holdings li {
         margin-inline: calc(var(--space-1) * -1);
         padding-inline: var(--space-1);
       }
@@ -672,26 +768,67 @@
 
     /* Accessibility Overrides */
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto !important; }
-      *, *::before, *::after {
+      html {
+        scroll-behavior: auto !important;
+      }
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 1ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 1ms !important;
       }
-      header, section, footer { animation: none !important; }
-      .holdings li::before { transform: scaleX(1) translateZ(0) !important; }
+
+      header,
+      section,
+      footer {
+        animation: none !important;
+      }
+
+      .holdings li::before {
+        transform: scaleX(1) translateZ(0) !important;
+      }
     }
 
     @media (forced-colors: active) {
-      body { background: Canvas; }
-      body::before, body::after, .noise-bg, .holdings li::before, .spotlight-layer { display: none; }
-      .perf li, .holdings li, .heading { border-color: CanvasText; }
-      hr { background: CanvasText !important; }
-      .title, .heading, .heading-title, .perf li .val, .holdings li .val { color: CanvasText; }
+      body {
+        background: Canvas;
+      }
+
+      body::before,
+      body::after,
+      .noise-bg,
+      .holdings li::before,
+      .spotlight-layer {
+        display: none;
+      }
+
+      .perf li,
+      .holdings li,
+      .heading {
+        border-color: CanvasText;
+      }
+
+      hr {
+        background: CanvasText !important;
+      }
+
+      .title,
+      .heading,
+      .heading-title,
+      .perf li .val,
+      .holdings li .val {
+        color: CanvasText;
+      }
     }
 
     /* Institutional Print Mode */
-    @page { size: portrait; margin: 1.2cm; }
+    @page {
+      size: portrait;
+      margin: 1.2cm;
+    }
+
     @media print {
       :root {
         --bg: #ffffff;
@@ -701,16 +838,55 @@
         --muted-soft: #000000;
         --line: #000000;
       }
-      body { min-height: 0; padding: 0; color: #000000; background: #ffffff; overflow: visible; }
-      body::before, body::after, .noise-bg, .holdings li::before, .skip, .spotlight-layer { display: none !important; }
-      .page { width: auto; max-width: none; margin: 0; padding: 0; }
-      header, section, footer { contain: none !important; animation: none !important; }
-      .heading { border-color: #000000; }
-      hr { background: #000000 !important; }
-      section, li { break-inside: avoid; page-break-inside: avoid; }
+
+      body {
+        min-height: 0;
+        padding: 0;
+        color: #000000;
+        background: #ffffff;
+        overflow: visible;
+      }
+
+      body::before,
+      body::after,
+      .noise-bg,
+      .holdings li::before,
+      .skip,
+      .spotlight-layer {
+        display: none !important;
+      }
+
+      .page {
+        width: auto;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      header,
+      section,
+      footer {
+        contain: none !important;
+        animation: none !important;
+      }
+
+      .heading {
+        border-color: #000000;
+      }
+
+      hr {
+        background: #000000 !important;
+      }
+
+      section,
+      li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="spotlight-layer" aria-hidden="true"></div>
   <div class="noise-bg" aria-hidden="true"></div>
@@ -739,9 +915,12 @@
       </h2>
 
       <ul class="perf" aria-label="Annualized performance">
-        <li style="--delay-idx: 0;"><span class="name">Net Portfolio IRR</span> <span class="val count-num" data-value="32.1" aria-label="32.1%">32.1%</span></li>
-        <li style="--delay-idx: 1;"><span class="name">Nasdaq-100 Total Return</span> <span class="val">20.1%</span></li>
-        <li style="--delay-idx: 2;"><span class="name">S&amp;P 500 Total Return</span> <span class="val">15.2%</span></li>
+        <li style="--delay-idx: 0;"><span class="name">Net Portfolio IRR</span> <span class="val count-num"
+            data-value="32.1" aria-label="32.1%">32.1%</span></li>
+        <li style="--delay-idx: 1;"><span class="name">Nasdaq-100 Total Return</span> <span class="val">20.1%</span>
+        </li>
+        <li style="--delay-idx: 2;"><span class="name">S&amp;P 500 Total Return</span> <span class="val">15.2%</span>
+        </li>
       </ul>
     </section>
 
@@ -755,13 +934,22 @@
       </h2>
 
       <ul id="holdings" class="holdings" aria-label="Portfolio holdings">
-        <li style="--weight: 50.6%; --delay-idx: 0;"><span class="name">SpaceX</span> <span class="val">50.6%</span></li>
-        <li style="--weight: 12.2%; --delay-idx: 1;"><span class="name">Microsoft</span> <span class="val">12.2%</span></li>
-        <li style="--weight: 11.5%; --delay-idx: 2;"><span class="name">Alphabet</span> <span class="val">11.5%</span></li>
-        <li style="--weight: 10.0%; --delay-idx: 3;"><span class="name">Anthropic<sup><a href="#footnote-fmv" role="doc-noteref" aria-label="Private valuation note for Anthropic">*</a></sup></span> <span class="val">10.0%</span></li>
-        <li style="--weight: 7.8%; --delay-idx: 4;"><span class="name">OpenAI<sup><a href="#footnote-fmv" role="doc-noteref" aria-label="Private valuation note for OpenAI">*</a></sup></span> <span class="val">7.8%</span></li>
+        <li style="--weight: 50.6%; --delay-idx: 0;"><span class="name">SpaceX</span> <span class="val">50.6%</span>
+        </li>
+        <li style="--weight: 12.2%; --delay-idx: 1;"><span class="name">Microsoft</span> <span class="val">12.2%</span>
+        </li>
+        <li style="--weight: 11.5%; --delay-idx: 2;"><span class="name">Alphabet</span> <span class="val">11.5%</span>
+        </li>
+        <li style="--weight: 10.0%; --delay-idx: 3;"><span class="name">Anthropic<sup><a href="#footnote-fmv"
+                role="doc-noteref" aria-label="Private valuation note for Anthropic">*</a></sup></span> <span
+            class="val">10.0%</span></li>
+        <li style="--weight: 7.8%; --delay-idx: 4;"><span class="name">OpenAI<sup><a href="#footnote-fmv"
+                role="doc-noteref" aria-label="Private valuation note for OpenAI">*</a></sup></span> <span
+            class="val">7.8%</span></li>
         <li style="--weight: 5.4%; --delay-idx: 5;"><span class="name">Tesla</span> <span class="val">5.4%</span></li>
-        <li style="--weight: 2.5%; --delay-idx: 6;"><span class="name">Zipline<sup><a href="#footnote-fmv" role="doc-noteref" aria-label="Private valuation note for Zipline">*</a></sup></span> <span class="val">2.5%</span></li>
+        <li style="--weight: 2.5%; --delay-idx: 6;"><span class="name">Zipline<sup><a href="#footnote-fmv"
+                role="doc-noteref" aria-label="Private valuation note for Zipline">*</a></sup></span> <span
+            class="val">2.5%</span></li>
       </ul>
     </section>
 
@@ -774,7 +962,8 @@
         <span aria-hidden="true">·</span>
         Inception <time datetime="2010-09-07">Sep 7, 2010</time>
       </p>
-      <p id="footnote-fmv" class="note sm" role="doc-footnote" tabindex="-1">*Private holdings at fair market value. Informational only.</p>
+      <p id="footnote-fmv" class="note sm" role="doc-footnote" tabindex="-1">*Private holdings at fair market value.
+        Informational only.</p>
     </footer>
   </main>
 
@@ -799,7 +988,7 @@
     try {
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeMeta);
       updateThemeMeta();
-    } catch (_) {}
+    } catch (_) { }
 
     /* Locale Percentage Formatter */
     let pctFormatter;
@@ -945,4 +1134,5 @@
     }
   </script>
 </body>
+
 </html>
