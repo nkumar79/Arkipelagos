@@ -177,8 +177,8 @@
       --dur-1: 180ms;
       --dur-2: 240ms;
       --dur-3: 640ms;
-      --dur-4: 1850ms;
-      --stagger: 80ms;
+      --dur-4: 1850ms; /* Unhurried institutional expansion */
+      --stagger: 80ms;   /* Cadenced row offset */
 
       --page-max: 35.50rem;
       --pad: clamp(1.25rem, 6vw, 3.50rem);
@@ -326,6 +326,7 @@
       padding-block-end: clamp(1.50rem, 4vh, 3.00rem);
     }
 
+    /* Universal Display Centering for Laptops and Desktop Monitors */
     @media (min-height: 40rem) {
       .page {
         margin-block: auto;
@@ -348,7 +349,7 @@
       }
     }
 
-    /* Ambient Cursor Spotlight Layer */
+    /* Ambient Cursor Spotlight Layer (Fine Pointer Only) */
     .spotlight-layer {
       position: fixed;
       inset: 0;
@@ -413,7 +414,7 @@
       outline: none;
     }
 
-    /* Asymmetric Superscript Note Ref */
+    /* Asymmetric Superscript Note Ref (Prevents Text Intrusion) */
     sup {
       font-size: 0.68em;
       line-height: 0;
@@ -669,7 +670,7 @@
       transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
-    /* Allocation Bar Hardware Acceleration */
+    /* Allocation Bar Hardware Acceleration (Unconditionally Accelerated in Pure CSS) */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -688,15 +689,12 @@
       backface-visibility: hidden;
       transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease, opacity var(--dur-2) ease;
       opacity: 0.85;
-    }
-
-    .holdings.is-animated li::before {
       animation: bar-grow var(--dur-4) var(--ease) both;
-      animation-delay: calc((var(--delay-idx) * var(--stagger)) + 140ms);
+      animation-delay: calc((var(--delay-idx) * var(--stagger)) + 180ms);
       will-change: transform;
     }
 
-    /* Unified Hover, Active & Touch States: Desktop & Mobile Full Parity */
+    /* Unified Hover, Active & Touch States: Full Desktop & Mobile Parity */
     .holdings li:hover::before,
     .holdings li:active::before,
     .holdings li.is-touched::before,
@@ -706,16 +704,23 @@
       opacity: 1.0 !important;
     }
 
+    /* Company Name: 400 -> 520 */
     .holdings li:hover .name,
-    .holdings li:hover .val,
     .holdings li:active .name,
-    .holdings li:active .val,
     .holdings li.is-touched .name,
-    .holdings li.is-touched .val,
-    .holdings li.is-selected .name,
-    .holdings li.is-selected .val {
+    .holdings li.is-selected .name {
       color: var(--fg-strong) !important;
       font-weight: 520 !important;
+      font-variation-settings: "opsz" 16 !important;
+    }
+
+    /* Allocation %: 500 -> 600 (Deliberate, balanced Semi-Bold emphasis) */
+    .holdings li:hover .val,
+    .holdings li:active .val,
+    .holdings li.is-touched .val,
+    .holdings li.is-selected .val {
+      color: var(--fg-strong) !important;
+      font-weight: 600 !important;
       font-variation-settings: "opsz" 16 !important;
       font-feature-settings: var(--font-features-numeric) !important;
       -webkit-font-feature-settings: var(--font-features-numeric) !important;
@@ -751,31 +756,6 @@
       .holdings li {
         margin-inline: calc(var(--space-1) * -1);
         padding-inline: var(--space-1);
-      }
-    }
-
-    /* Accessibility Motion Reductions */
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto !important;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 1ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 1ms !important;
-      }
-
-      header,
-      section,
-      footer {
-        animation: none !important;
-      }
-
-      .holdings li::before {
-        transform: scaleX(1) !important;
       }
     }
 
@@ -957,35 +937,70 @@
 
   <!-- 
     ===========================================================================
-    SECTION 4: VANILLA JS HYDRATION & ANIMATION ENGINE (FULL PARITY)
+    SECTION 4: VANILLA JS ENGINE (UNCONDITIONAL RUNTIME & TOUCH PARITY)
     ===========================================================================
   -->
   <script>
     (function () {
       "use strict";
 
-      // 1. Unlock native iOS Safari :active CSS state
+      // 1. Unlock native iOS Safari :active touch CSS pseudo-class
       document.addEventListener("touchstart", function () {}, { passive: true });
 
-      var spotlightNode = document.querySelector(".spotlight-layer");
-      var reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      var finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+      // 2. Unconditional Mobile & Desktop Counter Engine (0.0% -> 32.1%)
+      var counterExecuted = false;
+      function startCounterAnimation() {
+        if (counterExecuted) return;
+        var counterEl = document.querySelector(".count-num");
+        if (!counterEl) return;
+        counterExecuted = true;
 
-      // Number Formatting System
-      var pctFormatter;
-      try {
-        pctFormatter = new Intl.NumberFormat("en-US", {
-          style: "percent",
-          minimumFractionDigits: 1,
-          maximumFractionDigits: 1
-        });
-      } catch (_) {
-        pctFormatter = { format: function (num) { return (num * 100).toFixed(1) + "%"; } };
+        var targetVal = parseFloat(counterEl.getAttribute("data-value")) || 32.1;
+        var duration = 1600; // 1600ms Deliberate Quartic Ease-Out
+        var startDelay = 180; // Perfectly synchronized with Section 1 entrance opacity
+
+        // Prime text immediately to 0.0%
+        counterEl.textContent = "0.0%";
+
+        window.setTimeout(function () {
+          var startTime = null;
+
+          function renderFrame(timestamp) {
+            if (!startTime) {
+              startTime = (typeof timestamp === "number") ? timestamp : (window.performance && performance.now ? performance.now() : Date.now());
+            }
+            var nowTime = (typeof timestamp === "number") ? timestamp : (window.performance && performance.now ? performance.now() : Date.now());
+            var elapsed = Math.max(0, nowTime - startTime);
+            var progress = Math.min(elapsed / duration, 1);
+            
+            // Quartic Ease-Out: 1 - (1 - progress)^4
+            var eased = 1 - Math.pow(1 - progress, 4);
+            var currentNumber = (targetVal * eased).toFixed(1);
+
+            counterEl.textContent = currentNumber + "%";
+
+            if (progress < 1) {
+              window.requestAnimationFrame(renderFrame);
+            } else {
+              counterEl.textContent = targetVal.toFixed(1) + "%";
+            }
+          }
+
+          window.requestAnimationFrame(renderFrame);
+        }, startDelay);
       }
-      var formatPct = function (value) { return pctFormatter.format(value / 100); };
 
-      // Desktop Ambient Cursor Tracking
-      if (spotlightNode && finePointerQuery.matches && !reduceMotionQuery.matches) {
+      // Execute counter immediately when ready across any browser or WebView
+      startCounterAnimation();
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startCounterAnimation);
+      }
+      window.addEventListener("load", startCounterAnimation);
+
+      // 3. Desktop Ambient Cursor Spotlight (Fine Pointer Only)
+      var spotlightNode = document.querySelector(".spotlight-layer");
+      var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+      if (spotlightNode && finePointer.matches) {
         var ticking = false;
         window.addEventListener("pointermove", function (event) {
           if (event.pointerType !== "mouse" || ticking) return;
@@ -998,138 +1013,76 @@
         }, { passive: true });
       }
 
-      // Mobile Touch Feedback Engine (Zero Jitter, Instant 520 Bolding & Warm Titanium Bar)
+      // 4. Mobile Passive Touch & Tap-Selection Engine (Full Parity With Desktop Hover)
       var holdingItems = document.querySelectorAll(".holdings li");
-      holdingItems.forEach(function (item) {
-        var startX = 0;
-        var startY = 0;
-        var touchTimeout = null;
+      for (var i = 0; i < holdingItems.length; i++) {
+        (function (item) {
+          var startX = 0;
+          var startY = 0;
+          var isScrolling = false;
 
-        item.addEventListener("touchstart", function (e) {
-          if (e.touches && e.touches[0]) {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-          }
-          if (touchTimeout) clearTimeout(touchTimeout);
-          item.classList.add("is-touched");
-        }, { passive: true });
+          item.addEventListener("touchstart", function (e) {
+            if (e.touches && e.touches[0]) {
+              startX = e.touches[0].clientX;
+              startY = e.touches[0].clientY;
+            }
+            isScrolling = false;
+            item.classList.add("is-touched");
+          }, { passive: true });
 
-        item.addEventListener("touchmove", function (e) {
-          if (e.touches && e.touches[0]) {
-            var diffX = Math.abs(e.touches[0].clientX - startX);
-            var diffY = Math.abs(e.touches[0].clientY - startY);
-            // Cancel touch feedback only if the finger genuinely scrolled (> 10px)
-            if (diffX > 10 || diffY > 10) {
+          item.addEventListener("touchmove", function (e) {
+            if (e.touches && e.touches[0]) {
+              var diffX = Math.abs(e.touches[0].clientX - startX);
+              var diffY = Math.abs(e.touches[0].clientY - startY);
+              // Cancel touch feedback if the user is scrolling
+              if (diffX > 8 || diffY > 8) {
+                isScrolling = true;
+                item.classList.remove("is-touched");
+              }
+            }
+          }, { passive: true });
+
+          item.addEventListener("touchend", function () {
+            if (!isScrolling) {
+              var wasSelected = item.classList.contains("is-selected");
+              for (var j = 0; j < holdingItems.length; j++) {
+                holdingItems[j].classList.remove("is-selected");
+                holdingItems[j].classList.remove("is-touched");
+              }
+              if (!wasSelected) {
+                item.classList.add("is-selected");
+              }
+            } else {
               item.classList.remove("is-touched");
             }
-          }
-        }, { passive: true });
+          }, { passive: true });
 
-        item.addEventListener("touchend", function () {
-          // Provide comfortable visual persistence before releasing
-          touchTimeout = setTimeout(function () {
+          item.addEventListener("touchcancel", function () {
             item.classList.remove("is-touched");
-          }, 350);
-        }, { passive: true });
-
-        item.addEventListener("touchcancel", function () {
-          item.classList.remove("is-touched");
-        }, { passive: true });
-
-        // Tapping a row on mobile selects it, tapping again or outside deselects
-        item.addEventListener("click", function () {
-          var isAlreadySelected = item.classList.contains("is-selected");
-          holdingItems.forEach(function (other) { other.classList.remove("is-selected"); });
-          if (!isAlreadySelected) {
-            item.classList.add("is-selected");
-          }
-        });
-      });
+            isScrolling = false;
+          }, { passive: true });
+        })(holdingItems[i]);
+      }
 
       // Clear selection when tapping anywhere outside the holdings list
       document.addEventListener("click", function (e) {
-        if (!e.target.closest(".holdings")) {
-          holdingItems.forEach(function (item) { item.classList.remove("is-selected"); });
+        if (!e.target.closest || !e.target.closest(".holdings")) {
+          for (var k = 0; k < holdingItems.length; k++) {
+            holdingItems[k].classList.remove("is-selected");
+            holdingItems[k].classList.remove("is-touched");
+          }
         }
       });
 
-      // Numerical Interpolation Engine (0.0% to 32.1% in 1600ms Quartic Ease)
-      var animateValue = function (element, targetValue, delay, duration) {
-        if (reduceMotionQuery.matches) {
-          element.textContent = formatPct(targetValue);
-          return;
-        }
-
-        element.textContent = formatPct(0);
-
-        window.setTimeout(function () {
-          var start = performance.now();
-          var lastFormatted = formatPct(0);
-
-          var frame = function (now) {
-            var progress = Math.min((now - start) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 4);
-            var current = Math.round(targetValue * eased * 10) / 10;
-            var formatted = formatPct(current);
-
-            if (formatted !== lastFormatted) {
-              element.textContent = formatted;
-              lastFormatted = formatted;
-            }
-
-            if (progress < 1) {
-              window.requestAnimationFrame(frame);
-            } else {
-              element.textContent = formatPct(targetValue);
-            }
-          };
-
-          window.requestAnimationFrame(frame);
-        }, delay);
-      };
-
-      // Guaranteed Immediate Hydration Engine (Bypasses Scroll & IO Bugs)
-      var hasHydrated = false;
-      var triggerHydration = function () {
-        if (hasHydrated) return;
-        hasHydrated = true;
-
-        // 1. Expand holdings bars immediately on load
-        var holdingsList = document.getElementById("holdings");
-        if (holdingsList) {
-          holdingsList.classList.add("is-animated");
-        }
-
-        // 2. Count Net Portfolio IRR from 0.0% to 32.1%
-        var countEls = document.querySelectorAll(".count-num");
-        countEls.forEach(function (el) {
-          var rawValue = Number.parseFloat(el.dataset.value);
-          if (Number.isFinite(rawValue)) {
-            var parentItem = el.closest("li");
-            var delayIndex = parentItem ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10) : 0;
-            animateValue(el, rawValue, (delayIndex * 80) + 120, 1600);
-          }
-        });
-      };
-
-      if (document.readyState === "complete" || document.readyState === "interactive") {
-        triggerHydration();
-      } else {
-        document.addEventListener("DOMContentLoaded", triggerHydration);
-        window.addEventListener("load", triggerHydration);
-      }
-
-      // Safety fallback to ensure execution on backgrounded tabs or slow WebViews
-      window.setTimeout(triggerHydration, 50);
-
-      // Audit Verification (Active on localhost or ?debug)
+      // 5. Production Audit Engine (Active on localhost or ?debug)
       if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) !== -1 || window.location.hash.indexOf("debug") !== -1 || window.location.search.indexOf("debug") !== -1) {
-        var weights = Array.from(document.querySelectorAll("#holdings li"))
-          .map(function (item) { return Number.parseFloat(item.style.getPropertyValue("--weight")); })
-          .filter(Number.isFinite);
-
+        var weights = [];
+        for (var w = 0; w < holdingItems.length; w++) {
+          var val = parseFloat(holdingItems[w].style.getPropertyValue("--weight"));
+          if (!isNaN(val)) weights.push(val);
+        }
         if (weights.length > 0) {
-          var total = Number(weights.reduce(function (sum, weight) { return sum + weight; }, 0).toFixed(1));
+          var total = parseFloat(weights.reduce(function (sum, wt) { return sum + wt; }, 0).toFixed(1));
           if (total !== 100.0) {
             console.warn("[Arkipelagos Audit] Rendered holdings allocation sum is " + total + "%; expected 100.0%.");
           }
