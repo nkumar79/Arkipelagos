@@ -135,7 +135,7 @@
       --muted-soft: #888690;
 
       --line: rgba(22, 21, 24, 0.065);
-      --row-hover: rgba(22, 21, 24, 0.038); /* Refined hover contrast tint */
+      --row-hover: rgba(22, 21, 24, 0.038);
 
       --bar-start: rgba(22, 21, 24, 0.065);
       --bar-end: rgba(22, 21, 24, 0.008);
@@ -524,7 +524,7 @@
       transition: background var(--dur-1) ease, color var(--dur-1) ease, transform var(--dur-1) ease;
     }
 
-    /* Clean Bold Text Alignment for Net Portfolio IRR */
+    /* Clean Static Formatting for Performance Benchmarks */
     .perf li:first-child .name {
       font-weight: 600;
       color: var(--fg-strong);
@@ -561,7 +561,7 @@
       transition: color var(--dur-1) ease;
     }
 
-    /* Holdings Bar Graph Animations */
+    /* Holdings Allocation Bars */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -588,23 +588,18 @@
     .count-num.is-animating { opacity: 0; }
     .count-num.is-visible { opacity: 1; }
 
-    /* Refined Soft Background Tint & 3px Micro-Shift Contrast Response */
-    .perf li:active,
+    /* Scoped Touch Feedback & Hover Motion — Holdings Only */
     .holdings li:active,
-    .perf li.is-touched,
     .holdings li.is-touched {
       background: var(--row-hover) !important;
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .perf li:hover,
       .holdings li:hover {
         background: var(--row-hover);
         transform: translateX(3px);
       }
-      .perf li:hover .name,
       .holdings li:hover .name,
-      .perf li:hover .val,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
       }
@@ -651,7 +646,7 @@
       }
       header, section, footer { animation: none !important; }
       .holdings li::before { transform: scaleX(1) !important; }
-      .perf li:hover, .holdings li:hover { transform: none !important; }
+      .holdings li:hover { transform: none !important; }
     }
 
     @media (forced-colors: active) {
@@ -800,8 +795,8 @@
       }, { passive: true });
     }
 
-    /* Mobile Touch Feedback Sync with Tactile Haptic Tap */
-    document.querySelectorAll(".perf li, .holdings li").forEach((item) => {
+    /* Mobile Touch Feedback Sync with Tactile Haptic Tap (Holdings Only) */
+    document.querySelectorAll(".holdings li").forEach((item) => {
       item.addEventListener("touchstart", () => {
         item.classList.add("is-touched");
         if ("vibrate" in navigator) {
