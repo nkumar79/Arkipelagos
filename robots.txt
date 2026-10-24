@@ -1,3 +1,10 @@
+# ═══════════════════════════════════════════════════════
+#  Arkipelagos — Web Crawler & AI Agent Directive
+# ═══════════════════════════════════════════════════════
+
 User-agent: *
 Allow: /
+Disallow: /#debug
+
+# Sitemap & LLM Context File Locations
 Sitemap: https://www.arkipelagos.com/sitemap.xml
