@@ -18,7 +18,7 @@
     form-action 'none';
     worker-src 'none';
     manifest-src 'self';
-    connect-src 'self' https://cdn.jsdelivr.net https://api.github.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+    connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
     img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com data:;
@@ -30,7 +30,8 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="light dark">
 
-  <!-- Apple Standalone Web App Integration -->
+  <!-- Standalone Web App Integration -->
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Arkipelagos">
@@ -43,7 +44,6 @@
   <link rel="canonical" href="https://www.arkipelagos.com/">
 
   <!-- Favicon & Apple Touch Icons -->
-  <meta name="theme-color" content="#ffffff">
   <meta id="theme-color-light" name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta id="theme-color-dark" name="theme-color" content="#0a0a0d" media="(prefers-color-scheme: dark)">
   <link rel="icon" type="image/svg+xml"
@@ -145,6 +145,7 @@
 
       --bar-hover-start: rgba(17, 17, 19, 0.12);
       --bar-hover-end: rgba(17, 17, 19, 0.02);
+      --bar-edge-hover: rgba(17, 17, 19, 0.15);
 
       --spotlight: rgba(17, 17, 19, 0.012);
       --vignette: rgba(17, 17, 19, 0.015);
@@ -203,6 +204,7 @@
 
         --bar-hover-start: oklch(0.120 0.012 260 / 0.12);
         --bar-hover-end: oklch(0.120 0.012 260 / 0.02);
+        --bar-edge-hover: oklch(0.120 0.012 260 / 0.15);
 
         --spotlight: oklch(0.120 0.012 260 / 0.012);
         --vignette: oklch(0.120 0.012 260 / 0.015);
@@ -225,6 +227,7 @@
 
         --bar-hover-start: rgba(252, 252, 253, 0.14);
         --bar-hover-end: rgba(252, 252, 253, 0.03);
+        --bar-edge-hover: rgba(252, 252, 253, 0.18);
 
         --spotlight: rgba(252, 252, 253, 0.02);
         --vignette: rgba(0, 0, 0, 0.28);
@@ -245,6 +248,7 @@
 
           --bar-hover-start: oklch(0.988 0.002 90 / 0.14);
           --bar-hover-end: oklch(0.988 0.002 90 / 0.03);
+          --bar-edge-hover: oklch(0.988 0.002 90 / 0.18);
 
           --spotlight: oklch(0.988 0.002 90 / 0.02);
           --vignette: oklch(0 0 0 / 0.28);
@@ -253,11 +257,12 @@
 
       /* Optical Weight Parity Compensation for OLED & High-DPI Displays */
       body {
-        font-variation-settings: "wght" 385;
+        font-weight: 385;
       }
 
       .title {
-        font-variation-settings: "opsz" 36, "wght" 680;
+        font-weight: 680;
+        font-variation-settings: "opsz" 36;
       }
     }
 
@@ -298,6 +303,7 @@
         radial-gradient(120rem 70rem at 50% -45rem, var(--spotlight), transparent 60%),
         var(--bg);
       font-family: var(--font-body);
+      font-optical-sizing: auto;
       font-feature-settings: var(--font-features-numeric);
       -webkit-font-feature-settings: var(--font-features-numeric);
       font-synthesis: none;
@@ -321,7 +327,7 @@
       width: min(100%, var(--page-max));
       margin-inline: auto;
       margin-block: auto;
-      padding-block-bottom: clamp(1.5rem, 4vh, 3rem);
+      padding-block-end: clamp(1.5rem, 4vh, 3rem);
     }
 
     /* Mobile Ergonomics & Viewport Adapters */
@@ -396,6 +402,11 @@
       outline-offset: 3px;
     }
 
+    #main:focus,
+    #footnote-fmv:focus {
+      outline: none;
+    }
+
     /* Zero-Reflow Superscript Lock */
     sup {
       font-size: 0.68em;
@@ -411,6 +422,7 @@
       padding: 0 0.12em;
       color: var(--muted);
       text-align: center;
+      border-radius: 2px;
       -webkit-tap-highlight-color: transparent;
       transition: color var(--dur-1) ease, transform var(--dur-1) ease;
     }
@@ -428,6 +440,10 @@
     sup a:hover,
     sup a:focus-visible {
       color: var(--fg-strong);
+    }
+
+    sup a:focus-visible {
+      outline-offset: 1px;
     }
 
     sup a:focus:not(:focus-visible) {
@@ -521,7 +537,7 @@
       color: var(--fg-strong);
       font-size: var(--fs-display);
       font-weight: 700;
-      font-variation-settings: "opsz" 36, "wght" 700;
+      font-variation-settings: "opsz" 36;
       font-feature-settings: var(--font-features-display);
       -webkit-font-feature-settings: var(--font-features-display);
       letter-spacing: var(--track-display);
@@ -635,7 +651,7 @@
       font-weight: 400;
       white-space: nowrap;
       overflow: visible;
-      transition: color var(--dur-1) ease, font-variation-settings var(--dur-1) ease;
+      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
     .perf li .val,
@@ -648,7 +664,7 @@
       -webkit-font-feature-settings: var(--font-features-numeric);
       font-weight: 500;
       white-space: nowrap;
-      transition: color var(--dur-1) ease, font-variation-settings var(--dur-1) ease;
+      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
     /* Allocation Bar Hardware Acceleration */
@@ -683,6 +699,7 @@
 
     .count-num.is-animating {
       opacity: 0;
+      transition: none;
     }
 
     .count-num.is-visible {
@@ -693,6 +710,7 @@
     .holdings li:active::before,
     .holdings li.is-touched::before {
       background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
+      box-shadow: inset -1px 0 0 var(--bar-edge-hover);
       opacity: 1;
     }
 
@@ -701,7 +719,8 @@
     .holdings li.is-touched .name,
     .holdings li.is-touched .val {
       color: var(--fg-strong) !important;
-      font-variation-settings: "wght" 520, "opsz" 16 !important;
+      font-weight: 520 !important;
+      font-variation-settings: "opsz" 16 !important;
       font-feature-settings: var(--font-features-numeric) !important;
       -webkit-font-feature-settings: var(--font-features-numeric) !important;
     }
@@ -709,14 +728,15 @@
     @media (hover: hover) and (pointer: fine) {
       .holdings li:hover::before {
         background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
-        box-shadow: inset -1px 0 0 rgba(17, 17, 19, 0.15);
+        box-shadow: inset -1px 0 0 var(--bar-edge-hover);
         opacity: 1.0;
       }
 
       .holdings li:hover .name,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
-        font-variation-settings: "wght" 520, "opsz" 16 !important;
+        font-weight: 520 !important;
+        font-variation-settings: "opsz" 16 !important;
         font-feature-settings: var(--font-features-numeric) !important;
         -webkit-font-feature-settings: var(--font-features-numeric) !important;
       }
@@ -777,6 +797,10 @@
 
       .holdings li::before {
         transform: scaleX(1) translateZ(0) !important;
+      }
+
+      .count-num {
+        opacity: 1 !important;
       }
     }
 
@@ -858,6 +882,10 @@
       footer {
         contain: none !important;
         animation: none !important;
+      }
+
+      .count-num {
+        opacity: 1 !important;
       }
 
       .heading {
@@ -963,21 +991,9 @@
     ===========================================================================
   -->
   <script type="module">
-    const bodyNode = document.body;
+    const spotlightNode = document.querySelector(".spotlight-layer");
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-    /* WebKit Theme Metas Synchronization */
-    const updateThemeMeta = () => {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-        meta.setAttribute("content", isDark ? "#0a0a0d" : "#ffffff");
-      });
-    };
-    try {
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeMeta);
-      updateThemeMeta();
-    } catch (_) { }
 
     /* Number Formatting System */
     let pctFormatter;
@@ -992,15 +1008,15 @@
     }
     const formatPct = (value) => pctFormatter.format(value / 100);
 
-    /* Ambient Cursor Motion Tracking */
-    if (finePointerQuery.matches && !reduceMotionQuery.matches) {
+    /* Ambient Cursor Motion Tracking (Scoped to isolated spotlight layer) */
+    if (spotlightNode && finePointerQuery.matches && !reduceMotionQuery.matches) {
       let ticking = false;
       window.addEventListener("pointermove", (event) => {
         if (event.pointerType !== "mouse" || ticking) return;
         ticking = true;
         window.requestAnimationFrame(() => {
-          bodyNode.style.setProperty("--mouse-x", `${event.clientX}px`);
-          bodyNode.style.setProperty("--mouse-y", `${event.clientY}px`);
+          spotlightNode.style.setProperty("--mouse-x", `${event.clientX}px`);
+          spotlightNode.style.setProperty("--mouse-y", `${event.clientY}px`);
           ticking = false;
         });
       }, { passive: true });
