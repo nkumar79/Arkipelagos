@@ -569,7 +569,7 @@
       font-weight: 400;
       white-space: nowrap;
       overflow: visible;
-      transition: color var(--dur-1) ease;
+      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
     .perf li .val, .holdings li .val {
@@ -581,7 +581,7 @@
       -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
       font-weight: 500;
       white-space: nowrap;
-      transition: color var(--dur-1) ease;
+      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
     /* Holdings Proportional Allocation Bars with 120Hz ProMotion GPU Compositor Lock */
@@ -614,7 +614,7 @@
     .count-num.is-animating { opacity: 0; }
     .count-num.is-visible { opacity: 1; }
 
-    /* Allocation Bar-Only Hover & Touch Highlight */
+    /* Allocation Bar-Only Hover & Touch Highlight with Bolding Enabled */
     .holdings li:active::before,
     .holdings li.is-touched::before {
       background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
@@ -630,6 +630,7 @@
       .holdings li:hover .name,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
+        font-weight: 600 !important;
       }
     }
 
