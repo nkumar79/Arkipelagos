@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <!-- Content Security Policy (Note: frame-ancestors 'none' should also be enforced in HTTP headers) -->
+  <!-- Security Policy (Enforce frame-ancestors 'none' in production HTTP headers) -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     base-uri 'none';
@@ -35,14 +35,14 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Arkipelagos">
 
-  <!-- Primary Index Metadata -->
+  <!-- Core Metadata -->
   <title>Arkipelagos</title>
   <meta name="description" content="Arkipelagos — Patient, concentrated, long-only owners.">
   <meta name="author" content="Arkipelagos">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://www.arkipelagos.com/">
 
-  <!-- Adaptive Dynamic Favicon & iOS Web Clip Icons -->
+  <!-- Favicon & Apple Touch Icons -->
   <meta name="theme-color" content="#ffffff">
   <meta id="theme-color-light" name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta id="theme-color-dark" name="theme-color" content="#0a0a0d" media="(prefers-color-scheme: dark)">
@@ -51,7 +51,7 @@
   <link rel="apple-touch-icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0d'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
 
-  <!-- Font & Network Transport Preconnections -->
+  <!-- Fonts & Transport Preconnections -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +60,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
   <link rel="preconnect" href="https://www.googletagmanager.com">
 
-  <!-- OpenGraph & Twitter Social Card Meta -->
+  <!-- OpenGraph & Twitter Social Previews -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Arkipelagos">
   <meta property="og:title" content="Arkipelagos">
@@ -79,7 +79,7 @@
   <meta name="twitter:image" content="https://www.arkipelagos.com/og.png">
   <meta name="twitter:image:alt" content="Arkipelagos">
 
-  <!-- Institutional Schema.org Structured Data -->
+  <!-- Schema.org Institutional JSON-LD -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -92,7 +92,7 @@
     }
   </script>
 
-  <!-- Google Analytics GA4 with Privacy-First Consent Telemetry -->
+  <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MRY99NLBK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -115,11 +115,11 @@
 
   <!-- 
     ===========================================================================
-    SECTION 2: EXECUTIVE DESIGN SYSTEM & HIGH-CRAFT STYLESHEET
+    SECTION 2: EXECUTIVE DESIGN SYSTEM & STYLESHEET
     ===========================================================================
   -->
   <style>
-    /* Zero-CLS Fallback Metric Lock for Inter Font Loading */
+    /* Zero-CLS Fallback Font Metric Alignment */
     @font-face {
       font-family: "Inter Fallback";
       src: local("Arial"), local("Helvetica"), local("Segoe UI");
@@ -129,7 +129,7 @@
       line-gap-override: 0%;
     }
 
-    /* Core Design System Tokens — Pristine Light Baseline */
+    /* Core System Tokens */
     :root {
       --bg: #ffffff;
       --fg-strong: #111113;
@@ -139,7 +139,7 @@
 
       --line: rgba(17, 17, 19, 0.07);
 
-      /* Ledger Allocation Fills */
+      /* Allocation Bar Fills */
       --bar-start: rgba(17, 17, 19, 0.06);
       --bar-end: rgba(17, 17, 19, 0.008);
 
@@ -149,14 +149,14 @@
       --spotlight: rgba(17, 17, 19, 0.012);
       --vignette: rgba(17, 17, 19, 0.015);
 
-      /* Vertical Rhythm & Grid Metric Tokens */
+      /* Metric Rhythm Tokens */
       --space-1: 0.50rem;
       --space-2: 1.00rem;
       --space-3: 1.50rem;
       --space-4: 2.25rem;
       --space-5: 3.50rem;
 
-      --space-divider: clamp(1.10rem, 2.5svh, 1.85rem);
+      --space-divider: clamp(1.10rem, 2.5vh, 1.85rem);
       --space-row: 0.52rem;
 
       --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -182,12 +182,12 @@
       --page-max: 35.50rem;
       --pad: clamp(1.25rem, 6vw, 3.50rem);
 
-      /* OpenType Feature Locks */
+      /* OpenType Feature Tokens */
       --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
       --font-features-numeric: "tnum" 1, "lnum" 1, "zero" 1, "cv05" 1;
     }
 
-    /* OKLCH Perceptual Color Space Engine Integration */
+    /* OKLCH Perceptual Color Space Integration */
     @supports (color: oklch(0% 0 0)) {
       :root {
         --bg: oklch(1 0 0);
@@ -209,7 +209,7 @@
       }
     }
 
-    /* Dark Palette Theme Extensions — Deep Obsidian */
+    /* Dark Mode Extensions */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0a0a0d;
@@ -251,13 +251,13 @@
         }
       }
 
-      /* Optical Weight Parity Adjustments for Dark Backgrounds */
+      /* Optical Weight Parity Compensation for OLED & High-DPI Displays */
       body {
         font-variation-settings: "wght" 385;
       }
 
       .title {
-        font-variation-settings: "opsz" 36, "wght" 680, "cv05" 1, "cv08" 1, "ss01" 1;
+        font-variation-settings: "opsz" 36, "wght" 680;
       }
     }
 
@@ -280,10 +280,12 @@
       overscroll-behavior: none;
       background: var(--bg);
       scroll-behavior: smooth;
+      color-scheme: light dark;
     }
 
     body {
       min-width: 17.5rem;
+      min-height: 100vh;
       min-height: 100dvh;
       margin: 0;
       padding: var(--pad);
@@ -319,10 +321,10 @@
       width: min(100%, var(--page-max));
       margin-inline: auto;
       margin-block: auto;
-      padding-block-bottom: clamp(1.5rem, 4svh, 3rem);
+      padding-block-bottom: clamp(1.5rem, 4vh, 3rem);
     }
 
-    /* Mobile Viewport Ergonomics & Touch Target Specifications */
+    /* Mobile Ergonomics & Viewport Adapters */
     @media (max-width: 48rem), (max-height: 52rem) {
       :root {
         --pad: clamp(0.85rem, 3.5vw, 1.25rem);
@@ -338,7 +340,7 @@
       }
     }
 
-    /* Cursor Radial Background Layer */
+    /* Ambient Cursor Spotlight Layer */
     .spotlight-layer {
       position: fixed;
       inset: 0;
@@ -394,7 +396,7 @@
       outline-offset: 3px;
     }
 
-    /* Zero-Reflow Superscript Positioning */
+    /* Zero-Reflow Superscript Lock */
     sup {
       font-size: 0.68em;
       line-height: 0;
@@ -513,12 +515,13 @@
       text-wrap: pretty;
     }
 
+    /* Correct Separation: Variation Axes vs OpenType Features */
     .title {
       margin-block-end: var(--space-1);
       color: var(--fg-strong);
       font-size: var(--fs-display);
       font-weight: 700;
-      font-variation-settings: "opsz" 36, "cv05" 1, "cv08" 1, "ss01" 1;
+      font-variation-settings: "opsz" 36, "wght" 700;
       font-feature-settings: var(--font-features-display);
       -webkit-font-feature-settings: var(--font-features-display);
       letter-spacing: var(--track-display);
@@ -578,7 +581,9 @@
       list-style: none;
       margin-block: 0.20rem;
       font-size: var(--fs-body);
-      font-variation-settings: "opsz" 16, "tnum" 1, "lnum" 1, "zero" 1;
+      font-variation-settings: "opsz" 16;
+      font-feature-settings: var(--font-features-numeric);
+      -webkit-font-feature-settings: var(--font-features-numeric);
       letter-spacing: var(--track-body);
     }
 
@@ -639,8 +644,8 @@
       z-index: 1;
       flex: 0 0 auto;
       font-variant-numeric: tabular-nums lining-nums;
-      font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
-      -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+      font-feature-settings: var(--font-features-numeric);
+      -webkit-font-feature-settings: var(--font-features-numeric);
       font-weight: 500;
       white-space: nowrap;
       transition: color var(--dur-1) ease, font-variation-settings var(--dur-1) ease;
@@ -696,7 +701,9 @@
     .holdings li.is-touched .name,
     .holdings li.is-touched .val {
       color: var(--fg-strong) !important;
-      font-variation-settings: "wght" 520, "opsz" 16, "tnum" 1, "lnum" 1 !important;
+      font-variation-settings: "wght" 520, "opsz" 16 !important;
+      font-feature-settings: var(--font-features-numeric) !important;
+      -webkit-font-feature-settings: var(--font-features-numeric) !important;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -709,7 +716,9 @@
       .holdings li:hover .name,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
-        font-variation-settings: "wght" 520, "opsz" 16, "tnum" 1, "lnum" 1 !important;
+        font-variation-settings: "wght" 520, "opsz" 16 !important;
+        font-feature-settings: var(--font-features-numeric) !important;
+        -webkit-font-feature-settings: var(--font-features-numeric) !important;
       }
     }
 
@@ -725,8 +734,8 @@
       color: var(--muted);
       font-size: var(--fs-body);
       font-variant-numeric: tabular-nums lining-nums;
-      font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
-      -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+      font-feature-settings: var(--font-features-numeric);
+      -webkit-font-feature-settings: var(--font-features-numeric);
       letter-spacing: var(--track-body);
       line-height: 1.45;
     }
@@ -771,7 +780,7 @@
       }
     }
 
-    /* Forced High-Contrast Support */
+    /* Windows Forced High-Contrast Support */
     @media (forced-colors: active) {
       body {
         background: Canvas;
@@ -880,7 +889,7 @@
     ===========================================================================
   -->
   <main id="main" class="page" tabindex="-1" aria-label="Arkipelagos summary">
-    <!-- Platform Header -->
+    <!-- Header -->
     <header>
       <h1 class="title">Arkipelagos</h1>
       <p class="subtitle">Patient, concentrated, long-only owners</p>
@@ -958,13 +967,12 @@
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-    /* Dynamic WebKit Theme Bar Synchronization */
+    /* WebKit Theme Metas Synchronization */
     const updateThemeMeta = () => {
       const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
-      if (themeMeta) {
-        themeMeta.setAttribute("content", isDark ? "#0a0a0d" : "#ffffff");
-      }
+      document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+        meta.setAttribute("content", isDark ? "#0a0a0d" : "#ffffff");
+      });
     };
     try {
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeMeta);
@@ -984,7 +992,7 @@
     }
     const formatPct = (value) => pctFormatter.format(value / 100);
 
-    /* Mouse Motion Coordinate Binding */
+    /* Ambient Cursor Motion Tracking */
     if (finePointerQuery.matches && !reduceMotionQuery.matches) {
       let ticking = false;
       window.addEventListener("pointermove", (event) => {
@@ -998,7 +1006,7 @@
       }, { passive: true });
     }
 
-    /* Mobile Tactile Feedback Listeners */
+    /* Mobile Touch & Drag Event Listeners */
     document.querySelectorAll(".holdings li").forEach((item) => {
       item.addEventListener("touchstart", () => {
         item.classList.add("is-touched");
@@ -1006,12 +1014,20 @@
           navigator.vibrate(4);
         }
       }, { passive: true });
+      item.addEventListener("touchmove", () => item.classList.remove("is-touched"), { passive: true });
       item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 150), { passive: true });
       item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
     });
 
-    /* Numerical Count-Up Interpolation (Quartic Ease-Out) */
+    /* Numerical Interpolation (Quartic Ease-Out with Reduced Motion Defense) */
     const animateValue = (element, targetValue, delay = 0, duration = 1250) => {
+      if (reduceMotionQuery.matches) {
+        element.textContent = formatPct(targetValue);
+        element.classList.remove("is-animating");
+        element.classList.add("is-visible");
+        return;
+      }
+
       window.setTimeout(() => {
         element.textContent = formatPct(0);
         element.classList.remove("is-animating");
@@ -1042,7 +1058,7 @@
       }, delay);
     };
 
-    /* Viewport Hydration Observer Engine */
+    /* Hydration Observer Engine */
     const hydrateTarget = (target) => {
       if (target.id === "holdings") {
         target.classList.add("is-animated");
@@ -1099,8 +1115,8 @@
       initObserver();
     }
 
-    /* Allocation Total Validation Engine */
-    if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash === "#debug") {
+    /* Local Audit Engine */
+    if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash.includes("debug") || window.location.search.includes("debug")) {
       const weights = [...document.querySelectorAll("#holdings li")]
         .map((item) => Number.parseFloat(item.style.getPropertyValue("--weight")))
         .filter(Number.isFinite);
