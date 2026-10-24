@@ -247,9 +247,23 @@
           --vignette: oklch(0 0 0 / 0.28);
         }
       }
+
+      /* Dark-Mode Optical Weight Parity Compensation */
+      body {
+        font-variation-settings: "wght" 385;
+      }
+      .title {
+        font-variation-settings: "opsz" 36, "wght" 680, "cv05" 1, "cv08" 1, "ss01" 1;
+      }
     }
 
     *, *::before, *::after { box-sizing: border-box; }
+
+    /* Dynamic Theme-Aware Selection Token */
+    ::selection {
+      color: var(--bg);
+      background: var(--fg-strong);
+    }
 
     html {
       font-size: 100%;
@@ -359,7 +373,6 @@
     }
 
     h1, h2, p, ul, li { margin: 0; padding: 0; }
-    ::selection { color: var(--bg); background: var(--fg-strong); }
     a { color: inherit; text-decoration: none; }
 
     :focus-visible {
@@ -367,7 +380,7 @@
       outline-offset: 3px;
     }
 
-    /* Zero-Reflow Baseline Superscript Lock */
+    /* Zero-Reflow Baseline Superscript Lock & Touch Cleanup */
     sup {
       font-size: 0.68em;
       line-height: 0;
@@ -382,6 +395,7 @@
       padding: 0 0.12em;
       color: var(--muted);
       text-align: center;
+      -webkit-tap-highlight-color: transparent;
       transition: color var(--dur-1) ease, transform var(--dur-1) ease;
     }
 
@@ -396,6 +410,7 @@
     }
 
     sup a:hover, sup a:focus-visible { color: var(--fg-strong); }
+    sup a:focus:not(:focus-visible) { outline: none; }
     sup a:active { transform: scale(1.15); color: var(--fg-strong); }
 
     #footnote-fmv:target {
@@ -569,7 +584,7 @@
       transition: color var(--dur-1) ease;
     }
 
-    /* Holdings Proportional Allocation Bars */
+    /* Holdings Proportional Allocation Bars with 120Hz ProMotion GPU Compositor Lock */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -581,8 +596,11 @@
       background: linear-gradient(90deg, var(--bar-start) 0%, var(--bar-end) 100%);
       border-radius: var(--radius);
       box-shadow: inset -1px 0 0 var(--line);
-      transform: scaleX(0);
+      will-change: transform;
+      transform: scaleX(0) translateZ(0);
       transform-origin: left center;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease, opacity var(--dur-2) ease;
       opacity: 0.85;
     }
@@ -655,7 +673,7 @@
         transition-duration: 1ms !important;
       }
       header, section, footer { animation: none !important; }
-      .holdings li::before { transform: scaleX(1) !important; }
+      .holdings li::before { transform: scaleX(1) translateZ(0) !important; }
     }
 
     @media (forced-colors: active) {
