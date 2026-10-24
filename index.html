@@ -252,7 +252,7 @@
     }
 
     body {
-      min-width: 18.5rem;
+      min-width: 17.5rem; /* 280px Foldable/Cover Screen Safety Floor */
       min-height: 100dvh;
       margin: 0;
       padding: var(--pad);
@@ -266,6 +266,7 @@
         var(--bg);
       font-family: var(--font-body);
       font-feature-settings: var(--font-features-numeric);
+      -webkit-font-feature-settings: var(--font-features-numeric);
       font-synthesis: none;
       text-rendering: optimizeLegibility;
       line-height: 1.55;
@@ -273,18 +274,21 @@
       overflow-wrap: break-word;
       position: relative;
       isolation: isolate;
+      touch-action: manipulation;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Ambient Cursor Spotlight & Subtle Texture Layer (Hardware Accelerated) */
+    /* Ambient Cursor Spotlight & Subtle Texture Layer (Hardware GPU Composited) */
     .spotlight-layer {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
       transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       will-change: transform;
       background: radial-gradient(
         46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
@@ -310,6 +314,8 @@
       pointer-events: none;
       opacity: 0.40;
       transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
       will-change: transform;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");
       contain: strict;
@@ -336,7 +342,7 @@
       padding: 0 0.12em;
       color: var(--muted);
       text-align: center;
-      transition: color var(--dur-1) ease;
+      transition: color var(--dur-1) ease, transform var(--dur-1) ease;
     }
 
     sup a::after {
@@ -350,6 +356,7 @@
     }
 
     sup a:hover, sup a:focus-visible { color: var(--fg-strong); }
+    sup a:active { transform: scale(1.15); color: var(--fg-strong); }
 
     #footnote-fmv:target {
       padding-inline: 0.25rem;
@@ -412,6 +419,7 @@
       font-size: var(--fs-display);
       font-weight: 700;
       font-feature-settings: var(--font-features-display);
+      -webkit-font-feature-settings: var(--font-features-display);
       letter-spacing: var(--track-display);
       line-height: 0.98;
     }
@@ -516,6 +524,7 @@
       flex: 0 0 auto;
       font-variant-numeric: tabular-nums lining-nums;
       font-feature-settings: "tnum" 1, "lnum" 1;
+      -webkit-font-feature-settings: "tnum" 1, "lnum" 1;
       font-weight: 500;
       white-space: nowrap;
     }
@@ -557,6 +566,7 @@
       font-size: var(--fs-body);
       font-variant-numeric: tabular-nums lining-nums;
       font-feature-settings: "tnum" 1, "lnum" 1;
+      -webkit-font-feature-settings: "tnum" 1, "lnum" 1;
       letter-spacing: var(--track-body);
       line-height: 1.50;
     }
@@ -701,11 +711,11 @@
     }
     const formatPct = (value) => pctFormatter.format(value / 100);
 
-    /* Ambient Cursor Tracking */
+    /* Ambient Cursor Tracking (Filtered to Hardware Mouse/Trackpad to Preserve Mobile Battery) */
     if (finePointerQuery.matches && !reduceMotionQuery.matches) {
       let ticking = false;
       window.addEventListener("pointermove", (event) => {
-        if (ticking) return;
+        if (event.pointerType !== "mouse" || ticking) return;
         ticking = true;
         window.requestAnimationFrame(() => {
           bodyNode.style.setProperty("--mouse-x", `${event.clientX}px`);
@@ -747,7 +757,7 @@
       }, delay);
     };
 
-    /* Scroll-Observer Hydration Engine */
+    /* Scroll-Observer Hydration Engine (Optimized for Landscape & Split-Screen Viewports) */
     const initObserver = () => {
       const holdingsList = document.getElementById("holdings");
       
@@ -771,7 +781,7 @@
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05, rootMargin: "10px" });
 
         if (holdingsList) observer.observe(holdingsList);
         document.querySelectorAll(".count-num").forEach((el) => observer.observe(el));
