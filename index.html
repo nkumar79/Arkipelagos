@@ -174,7 +174,7 @@
       --stagger: 40ms;
 
       --page-max: 35.50rem;
-      --pad: clamp(1.25rem, 4.5vw, 2.75rem);
+      --pad: clamp(1.25rem, 6vw, 3.50rem);
 
       /* High-Precision OpenType Engine Settings */
       --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
@@ -456,8 +456,8 @@
       margin-block: var(--space-divider);
       margin-inline: 0;
       border: 0;
-      background: linear-gradient(90deg, transparent 0%, var(--line) 15%, var(--line) 85%, transparent 100%);
-      opacity: 0.9;
+      background: linear-gradient(90deg, transparent 0%, var(--line) 25%, var(--line) 75%, transparent 100%);
+      opacity: 0.70;
     }
 
     .heading {
@@ -511,7 +511,7 @@
       background: transparent;
       border: 1px solid transparent;
       border-radius: var(--radius);
-      transition: background var(--dur-1) ease, border-color var(--dur-1) ease, transform var(--dur-1) ease;
+      transition: background var(--dur-1) ease, border-color var(--dur-1) ease, color var(--dur-1) ease;
     }
 
     /* Primary Anchor Row (Net Portfolio IRR Highlight) */
@@ -535,6 +535,7 @@
       font-weight: 400;
       white-space: nowrap;
       overflow: visible;
+      transition: color var(--dur-1) ease;
     }
 
     .perf li .val, .holdings li .val {
@@ -546,6 +547,7 @@
       -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
       font-weight: 500;
       white-space: nowrap;
+      transition: color var(--dur-1) ease;
     }
 
     /* Holdings Bar Graph Animations */
@@ -586,10 +588,23 @@
 
     @media (hover: hover) and (pointer: fine) {
       .holdings:hover li:not(:hover)::before { opacity: 0.60; }
+      .perf li:hover,
       .holdings li:hover {
         background: var(--row-hover);
         border-color: var(--line);
       }
+      .perf li:hover .name,
+      .holdings li:hover .name,
+      .perf li:hover .val,
+      .holdings li:hover .val {
+        color: var(--fg-strong) !important;
+      }
+    }
+
+    footer.notes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
     }
 
     .note {
@@ -603,7 +618,12 @@
       letter-spacing: var(--track-body);
       line-height: 1.45;
     }
-    .note.sm { color: var(--muted-soft); font-size: var(--fs-fine); line-height: 1.40; }
+    .note.sm {
+      color: var(--muted-soft);
+      font-size: var(--fs-fine);
+      line-height: 1.40;
+      opacity: 0.85;
+    }
 
     @media (max-width: 34rem) {
       .perf li, .holdings li {
