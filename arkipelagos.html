@@ -255,7 +255,6 @@
         }
       }
 
-      /* Optical Weight Parity Compensation for OLED & High-DPI Displays */
       body {
         font-weight: 385;
       }
@@ -279,10 +278,8 @@
 
     html {
       font-size: 100%;
-      height: 100%;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      overscroll-behavior: none;
       background: var(--bg);
       scroll-behavior: smooth;
       color-scheme: light dark;
@@ -309,7 +306,7 @@
       font-synthesis: none;
       text-rendering: optimizeLegibility;
       line-height: 1.55;
-      overflow-x: clip;
+      overflow-x: hidden;
       overflow-wrap: break-word;
       position: relative;
       isolation: isolate;
@@ -326,17 +323,23 @@
       z-index: 1;
       width: min(100%, var(--page-max));
       margin-inline: auto;
-      margin-block: auto;
+      margin-block: clamp(1.25rem, 4vh, 2.5rem);
       padding-block-end: clamp(1.5rem, 4vh, 3rem);
+    }
+
+    @media (min-height: 52rem) {
+      .page {
+        margin-block: auto;
+      }
     }
 
     /* Mobile Ergonomics & Viewport Adapters */
     @media (max-width: 48rem), (max-height: 52rem) {
       :root {
-        --pad: clamp(0.85rem, 3.5vw, 1.25rem);
-        --space-divider: clamp(0.70rem, 2.0vh, 1.10rem);
-        --space-row: 0.45rem;
-        --fs-display: clamp(2.10rem, 1.70rem + 2.4vw, 2.85rem);
+        --pad: clamp(0.95rem, 4.2vw, 1.35rem);
+        --space-divider: clamp(0.75rem, 2.0vh, 1.15rem);
+        --space-row: 0.46rem;
+        --fs-display: clamp(2.15rem, 1.75rem + 2.5vw, 2.90rem);
         --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
       }
 
@@ -355,11 +358,16 @@
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      will-change: transform;
       background: radial-gradient(46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
           var(--spotlight),
           transparent 66%);
       contain: strict;
+    }
+
+    @media (hover: none) or (pointer: coarse) {
+      .spotlight-layer {
+        display: none !important;
+      }
     }
 
     body::after {
@@ -382,7 +390,6 @@
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      will-change: transform;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       contain: strict;
     }
@@ -419,12 +426,12 @@
     sup a {
       position: relative;
       display: inline-block;
-      padding: 0 0.12em;
+      padding: 0 0.15em;
       color: var(--muted);
       text-align: center;
       border-radius: 2px;
       -webkit-tap-highlight-color: transparent;
-      transition: color var(--dur-1) ease, transform var(--dur-1) ease;
+      transition: color var(--dur-1) ease;
     }
 
     sup a::after {
@@ -432,8 +439,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 2.75rem;
-      height: 2.75rem;
+      width: 1.75rem;
+      height: 1.75rem;
       transform: translate(-50%, -50%);
     }
 
@@ -448,11 +455,6 @@
 
     sup a:focus:not(:focus-visible) {
       outline: none;
-    }
-
-    sup a:active {
-      transform: scale(1.15);
-      color: var(--fg-strong);
     }
 
     #footnote-fmv:target {
@@ -500,7 +502,6 @@
     header,
     section,
     footer {
-      contain: layout style;
       animation: entrance var(--dur-3) var(--ease) both;
     }
 
@@ -531,7 +532,6 @@
       text-wrap: pretty;
     }
 
-    /* Correct Separation: Variation Axes vs OpenType Features */
     .title {
       margin-block-end: var(--space-1);
       color: var(--fg-strong);
@@ -651,7 +651,7 @@
       font-weight: 400;
       white-space: nowrap;
       overflow: visible;
-      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
+      transition: color var(--dur-1) ease;
     }
 
     .perf li .val,
@@ -664,7 +664,7 @@
       -webkit-font-feature-settings: var(--font-features-numeric);
       font-weight: 500;
       white-space: nowrap;
-      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
+      transition: color var(--dur-1) ease;
     }
 
     /* Allocation Bar Hardware Acceleration */
@@ -679,9 +679,9 @@
       background: linear-gradient(90deg, var(--bar-start) 0%, var(--bar-end) 100%);
       border-radius: var(--radius);
       box-shadow: inset -1px 0 0 var(--line);
-      will-change: transform;
-      transform: scaleX(0) translateZ(0);
-      transform-origin: left center;
+      transform: scaleX(0);
+      transform-origin: 0% 50%;
+      -webkit-transform-origin: 0% 50%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease, opacity var(--dur-2) ease;
@@ -689,42 +689,12 @@
     }
 
     .holdings.is-animated li::before {
-      animation: bar-grow var(--dur-4) var(--ease) forwards;
+      animation: bar-grow var(--dur-4) var(--ease) both;
       animation-delay: calc((var(--delay-idx) * var(--stagger)) + 140ms);
+      will-change: transform;
     }
 
-    .count-num {
-      transition: opacity var(--dur-2) ease;
-    }
-
-    .count-num.is-animating {
-      opacity: 0;
-      transition: none;
-    }
-
-    .count-num.is-visible {
-      opacity: 1;
-    }
-
-    /* Active State & Touch Feedback */
-    .holdings li:active::before,
-    .holdings li.is-touched::before {
-      background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
-      box-shadow: inset -1px 0 0 var(--bar-edge-hover);
-      opacity: 1;
-    }
-
-    .holdings li:active .name,
-    .holdings li:active .val,
-    .holdings li.is-touched .name,
-    .holdings li.is-touched .val {
-      color: var(--fg-strong) !important;
-      font-weight: 520 !important;
-      font-variation-settings: "opsz" 16 !important;
-      font-feature-settings: var(--font-features-numeric) !important;
-      -webkit-font-feature-settings: var(--font-features-numeric) !important;
-    }
-
+    /* Desktop Hover & Mobile Touch Feedback */
     @media (hover: hover) and (pointer: fine) {
       .holdings li:hover::before {
         background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
@@ -735,11 +705,21 @@
       .holdings li:hover .name,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
-        font-weight: 520 !important;
-        font-variation-settings: "opsz" 16 !important;
-        font-feature-settings: var(--font-features-numeric) !important;
-        -webkit-font-feature-settings: var(--font-features-numeric) !important;
       }
+    }
+
+    .holdings li.is-touched::before,
+    .holdings li:active::before {
+      background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
+      box-shadow: inset -1px 0 0 var(--bar-edge-hover);
+      opacity: 1.0;
+    }
+
+    .holdings li.is-touched .name,
+    .holdings li.is-touched .val,
+    .holdings li:active .name,
+    .holdings li:active .val {
+      color: var(--fg-strong) !important;
     }
 
     footer.notes {
@@ -796,11 +776,7 @@
       }
 
       .holdings li::before {
-        transform: scaleX(1) translateZ(0) !important;
-      }
-
-      .count-num {
-        opacity: 1 !important;
+        transform: scaleX(1) !important;
       }
     }
 
@@ -880,12 +856,7 @@
       header,
       section,
       footer {
-        contain: none !important;
         animation: none !important;
-      }
-
-      .count-num {
-        opacity: 1 !important;
       }
 
       .heading {
@@ -1008,7 +979,7 @@
     }
     const formatPct = (value) => pctFormatter.format(value / 100);
 
-    /* Ambient Cursor Motion Tracking (Scoped to isolated spotlight layer) */
+    /* Ambient Cursor Motion Tracking (Fine Pointer Only) */
     if (spotlightNode && finePointerQuery.matches && !reduceMotionQuery.matches) {
       let ticking = false;
       window.addEventListener("pointermove", (event) => {
@@ -1022,16 +993,11 @@
       }, { passive: true });
     }
 
-    /* Mobile Touch & Drag Event Listeners */
+    /* Mobile Passive Touch Feedback (Zero Layout Shift) */
     document.querySelectorAll(".holdings li").forEach((item) => {
-      item.addEventListener("touchstart", () => {
-        item.classList.add("is-touched");
-        if ("vibrate" in navigator) {
-          navigator.vibrate(4);
-        }
-      }, { passive: true });
+      item.addEventListener("touchstart", () => item.classList.add("is-touched"), { passive: true });
       item.addEventListener("touchmove", () => item.classList.remove("is-touched"), { passive: true });
-      item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 150), { passive: true });
+      item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 200), { passive: true });
       item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
     });
 
@@ -1039,16 +1005,11 @@
     const animateValue = (element, targetValue, delay = 0, duration = 1600) => {
       if (reduceMotionQuery.matches) {
         element.textContent = formatPct(targetValue);
-        element.classList.remove("is-animating");
-        element.classList.add("is-visible");
         return;
       }
 
       window.setTimeout(() => {
         element.textContent = formatPct(0);
-        element.classList.remove("is-animating");
-        element.classList.add("is-visible");
-
         const start = performance.now();
         let lastFormatted = "";
 
@@ -1084,10 +1045,7 @@
         if (Number.isFinite(rawValue)) {
           const parentItem = target.closest("li");
           const delayIndex = parentItem ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10) : 0;
-          target.classList.add("is-animating");
           animateValue(target, rawValue, (delayIndex * 80) + 120, 1600);
-        } else {
-          target.classList.add("is-visible");
         }
       }
     };
@@ -1097,11 +1055,12 @@
       const countEls = document.querySelectorAll(".count-num");
 
       const checkViewportHydration = () => {
-        if (holdingsList && holdingsList.getBoundingClientRect().top < window.innerHeight + 100) {
+        const vh = window.innerHeight;
+        if (holdingsList && holdingsList.getBoundingClientRect().top < vh + 120) {
           hydrateTarget(holdingsList);
         }
         countEls.forEach((el) => {
-          if (el.getBoundingClientRect().top < window.innerHeight + 100) {
+          if (el.getBoundingClientRect().top < vh + 120) {
             hydrateTarget(el);
           }
         });
@@ -1115,14 +1074,15 @@
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.01, rootMargin: "50px" });
+        }, { threshold: 0.01, rootMargin: "60px" });
 
         if (holdingsList) observer.observe(holdingsList);
         countEls.forEach((el) => observer.observe(el));
       }
 
       checkViewportHydration();
-      window.setTimeout(checkViewportHydration, 200);
+      window.setTimeout(checkViewportHydration, 100);
+      window.setTimeout(checkViewportHydration, 350);
     };
 
     if (document.readyState === "loading") {
