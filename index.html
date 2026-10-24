@@ -244,9 +244,10 @@
 
     html {
       font-size: 100%;
+      height: 100%;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      overscroll-behavior-y: none; /* Prevents iOS rubber-banding */
+      overscroll-behavior: none;
       background: var(--bg);
       scroll-behavior: smooth;
     }
@@ -258,7 +259,7 @@
       padding: var(--pad);
       padding-top: max(var(--pad), env(safe-area-inset-top));
       padding-right: max(var(--pad), env(safe-area-inset-right));
-      padding-bottom: max(clamp(1.00rem, 2.5svh, 1.75rem), env(safe-area-inset-bottom));
+      padding-bottom: max(var(--pad), env(safe-area-inset-bottom));
       padding-left: max(var(--pad), env(safe-area-inset-left));
       color: var(--fg);
       background:
@@ -278,20 +279,29 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Mobile Single-Screen Fitting Optimization */
-    @media (max-width: 48rem), (max-height: 55rem) {
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, var(--page-max));
+      margin-inline: auto;
+      margin-block: auto; /* Vertically centers inside flex container without expanding scroll height */
+    }
+
+    /* Compact Mobile Viewport Fitting */
+    @media (max-width: 48rem), (max-height: 52rem) {
       :root {
-        --pad: clamp(0.85rem, 3.2vh, 1.50rem);
-        --space-divider: clamp(0.75rem, 2.0vh, 1.25rem);
-        --fs-display: clamp(2.20rem, 1.80rem + 2.5vw, 3.20rem);
+        --pad: clamp(0.75rem, 2.5vh, 1.25rem);
+        --space-divider: clamp(0.60rem, 1.8vh, 1.00rem);
+        --space-row: 0.45rem;
+        --fs-display: clamp(2.00rem, 1.60rem + 2.2vw, 2.80rem);
+        --fs-sub: clamp(1.05rem, 0.95rem + 0.30vw, 1.20rem);
       }
-      body {
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      .perf li, .holdings li {
+        min-height: 2.25rem;
       }
     }
 
@@ -396,13 +406,6 @@
       inset-block-start: 0;
       outline: 3px solid var(--fg-strong);
       outline-offset: 2px;
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-      width: min(100%, var(--page-max));
-      margin-inline: auto;
     }
 
     @keyframes entrance {
@@ -837,7 +840,7 @@
         countEls.forEach((el) => observer.observe(el));
       }
 
-      // Synchronous immediate check + 200ms safeguard for instant iOS rendering
+      // Synchronous immediate check + safeguard timer
       checkViewportHydration();
       window.setTimeout(checkViewportHydration, 200);
     };
