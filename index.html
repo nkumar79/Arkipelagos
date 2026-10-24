@@ -522,7 +522,7 @@
       background: transparent;
       border: 1px solid transparent;
       border-radius: var(--radius);
-      transition: background var(--dur-1) ease, border-color var(--dur-1) ease, color var(--dur-1) ease;
+      transition: color var(--dur-1) ease;
     }
 
     /* Clean Bold Text Alignment for Net Portfolio IRR */
@@ -562,7 +562,7 @@
       transition: color var(--dur-1) ease;
     }
 
-    /* Holdings Bar Graph Animations with Leading Edge Light Gloss */
+    /* Holdings Bar Graph Animations */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -589,27 +589,8 @@
     .count-num.is-animating { opacity: 0; }
     .count-num.is-visible { opacity: 1; }
 
-    /* Universal Active / Touch & Hover Highlight Engine */
-    .perf li:active,
-    .holdings li:active,
-    .perf li:focus-within,
-    .holdings li:focus-within,
-    .perf li.is-touched,
-    .holdings li.is-touched {
-      background: var(--row-hover) !important;
-      border-color: var(--line) !important;
-    }
-
+    /* Pure Typographic Hover & Touch Highlight — Zero Background Rectangle */
     @media (hover: hover) and (pointer: fine) {
-      .holdings:hover li:not(:hover)::before { opacity: 0.60; }
-      .perf li:hover,
-      .holdings li:hover {
-        background: var(--row-hover);
-        border-color: var(--line);
-      }
-      .holdings li:hover::before {
-        opacity: 1.0;
-      }
       .perf li:hover .name,
       .holdings li:hover .name,
       .perf li:hover .val,
@@ -810,13 +791,10 @@
     /* Mobile Touch Feedback Sync with Tactile Haptic Tap */
     document.querySelectorAll(".perf li, .holdings li").forEach((item) => {
       item.addEventListener("touchstart", () => {
-        item.classList.add("is-touched");
         if ("vibrate" in navigator) {
           navigator.vibrate(4);
         }
       }, { passive: true });
-      item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 150), { passive: true });
-      item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
     });
 
     /* Smooth Count-Up Animation System (1250ms Unhurried Quartic Ease-Out) */
