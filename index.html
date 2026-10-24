@@ -413,11 +413,8 @@
     sup a:focus:not(:focus-visible) { outline: none; }
     sup a:active { transform: scale(1.15); color: var(--fg-strong); }
 
+    /* Seamless Footnote Target Anchor (No Box Highlight) */
     #footnote-fmv:target {
-      padding-inline: 0.25rem;
-      margin-inline: -0.25rem;
-      background-color: var(--line);
-      border-radius: var(--radius-sm);
       scroll-margin-block: 2rem;
     }
 
