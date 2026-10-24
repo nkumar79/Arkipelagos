@@ -514,14 +514,15 @@
       transition: background var(--dur-1) ease, border-color var(--dur-1) ease, color var(--dur-1) ease;
     }
 
-    /* Primary Anchor Row (Net Portfolio IRR Highlight) */
-    .perf li:first-child {
+    /* Clean Bold Text Alignment for Net Portfolio IRR */
+    .perf li:first-child .name {
+      font-weight: 600;
       color: var(--fg-strong);
-      background: var(--row-hover);
-      border-color: var(--line);
     }
-    .perf li:first-child .name { font-weight: 500; }
-    .perf li:first-child .val { font-weight: 700; color: var(--fg-strong); }
+    .perf li:first-child .val {
+      font-weight: 700;
+      color: var(--fg-strong);
+    }
 
     .perf li:not(:first-child) { color: var(--muted); font-weight: 400; }
     .perf li:not(:first-child) .val { color: var(--muted); font-weight: 400; }
