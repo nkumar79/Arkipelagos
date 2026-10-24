@@ -56,9 +56,9 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
   <link id="inter-font" rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
-  <link rel="preconnect" href="https://www.googletagmanager.com">
 
   <!-- OpenGraph & Twitter Social Previews -->
   <meta property="og:type" content="website">
@@ -139,13 +139,13 @@
 
       --line: rgba(17, 17, 19, 0.07);
 
-      /* Allocation Bar Fills */
-      --bar-start: rgba(17, 17, 19, 0.06);
+      /* Allocation Bar Fills & Warm Titanium Palette */
+      --bar-start: rgba(17, 17, 19, 0.055);
       --bar-end: rgba(17, 17, 19, 0.008);
 
-      --bar-hover-start: rgba(17, 17, 19, 0.12);
-      --bar-hover-end: rgba(17, 17, 19, 0.02);
-      --bar-edge-hover: rgba(17, 17, 19, 0.15);
+      --bar-hover-start: rgba(168, 155, 141, 0.16);
+      --bar-hover-end: rgba(168, 155, 141, 0.03);
+      --bar-edge-hover: rgba(168, 155, 141, 0.28);
 
       --spotlight: rgba(17, 17, 19, 0.012);
       --vignette: rgba(17, 17, 19, 0.015);
@@ -177,8 +177,8 @@
       --dur-1: 180ms;
       --dur-2: 240ms;
       --dur-3: 640ms;
-      --dur-4: 1850ms; /* Deliberate, unhurried bar expansion */
-      --stagger: 80ms;   /* Distinct institutional cadence across rows */
+      --dur-4: 1850ms; /* Unhurried institutional expansion */
+      --stagger: 80ms;   /* Cadenced row offset */
 
       --page-max: 35.50rem;
       --pad: clamp(1.25rem, 6vw, 3.50rem);
@@ -199,12 +199,12 @@
 
         --line: oklch(0.120 0.012 260 / 0.07);
 
-        --bar-start: oklch(0.120 0.012 260 / 0.06);
+        --bar-start: oklch(0.120 0.012 260 / 0.055);
         --bar-end: oklch(0.120 0.012 260 / 0.008);
 
-        --bar-hover-start: oklch(0.120 0.012 260 / 0.12);
-        --bar-hover-end: oklch(0.120 0.012 260 / 0.02);
-        --bar-edge-hover: oklch(0.120 0.012 260 / 0.15);
+        --bar-hover-start: oklch(0.680 0.022 68 / 0.16);
+        --bar-hover-end: oklch(0.680 0.022 68 / 0.03);
+        --bar-edge-hover: oklch(0.680 0.022 68 / 0.28);
 
         --spotlight: oklch(0.120 0.012 260 / 0.012);
         --vignette: oklch(0.120 0.012 260 / 0.015);
@@ -222,12 +222,12 @@
 
         --line: rgba(252, 252, 253, 0.08);
 
-        --bar-start: rgba(252, 252, 253, 0.07);
-        --bar-end: rgba(252, 252, 253, 0.01);
+        --bar-start: rgba(252, 252, 253, 0.065);
+        --bar-end: rgba(252, 252, 253, 0.010);
 
-        --bar-hover-start: rgba(252, 252, 253, 0.14);
-        --bar-hover-end: rgba(252, 252, 253, 0.03);
-        --bar-edge-hover: rgba(252, 252, 253, 0.18);
+        --bar-hover-start: rgba(228, 220, 207, 0.14);
+        --bar-hover-end: rgba(228, 220, 207, 0.03);
+        --bar-edge-hover: rgba(228, 220, 207, 0.24);
 
         --spotlight: rgba(252, 252, 253, 0.02);
         --vignette: rgba(0, 0, 0, 0.28);
@@ -243,12 +243,12 @@
 
           --line: oklch(0.988 0.002 90 / 0.08);
 
-          --bar-start: oklch(0.988 0.002 90 / 0.07);
-          --bar-end: oklch(0.988 0.002 90 / 0.01);
+          --bar-start: oklch(0.988 0.002 90 / 0.065);
+          --bar-end: oklch(0.988 0.002 90 / 0.010);
 
-          --bar-hover-start: oklch(0.988 0.002 90 / 0.14);
-          --bar-hover-end: oklch(0.988 0.002 90 / 0.03);
-          --bar-edge-hover: oklch(0.988 0.002 90 / 0.18);
+          --bar-hover-start: oklch(0.880 0.018 70 / 0.14);
+          --bar-hover-end: oklch(0.880 0.018 70 / 0.03);
+          --bar-edge-hover: oklch(0.880 0.018 70 / 0.24);
 
           --spotlight: oklch(0.988 0.002 90 / 0.02);
           --vignette: oklch(0 0 0 / 0.28);
@@ -323,18 +323,19 @@
       z-index: 1;
       width: min(100%, var(--page-max));
       margin-inline: auto;
-      margin-block: clamp(1.25rem, 4vh, 2.5rem);
-      padding-block-end: clamp(1.5rem, 4vh, 3rem);
+      margin-block: clamp(1.25rem, 4vh, 2.50rem);
+      padding-block-end: clamp(1.50rem, 4vh, 3.00rem);
     }
 
-    @media (min-height: 52rem) {
+    /* Universal Display Centering for Laptops and Desktop Monitors */
+    @media (min-height: 40rem) {
       .page {
         margin-block: auto;
       }
     }
 
     /* Mobile Ergonomics & Viewport Adapters */
-    @media (max-width: 48rem), (max-height: 52rem) {
+    @media (max-width: 48rem), (max-height: 48rem) {
       :root {
         --pad: clamp(0.95rem, 4.2vw, 1.35rem);
         --space-divider: clamp(0.75rem, 2.0vh, 1.15rem);
@@ -349,7 +350,7 @@
       }
     }
 
-    /* Ambient Cursor Spotlight Layer */
+    /* Ambient Cursor Spotlight Layer (Fine Pointer Only) */
     .spotlight-layer {
       position: fixed;
       inset: 0;
@@ -414,7 +415,7 @@
       outline: none;
     }
 
-    /* Zero-Reflow Superscript Lock */
+    /* Asymmetric Superscript Note Ref (Prevents Text Intrusion) */
     sup {
       font-size: 0.68em;
       line-height: 0;
@@ -438,10 +439,10 @@
       content: "";
       position: absolute;
       top: 50%;
-      left: 50%;
-      width: 1.75rem;
-      height: 1.75rem;
-      transform: translate(-50%, -50%);
+      inset-inline-start: -0.20rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      transform: translateY(-50%);
     }
 
     sup a:hover,
@@ -694,7 +695,7 @@
       will-change: transform;
     }
 
-    /* Desktop Hover & Mobile Touch Feedback */
+    /* Desktop Hover & Mobile Touch States (Warm Titanium Highlights) */
     @media (hover: hover) and (pointer: fine) {
       .holdings li:hover::before {
         background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
@@ -894,7 +895,7 @@
       <p class="subtitle">Patient, concentrated, long-only owners</p>
     </header>
 
-    <hr>
+    <hr aria-hidden="true">
 
     <!-- Section 1: Performance Ledger -->
     <section aria-labelledby="perf-heading">
@@ -913,7 +914,7 @@
       </ul>
     </section>
 
-    <hr>
+    <hr aria-hidden="true">
 
     <!-- Section 2: Holdings Allocation Ledger -->
     <section aria-labelledby="holdings-heading">
@@ -942,7 +943,7 @@
       </ul>
     </section>
 
-    <hr>
+    <hr aria-hidden="true">
 
     <!-- Section 3: Institutional Metadata & Footnotes -->
     <footer class="notes">
@@ -993,7 +994,7 @@
       }, { passive: true });
     }
 
-    /* Mobile Passive Touch Feedback (Zero Layout Shift) */
+    /* Mobile Passive Touch Feedback (Zero Reflow) */
     document.querySelectorAll(".holdings li").forEach((item) => {
       item.addEventListener("touchstart", () => item.classList.add("is-touched"), { passive: true });
       item.addEventListener("touchmove", () => item.classList.remove("is-touched"), { passive: true });
@@ -1008,10 +1009,12 @@
         return;
       }
 
+      /* Prime immediately to 0.0% so no snap occurs post-delay */
+      element.textContent = formatPct(0);
+
       window.setTimeout(() => {
-        element.textContent = formatPct(0);
         const start = performance.now();
-        let lastFormatted = "";
+        let lastFormatted = formatPct(0);
 
         const frame = (now) => {
           const progress = Math.min((now - start) / duration, 1);
@@ -1091,7 +1094,7 @@
       initObserver();
     }
 
-    /* Local Audit Engine */
+    /* Production Audit Engine (Active on localhost or ?debug) */
     if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash.includes("debug") || window.location.search.includes("debug")) {
       const weights = [...document.querySelectorAll("#holdings li")]
         .map((item) => Number.parseFloat(item.style.getPropertyValue("--weight")))
