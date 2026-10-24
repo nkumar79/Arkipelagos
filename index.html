@@ -315,17 +315,17 @@
       padding-block-bottom: clamp(1.5rem, 4svh, 3rem);
     }
 
-    /* Compact Mobile Viewport Fitting */
+    /* Mobile Device Viewport Fitting & Touch Ergonomics */
     @media (max-width: 48rem), (max-height: 52rem) {
       :root {
-        --pad: clamp(0.75rem, 2.5vh, 1.25rem);
-        --space-divider: clamp(0.60rem, 1.8vh, 1.00rem);
-        --space-row: 0.42rem;
-        --fs-display: clamp(2.00rem, 1.60rem + 2.2vw, 2.75rem);
+        --pad: clamp(0.85rem, 3.5vw, 1.25rem);
+        --space-divider: clamp(0.70rem, 2.0vh, 1.10rem);
+        --space-row: 0.45rem;
+        --fs-display: clamp(2.10rem, 1.70rem + 2.4vw, 2.85rem);
         --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
       }
       .perf li, .holdings li {
-        min-height: 2.25rem;
+        min-height: 2.35rem; /* iOS Touch Target Compliance */
       }
     }
 
@@ -569,7 +569,7 @@
       font-weight: 400;
       white-space: nowrap;
       overflow: visible;
-      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
+      transition: color var(--dur-1) ease, font-variation-settings var(--dur-1) ease;
     }
 
     .perf li .val, .holdings li .val {
@@ -581,10 +581,10 @@
       -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
       font-weight: 500;
       white-space: nowrap;
-      transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
+      transition: color var(--dur-1) ease, font-variation-settings var(--dur-1) ease;
     }
 
-    /* Holdings Proportional Allocation Bars with 120Hz ProMotion GPU Compositor Lock */
+    /* Holdings Allocation Bars with 120Hz ProMotion GPU Compositor Lock */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -614,11 +614,19 @@
     .count-num.is-animating { opacity: 0; }
     .count-num.is-visible { opacity: 1; }
 
-    /* Allocation Bar-Only Hover & Touch Highlight with Bolding Enabled */
+    /* Allocation Bar-Only Hover & Touch Feedback with Zero-Reflow Variable Font Bolding */
     .holdings li:active::before,
     .holdings li.is-touched::before {
       background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
       opacity: 1;
+    }
+
+    .holdings li:active .name,
+    .holdings li:active .val,
+    .holdings li.is-touched .name,
+    .holdings li.is-touched .val {
+      color: var(--fg-strong) !important;
+      font-variation-settings: "wght" 520, "opsz" 16, "tnum" 1, "lnum" 1 !important;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -630,7 +638,7 @@
       .holdings li:hover .name,
       .holdings li:hover .val {
         color: var(--fg-strong) !important;
-        font-weight: 600 !important;
+        font-variation-settings: "wght" 520, "opsz" 16, "tnum" 1, "lnum" 1 !important;
       }
     }
 
