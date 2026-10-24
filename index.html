@@ -170,8 +170,8 @@
       --dur-1: 160ms;
       --dur-2: 240ms;
       --dur-3: 640ms;
-      --dur-4: 1300ms; /* Unhurried, elegant bar expansion */
-      --stagger: 55ms;   /* Distinct cascade between ledger rows */
+      --dur-4: 1300ms; /* Unhurried, deliberate bar expansion */
+      --stagger: 55ms;   /* Distinct cascade rhythm between ledger rows */
 
       --page-max: 35.50rem;
       --pad: clamp(1.25rem, 6vw, 3.50rem);
@@ -355,10 +355,13 @@
       outline-offset: 3px;
     }
 
+    /* Zero-Reflow Baseline Superscript Lock */
     sup {
-      font-size: 0.70em;
+      font-size: 0.68em;
       line-height: 0;
-      vertical-align: super;
+      vertical-align: baseline;
+      position: relative;
+      top: -0.45em;
     }
 
     sup a {
@@ -551,7 +554,7 @@
       transition: color var(--dur-1) ease;
     }
 
-    /* Holdings Bar Graph Animations */
+    /* Holdings Bar Graph Animations with Leading Edge Light Gloss */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -562,9 +565,11 @@
       pointer-events: none;
       background: linear-gradient(90deg, var(--bar-start) 0%, var(--bar-end) 100%);
       border-radius: var(--radius);
+      box-shadow: inset -1px 0 0 var(--line);
       transform: scaleX(0);
       transform-origin: left center;
       transition: opacity var(--dur-2) ease;
+      opacity: 0.85;
     }
 
     .holdings.is-animated li::before {
@@ -593,6 +598,9 @@
       .holdings li:hover {
         background: var(--row-hover);
         border-color: var(--line);
+      }
+      .holdings li:hover::before {
+        opacity: 1.0;
       }
       .perf li:hover .name,
       .holdings li:hover .name,
@@ -750,6 +758,19 @@
     const bodyNode = document.body;
     const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    /* Dynamic iOS Status Bar Theme Sync Bridge */
+    const updateThemeMeta = () => {
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeMeta) {
+        themeMeta.setAttribute("content", isDark ? "#0d0d10" : "#fafafa");
+      }
+    };
+    try {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeMeta);
+      updateThemeMeta();
+    } catch (_) {}
 
     /* Locale Percentage Formatter */
     let pctFormatter;
