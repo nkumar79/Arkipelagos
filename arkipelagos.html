@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <!-- Security Policy -->
+  <!-- Security Policy (Enforce frame-ancestors 'none' in production HTTP headers) -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     base-uri 'none';
@@ -759,6 +759,31 @@
       }
     }
 
+    /* Accessibility Motion Reductions */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+
+      header,
+      section,
+      footer {
+        animation: none !important;
+      }
+
+      .holdings li::before {
+        transform: scaleX(1) !important;
+      }
+    }
+
     /* Windows Forced High-Contrast Support */
     @media (forced-colors: active) {
       body {
@@ -957,7 +982,14 @@
 
         var targetVal = parseFloat(counterEl.getAttribute("data-value")) || 32.1;
         var duration = 1600; // 1600ms Deliberate Quartic Ease-Out
-        var startDelay = 180; // Perfectly synchronized with Section 1 entrance opacity
+        var startDelay = 180; // Synchronized with Section 1 entrance opacity
+
+        // Accessibility bypass for users requesting reduced motion
+        var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion) {
+          counterEl.textContent = targetVal.toFixed(1) + "%";
+          return;
+        }
 
         // Prime text immediately to 0.0%
         counterEl.textContent = "0.0%";
@@ -972,7 +1004,7 @@
             var nowTime = (typeof timestamp === "number") ? timestamp : (window.performance && performance.now ? performance.now() : Date.now());
             var elapsed = Math.max(0, nowTime - startTime);
             var progress = Math.min(elapsed / duration, 1);
-            
+
             // Quartic Ease-Out: 1 - (1 - progress)^4
             var eased = 1 - Math.pow(1 - progress, 4);
             var currentNumber = (targetVal * eased).toFixed(1);
