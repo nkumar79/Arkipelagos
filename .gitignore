@@ -1,0 +1,37 @@
+test.sh
+.DS_Store
+*.log
+*~
+
+# Local dev / build cache
+.wrangler/
+dist/
+.tmp-*
+
+ga-service-account.json
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+node_modules
+
+# Git internal files (nested repos) - never commit these
+**/objects/
+**/objects/**/*
+**/*.pack
+**/*.idx
+**/*.rev
+**/hooks/
+**/hooks/**/*
+**/info/
+**/info/**/*
+**/logs/
+**/logs/**/*
+**/refs/
+**/refs/**/*
+**/packed-refs
+**/shallow
+node_modules
+node_modules/**/*
+node_modules/
+.vscode/launch.json
