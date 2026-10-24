@@ -46,7 +46,7 @@
   <meta name="theme-color" content="#fafafa">
   <meta id="theme-color-light" name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
   <meta id="theme-color-dark" name="theme-color" content="#0d0d10" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23141416%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23111113%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
   <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230d0d10'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
 
   <!-- Fonts & CDN Preconnects -->
@@ -129,38 +129,38 @@
     /* Core Design Tokens & Obsidian-Titanium Palette */
     :root {
       --bg: #fafafa;
-      --fg-strong: #141416;
-      --fg: #3e3f46;
-      --muted: #6e707a;
-      --muted-soft: #80828d;
+      --fg-strong: #111113;
+      --fg: #383940;
+      --muted: #666872;
+      --muted-soft: #848692;
 
-      --line: rgba(20, 20, 22, 0.08);
-      --row-hover: rgba(20, 20, 22, 0.035);
+      --line: rgba(17, 17, 19, 0.07);
+      --row-hover: rgba(17, 17, 19, 0.03);
 
-      --bar-start: rgba(20, 20, 22, 0.075);
-      --bar-end: rgba(20, 20, 22, 0.010);
+      --bar-start: rgba(17, 17, 19, 0.07);
+      --bar-end: rgba(17, 17, 19, 0.008);
 
-      --spotlight: rgba(20, 20, 22, 0.018);
-      --vignette: rgba(20, 20, 22, 0.020);
+      --spotlight: rgba(17, 17, 19, 0.018);
+      --vignette: rgba(17, 17, 19, 0.020);
 
-      /* 8px Metric Rhythm Tokens */
+      /* Precise Metric Rhythm Tokens */
       --space-1: 0.50rem;  /* 8px */
       --space-2: 1.00rem;  /* 16px */
       --space-3: 1.50rem;  /* 24px */
       --space-4: 2.25rem;  /* 36px */
       --space-5: 3.50rem;  /* 56px */
       
-      --space-divider: clamp(1.25rem, 3.0svh, 2.00rem);
-      --space-row: 0.55rem;
+      --space-divider: clamp(1.10rem, 2.5svh, 1.85rem);
+      --space-row: 0.52rem;
 
       --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --fs-fine: clamp(0.72rem, 0.68rem + 0.18vw, 0.80rem);
       --fs-body: clamp(0.92rem, 0.88rem + 0.20vw, 1.00rem);
       --fs-head: clamp(1.05rem, 0.98rem + 0.35vw, 1.20rem);
-      --fs-sub: clamp(1.15rem, 1.05rem + 0.40vw, 1.30rem);
-      --fs-display: clamp(2.50rem, 1.90rem + 2.8vw, 3.80rem);
+      --fs-sub: clamp(1.12rem, 1.02rem + 0.38vw, 1.28rem);
+      --fs-display: clamp(2.45rem, 1.85rem + 2.7vw, 3.75rem);
 
-      --track-display: -0.06em;
+      --track-display: -0.055em;
       --track-tight: -0.018em;
       --track-body: -0.011em;
 
@@ -170,11 +170,11 @@
       --dur-1: 160ms;
       --dur-2: 240ms;
       --dur-3: 640ms;
-      --dur-4: 900ms;
-      --stagger: 45ms;
+      --dur-4: 800ms;
+      --stagger: 40ms;
 
-      --page-max: 36.00rem;
-      --pad: clamp(1.25rem, 4vw, 2.75rem);
+      --page-max: 35.50rem;
+      --pad: clamp(1.25rem, 4.5vw, 2.75rem);
 
       /* High-Precision OpenType Engine Settings */
       --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
@@ -184,20 +184,20 @@
     /* OKLCH Color Engine Integration */
     @supports (color: oklch(0% 0 0)) {
       :root {
-        --bg: oklch(0.995 0.002 85);
-        --fg-strong: oklch(0.130 0.012 260);
-        --fg: oklch(0.320 0.010 260);
-        --muted: oklch(0.520 0.008 260);
+        --bg: oklch(0.992 0.002 85);
+        --fg-strong: oklch(0.120 0.012 260);
+        --fg: oklch(0.300 0.010 260);
+        --muted: oklch(0.500 0.008 260);
         --muted-soft: oklch(0.580 0.008 260);
 
-        --line: oklch(0.130 0.012 260 / 0.08);
-        --row-hover: oklch(0.130 0.012 260 / 0.035);
+        --line: oklch(0.120 0.012 260 / 0.07);
+        --row-hover: oklch(0.120 0.012 260 / 0.03);
 
-        --bar-start: oklch(0.130 0.012 260 / 0.075);
-        --bar-end: oklch(0.130 0.012 260 / 0.010);
+        --bar-start: oklch(0.120 0.012 260 / 0.07);
+        --bar-end: oklch(0.120 0.012 260 / 0.008);
 
-        --spotlight: oklch(0.130 0.012 260 / 0.018);
-        --vignette: oklch(0.130 0.012 260 / 0.020);
+        --spotlight: oklch(0.120 0.012 260 / 0.018);
+        --vignette: oklch(0.120 0.012 260 / 0.020);
       }
     }
 
@@ -206,35 +206,35 @@
       :root {
         --bg: #0d0d10;
         --fg-strong: #fcfcfd;
-        --fg: #d1d2d8;
-        --muted: #9496a1;
-        --muted-soft: #81838e;
+        --fg: #d4d5db;
+        --muted: #989aa6;
+        --muted-soft: #7d7f8c;
 
-        --line: rgba(252, 252, 253, 0.10);
-        --row-hover: rgba(252, 252, 253, 0.045);
+        --line: rgba(252, 252, 253, 0.08);
+        --row-hover: rgba(252, 252, 253, 0.04);
 
-        --bar-start: rgba(252, 252, 253, 0.090);
-        --bar-end: rgba(252, 252, 253, 0.015);
+        --bar-start: rgba(252, 252, 253, 0.085);
+        --bar-end: rgba(252, 252, 253, 0.012);
 
-        --spotlight: rgba(252, 252, 253, 0.035);
+        --spotlight: rgba(252, 252, 253, 0.032);
         --vignette: rgba(0, 0, 0, 0.28);
       }
 
       @supports (color: oklch(0% 0 0)) {
         :root {
-          --bg: oklch(0.110 0.008 260);
-          --fg-strong: oklch(0.985 0.002 90);
-          --fg: oklch(0.820 0.006 260);
-          --muted: oklch(0.600 0.006 260);
-          --muted-soft: oklch(0.520 0.006 260);
+          --bg: oklch(0.108 0.008 260);
+          --fg-strong: oklch(0.988 0.002 90);
+          --fg: oklch(0.830 0.006 260);
+          --muted: oklch(0.620 0.006 260);
+          --muted-soft: oklch(0.530 0.006 260);
 
-          --line: oklch(0.985 0.002 90 / 0.10);
-          --row-hover: oklch(0.985 0.002 90 / 0.045);
+          --line: oklch(0.988 0.002 90 / 0.08);
+          --row-hover: oklch(0.988 0.002 90 / 0.04);
 
-          --bar-start: oklch(0.985 0.002 90 / 0.090);
-          --bar-end: oklch(0.985 0.002 90 / 0.015);
+          --bar-start: oklch(0.988 0.002 90 / 0.085);
+          --bar-end: oklch(0.988 0.002 90 / 0.012);
 
-          --spotlight: oklch(0.985 0.002 90 / 0.035);
+          --spotlight: oklch(0.988 0.002 90 / 0.032);
           --vignette: oklch(0 0 0 / 0.28);
         }
       }
@@ -288,7 +288,7 @@
       z-index: 1;
       width: min(100%, var(--page-max));
       margin-inline: auto;
-      margin-block: auto; /* Vertically centers inside flex container without expanding scroll height */
+      margin-block: auto; /* Vertically centers content without generating vertical scroll overflow */
     }
 
     /* Compact Mobile Viewport Fitting */
@@ -296,9 +296,9 @@
       :root {
         --pad: clamp(0.75rem, 2.5vh, 1.25rem);
         --space-divider: clamp(0.60rem, 1.8vh, 1.00rem);
-        --space-row: 0.45rem;
-        --fs-display: clamp(2.00rem, 1.60rem + 2.2vw, 2.80rem);
-        --fs-sub: clamp(1.05rem, 0.95rem + 0.30vw, 1.20rem);
+        --space-row: 0.42rem;
+        --fs-display: clamp(2.00rem, 1.60rem + 2.2vw, 2.75rem);
+        --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
       }
       .perf li, .holdings li {
         min-height: 2.25rem;
@@ -337,7 +337,7 @@
       inset: 0;
       z-index: 99;
       pointer-events: none;
-      opacity: 0.40;
+      opacity: 0.38;
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
@@ -409,7 +409,7 @@
     }
 
     @keyframes entrance {
-      from { opacity: 0; transform: translateY(0.35rem); }
+      from { opacity: 0; transform: translateY(0.30rem); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -465,8 +465,8 @@
       align-items: baseline;
       justify-content: space-between;
       gap: var(--space-2);
-      padding-block-end: 0.40rem;
-      margin-block: 0 0.50rem;
+      padding-block-end: 0.38rem;
+      margin-block: 0 0.45rem;
       border-bottom: 1px solid var(--line);
       line-height: 1.20;
     }
@@ -490,7 +490,7 @@
 
     .perf, .holdings {
       list-style: none;
-      margin-block: 0.25rem;
+      margin-block: 0.20rem;
       font-size: var(--fs-body);
       letter-spacing: var(--track-body);
     }
@@ -503,7 +503,7 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--space-2);
-      min-height: 2.50rem;
+      min-height: 2.45rem;
       margin: 0 calc(var(--space-1) * -1) 0.08rem;
       padding: var(--space-row) var(--space-2);
       overflow: hidden;
@@ -511,7 +511,7 @@
       background: transparent;
       border: 1px solid transparent;
       border-radius: var(--radius);
-      transition: background var(--dur-1) ease, border-color var(--dur-1) ease;
+      transition: background var(--dur-1) ease, border-color var(--dur-1) ease, transform var(--dur-1) ease;
     }
 
     /* Primary Anchor Row (Net Portfolio IRR Highlight) */
@@ -542,8 +542,8 @@
       z-index: 1;
       flex: 0 0 auto;
       font-variant-numeric: tabular-nums lining-nums;
-      font-feature-settings: "tnum" 1, "lnum" 1;
-      -webkit-font-feature-settings: "tnum" 1, "lnum" 1;
+      font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+      -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
       font-weight: 500;
       white-space: nowrap;
     }
@@ -586,7 +586,10 @@
 
     @media (hover: hover) and (pointer: fine) {
       .holdings:hover li:not(:hover)::before { opacity: 0.60; }
-      .holdings li:hover { background: var(--row-hover); }
+      .holdings li:hover {
+        background: var(--row-hover);
+        border-color: var(--line);
+      }
     }
 
     .note {
@@ -595,8 +598,8 @@
       color: var(--muted);
       font-size: var(--fs-body);
       font-variant-numeric: tabular-nums lining-nums;
-      font-feature-settings: "tnum" 1, "lnum" 1;
-      -webkit-font-feature-settings: "tnum" 1, "lnum" 1;
+      font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+      -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
       letter-spacing: var(--track-body);
       line-height: 1.45;
     }
@@ -761,8 +764,8 @@
       item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
     });
 
-    /* Smooth Count-Up Animation System */
-    const animateValue = (element, targetValue, delay = 0, duration = 850) => {
+    /* Smooth Count-Up Animation System (750ms Quartic Ease-Out) */
+    const animateValue = (element, targetValue, delay = 0, duration = 750) => {
       window.setTimeout(() => {
         element.textContent = formatPct(0);
         element.classList.remove("is-animating");
@@ -804,7 +807,7 @@
           const parentItem = target.closest("li");
           const delayIndex = parentItem ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10) : 0;
           target.classList.add("is-animating");
-          animateValue(target, rawValue, (delayIndex * 45) + 80);
+          animateValue(target, rawValue, (delayIndex * 40) + 70);
         } else {
           target.classList.add("is-visible");
         }
