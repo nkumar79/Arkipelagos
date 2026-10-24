@@ -43,11 +43,11 @@
   <link rel="canonical" href="https://www.arkipelagos.com/">
 
   <!-- Favicon & Apple Touch Icon -->
-  <meta name="theme-color" content="#fdfbf7">
-  <meta id="theme-color-light" name="theme-color" content="#fdfbf7" media="(prefers-color-scheme: light)">
-  <meta id="theme-color-dark" name="theme-color" content="#0e0d11" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23161518%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fdfbf7%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230e0d11'/%3E%3Cpath fill='%23fdfbf7' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#ffffff">
+  <meta id="theme-color-light" name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta id="theme-color-dark" name="theme-color" content="#0a0a0d" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23111113%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0d'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
 
   <!-- Fonts & CDN Preconnects -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -126,22 +126,25 @@
       line-gap-override: 0%;
     }
 
-    /* Core Design Tokens — Warm Titanium & Obsidian Slate Palette */
+    /* Core Design Tokens — Clean Pristine Neutral Palette */
     :root {
-      --bg: #fdfbf7;
-      --fg-strong: #161518;
-      --fg: #3b3a40;
-      --muted: #6a6870;
-      --muted-soft: #888690;
+      --bg: #ffffff;
+      --fg-strong: #111113;
+      --fg: #383940;
+      --muted: #666872;
+      --muted-soft: #848692;
 
-      --line: rgba(22, 21, 24, 0.065);
-      --row-hover: rgba(22, 21, 24, 0.038);
+      --line: rgba(17, 17, 19, 0.07);
 
-      --bar-start: rgba(22, 21, 24, 0.065);
-      --bar-end: rgba(22, 21, 24, 0.008);
+      /* Allocation Bar Fills */
+      --bar-start: rgba(17, 17, 19, 0.06);
+      --bar-end: rgba(17, 17, 19, 0.008);
+      
+      --bar-hover-start: rgba(17, 17, 19, 0.12);
+      --bar-hover-end: rgba(17, 17, 19, 0.02);
 
-      --spotlight: rgba(22, 21, 24, 0.018);
-      --vignette: rgba(22, 21, 24, 0.020);
+      --spotlight: rgba(17, 17, 19, 0.012);
+      --vignette: rgba(17, 17, 19, 0.015);
 
       /* Precise Metric Rhythm Tokens */
       --space-1: 0.50rem;  /* 8px */
@@ -184,57 +187,63 @@
     /* OKLCH Color Engine Integration */
     @supports (color: oklch(0% 0 0)) {
       :root {
-        --bg: oklch(0.988 0.005 75);
-        --fg-strong: oklch(0.130 0.012 280);
-        --fg: oklch(0.310 0.010 280);
-        --muted: oklch(0.510 0.008 280);
-        --muted-soft: oklch(0.590 0.008 280);
+        --bg: oklch(1 0 0);
+        --fg-strong: oklch(0.120 0.012 260);
+        --fg: oklch(0.300 0.010 260);
+        --muted: oklch(0.500 0.008 260);
+        --muted-soft: oklch(0.580 0.008 260);
 
-        --line: oklch(0.130 0.012 280 / 0.065);
-        --row-hover: oklch(0.130 0.012 280 / 0.038);
+        --line: oklch(0.120 0.012 260 / 0.07);
 
-        --bar-start: oklch(0.130 0.012 280 / 0.065);
-        --bar-end: oklch(0.130 0.012 280 / 0.008);
+        --bar-start: oklch(0.120 0.012 260 / 0.06);
+        --bar-end: oklch(0.120 0.012 260 / 0.008);
 
-        --spotlight: oklch(0.130 0.012 280 / 0.018);
-        --vignette: oklch(0.130 0.012 280 / 0.020);
+        --bar-hover-start: oklch(0.120 0.012 260 / 0.12);
+        --bar-hover-end: oklch(0.120 0.012 260 / 0.02);
+
+        --spotlight: oklch(0.120 0.012 260 / 0.012);
+        --vignette: oklch(0.120 0.012 260 / 0.015);
       }
     }
 
-    /* Dark Mode Theme Extensions — Warm Obsidian Slate */
+    /* Dark Mode Theme Extensions — Deep Obsidian Slate */
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0e0d11;
-        --fg-strong: #fdfbf7;
-        --fg: #d6d4dc;
-        --muted: #9a98a4;
-        --muted-soft: #7e7c88;
+        --bg: #0a0a0d;
+        --fg-strong: #fcfcfd;
+        --fg: #d4d5db;
+        --muted: #989aa6;
+        --muted-soft: #7d7f8c;
 
-        --line: rgba(253, 251, 247, 0.075);
-        --row-hover: rgba(253, 251, 247, 0.048);
+        --line: rgba(252, 252, 253, 0.08);
 
-        --bar-start: rgba(253, 251, 247, 0.08);
-        --bar-end: rgba(253, 251, 247, 0.01);
+        --bar-start: rgba(252, 252, 253, 0.07);
+        --bar-end: rgba(252, 252, 253, 0.01);
 
-        --spotlight: rgba(253, 251, 247, 0.032);
+        --bar-hover-start: rgba(252, 252, 253, 0.14);
+        --bar-hover-end: rgba(252, 252, 253, 0.03);
+
+        --spotlight: rgba(252, 252, 253, 0.02);
         --vignette: rgba(0, 0, 0, 0.28);
       }
 
       @supports (color: oklch(0% 0 0)) {
         :root {
-          --bg: oklch(0.110 0.005 60);
-          --fg-strong: oklch(0.988 0.005 75);
-          --fg: oklch(0.840 0.006 280);
-          --muted: oklch(0.630 0.006 280);
-          --muted-soft: oklch(0.540 0.006 280);
+          --bg: oklch(0.090 0.005 260);
+          --fg-strong: oklch(0.988 0.002 90);
+          --fg: oklch(0.830 0.006 260);
+          --muted: oklch(0.620 0.006 260);
+          --muted-soft: oklch(0.530 0.006 260);
 
-          --line: oklch(0.988 0.005 75 / 0.075);
-          --row-hover: oklch(0.988 0.005 75 / 0.048);
+          --line: oklch(0.988 0.002 90 / 0.08);
 
-          --bar-start: oklch(0.988 0.005 75 / 0.08);
-          --bar-end: oklch(0.988 0.005 75 / 0.01);
+          --bar-start: oklch(0.988 0.002 90 / 0.07);
+          --bar-end: oklch(0.988 0.002 90 / 0.01);
 
-          --spotlight: oklch(0.988 0.005 75 / 0.032);
+          --bar-hover-start: oklch(0.988 0.002 90 / 0.14);
+          --bar-hover-end: oklch(0.988 0.002 90 / 0.03);
+
+          --spotlight: oklch(0.988 0.002 90 / 0.02);
           --vignette: oklch(0 0 0 / 0.28);
         }
       }
@@ -333,13 +342,13 @@
       background: radial-gradient(circle at 50% 50%, transparent 60%, var(--vignette) 100%);
     }
 
-    /* Organic Linen Noise Overlay */
+    /* Clean Subtle Grain Overlay */
     .noise-bg {
       position: fixed;
       inset: 0;
       z-index: 99;
       pointer-events: none;
-      opacity: 0.014;
+      opacity: 0.012;
       mix-blend-mode: overlay;
       transform: translateZ(0);
       -webkit-backface-visibility: hidden;
@@ -392,7 +401,7 @@
     #footnote-fmv:target {
       padding-inline: 0.25rem;
       margin-inline: -0.25rem;
-      background-color: var(--row-hover);
+      background-color: var(--line);
       border-radius: var(--radius-sm);
       scroll-margin-block: 2rem;
     }
@@ -521,10 +530,9 @@
       color: var(--fg);
       background: transparent;
       border-radius: var(--radius);
-      transition: background var(--dur-1) ease, color var(--dur-1) ease, transform var(--dur-1) ease;
     }
 
-    /* Clean Static Formatting for Performance Benchmarks */
+    /* Performance Section Standard Formatting */
     .perf li:first-child .name {
       font-weight: 600;
       color: var(--fg-strong);
@@ -561,7 +569,7 @@
       transition: color var(--dur-1) ease;
     }
 
-    /* Holdings Allocation Bars */
+    /* Holdings Proportional Allocation Bars */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -575,7 +583,7 @@
       box-shadow: inset -1px 0 0 var(--line);
       transform: scaleX(0);
       transform-origin: left center;
-      transition: opacity var(--dur-2) ease;
+      transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease, opacity var(--dur-2) ease;
       opacity: 0.85;
     }
 
@@ -588,16 +596,18 @@
     .count-num.is-animating { opacity: 0; }
     .count-num.is-visible { opacity: 1; }
 
-    /* Scoped Touch Feedback & Hover Motion — Holdings Only */
-    .holdings li:active,
-    .holdings li.is-touched {
-      background: var(--row-hover) !important;
+    /* Allocation Bar-Only Hover & Touch Highlight */
+    .holdings li:active::before,
+    .holdings li.is-touched::before {
+      background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
+      opacity: 1;
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .holdings li:hover {
-        background: var(--row-hover);
-        transform: translateX(3px);
+      .holdings li:hover::before {
+        background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%);
+        box-shadow: inset -1px 0 0 rgba(17, 17, 19, 0.15);
+        opacity: 1.0;
       }
       .holdings li:hover .name,
       .holdings li:hover .val {
@@ -646,7 +656,6 @@
       }
       header, section, footer { animation: none !important; }
       .holdings li::before { transform: scaleX(1) !important; }
-      .holdings li:hover { transform: none !important; }
     }
 
     @media (forced-colors: active) {
@@ -760,7 +769,7 @@
       const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       const themeMeta = document.querySelector('meta[name="theme-color"]');
       if (themeMeta) {
-        themeMeta.setAttribute("content", isDark ? "#0e0d11" : "#fdfbf7");
+        themeMeta.setAttribute("content", isDark ? "#0a0a0d" : "#ffffff");
       }
     };
     try {
