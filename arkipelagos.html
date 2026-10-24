@@ -176,8 +176,8 @@
       --dur-1: 180ms;
       --dur-2: 240ms;
       --dur-3: 640ms;
-      --dur-4: 1300ms;
-      --stagger: 55ms;
+      --dur-4: 1850ms; /* Deliberate, unhurried bar expansion */
+      --stagger: 80ms;   /* Distinct institutional cadence across rows */
 
       --page-max: 35.50rem;
       --pad: clamp(1.25rem, 6vw, 3.50rem);
@@ -1019,8 +1019,8 @@
       item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
     });
 
-    /* Numerical Interpolation (Quartic Ease-Out with Reduced Motion Defense) */
-    const animateValue = (element, targetValue, delay = 0, duration = 1250) => {
+    /* Numerical Interpolation (1600ms Deliberate Quartic Ease-Out) */
+    const animateValue = (element, targetValue, delay = 0, duration = 1600) => {
       if (reduceMotionQuery.matches) {
         element.textContent = formatPct(targetValue);
         element.classList.remove("is-animating");
@@ -1069,7 +1069,7 @@
           const parentItem = target.closest("li");
           const delayIndex = parentItem ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10) : 0;
           target.classList.add("is-animating");
-          animateValue(target, rawValue, (delayIndex * 55) + 100);
+          animateValue(target, rawValue, (delayIndex * 80) + 120, 1600);
         } else {
           target.classList.add("is-visible");
         }
