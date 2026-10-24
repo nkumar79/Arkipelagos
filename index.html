@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-  <!-- Security Policy (Enforce frame-ancestors 'none' in production HTTP headers) -->
+  <!-- Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     base-uri 'none';
@@ -135,7 +135,7 @@
       --muted-soft: #80828d;
 
       --line: rgba(20, 20, 22, 0.08);
-      --row-hover: rgba(20, 20, 22, 0.025);
+      --row-hover: rgba(20, 20, 22, 0.035);
 
       --bar-start: rgba(20, 20, 22, 0.075);
       --bar-end: rgba(20, 20, 22, 0.010);
@@ -150,15 +150,15 @@
       --space-4: 2.25rem;  /* 36px */
       --space-5: 3.50rem;  /* 56px */
       
-      --space-divider: clamp(1.50rem, 3.5svh, 2.25rem);
+      --space-divider: clamp(1.25rem, 3.0svh, 2.00rem);
       --space-row: 0.55rem;
 
       --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --fs-fine: clamp(0.72rem, 0.68rem + 0.18vw, 0.80rem);
       --fs-body: clamp(0.92rem, 0.88rem + 0.20vw, 1.00rem);
       --fs-head: clamp(1.05rem, 0.98rem + 0.35vw, 1.20rem);
-      --fs-sub: clamp(1.18rem, 1.08rem + 0.45vw, 1.35rem);
-      --fs-display: clamp(2.60rem, 2.00rem + 3.0vw, 4.00rem);
+      --fs-sub: clamp(1.15rem, 1.05rem + 0.40vw, 1.30rem);
+      --fs-display: clamp(2.50rem, 1.90rem + 2.8vw, 3.80rem);
 
       --track-display: -0.06em;
       --track-tight: -0.018em;
@@ -173,8 +173,8 @@
       --dur-4: 900ms;
       --stagger: 45ms;
 
-      --page-max: 36.00rem; /* Executive Editorial Measure */
-      --pad: clamp(1.25rem, 5vw, 3.00rem);
+      --page-max: 36.00rem;
+      --pad: clamp(1.25rem, 4vw, 2.75rem);
 
       /* High-Precision OpenType Engine Settings */
       --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
@@ -191,7 +191,7 @@
         --muted-soft: oklch(0.580 0.008 260);
 
         --line: oklch(0.130 0.012 260 / 0.08);
-        --row-hover: oklch(0.130 0.012 260 / 0.025);
+        --row-hover: oklch(0.130 0.012 260 / 0.035);
 
         --bar-start: oklch(0.130 0.012 260 / 0.075);
         --bar-end: oklch(0.130 0.012 260 / 0.010);
@@ -211,7 +211,7 @@
         --muted-soft: #81838e;
 
         --line: rgba(252, 252, 253, 0.10);
-        --row-hover: rgba(252, 252, 253, 0.035);
+        --row-hover: rgba(252, 252, 253, 0.045);
 
         --bar-start: rgba(252, 252, 253, 0.090);
         --bar-end: rgba(252, 252, 253, 0.015);
@@ -229,7 +229,7 @@
           --muted-soft: oklch(0.520 0.006 260);
 
           --line: oklch(0.985 0.002 90 / 0.10);
-          --row-hover: oklch(0.985 0.002 90 / 0.035);
+          --row-hover: oklch(0.985 0.002 90 / 0.045);
 
           --bar-start: oklch(0.985 0.002 90 / 0.090);
           --bar-end: oklch(0.985 0.002 90 / 0.015);
@@ -246,19 +246,19 @@
       font-size: 100%;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      overscroll-behavior-x: none;
+      overscroll-behavior-y: none; /* Prevents iOS rubber-banding */
       background: var(--bg);
       scroll-behavior: smooth;
     }
 
     body {
-      min-width: 17.5rem; /* 280px Foldable/Cover Screen Safety Floor */
+      min-width: 17.5rem;
       min-height: 100dvh;
       margin: 0;
       padding: var(--pad);
       padding-top: max(var(--pad), env(safe-area-inset-top));
       padding-right: max(var(--pad), env(safe-area-inset-right));
-      padding-bottom: max(clamp(1.25rem, 3.2svh, 2.25rem), env(safe-area-inset-bottom));
+      padding-bottom: max(clamp(1.00rem, 2.5svh, 1.75rem), env(safe-area-inset-bottom));
       padding-left: max(var(--pad), env(safe-area-inset-left));
       color: var(--fg);
       background:
@@ -280,7 +280,22 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Ambient Cursor Spotlight & Subtle Texture Layer (Hardware GPU Composited) */
+    /* Mobile Single-Screen Fitting Optimization */
+    @media (max-width: 48rem), (max-height: 55rem) {
+      :root {
+        --pad: clamp(0.85rem, 3.2vh, 1.50rem);
+        --space-divider: clamp(0.75rem, 2.0vh, 1.25rem);
+        --fs-display: clamp(2.20rem, 1.80rem + 2.5vw, 3.20rem);
+      }
+      body {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    /* Ambient Cursor Spotlight & Subtle Texture Layer */
     .spotlight-layer {
       position: fixed;
       inset: 0;
@@ -405,7 +420,7 @@
       animation: entrance var(--dur-3) var(--ease) both;
     }
 
-    header { animation-delay: 30ms; padding-block-start: clamp(0.20rem, 1.2vh, var(--space-2)); }
+    header { animation-delay: 30ms; padding-block-start: clamp(0.10rem, 0.8vh, var(--space-1)); }
     section:nth-of-type(1) { animation-delay: 90ms; }
     section:nth-of-type(2) { animation-delay: 150ms; }
     footer { animation-delay: 210ms; }
@@ -447,8 +462,8 @@
       align-items: baseline;
       justify-content: space-between;
       gap: var(--space-2);
-      padding-block-end: 0.50rem;
-      margin-block: 0 var(--space-2);
+      padding-block-end: 0.40rem;
+      margin-block: 0 0.50rem;
       border-bottom: 1px solid var(--line);
       line-height: 1.20;
     }
@@ -472,7 +487,7 @@
 
     .perf, .holdings {
       list-style: none;
-      margin-block: var(--space-1);
+      margin-block: 0.25rem;
       font-size: var(--fs-body);
       letter-spacing: var(--track-body);
     }
@@ -485,14 +500,15 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--space-2);
-      min-height: 2.75rem;
-      margin: 0 calc(var(--space-1) * -1) 0.10rem;
+      min-height: 2.50rem;
+      margin: 0 calc(var(--space-1) * -1) 0.08rem;
       padding: var(--space-row) var(--space-2);
       overflow: hidden;
       color: var(--fg);
       background: transparent;
       border: 1px solid transparent;
       border-radius: var(--radius);
+      transition: background var(--dur-1) ease, border-color var(--dur-1) ease;
     }
 
     /* Primary Anchor Row (Net Portfolio IRR Highlight) */
@@ -529,7 +545,7 @@
       white-space: nowrap;
     }
 
-    /* Holdings Bar Graph Animations - Triggered via IntersectionObserver Class */
+    /* Holdings Bar Graph Animations */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -547,12 +563,23 @@
 
     .holdings.is-animated li::before {
       animation: bar-grow var(--dur-4) var(--ease) forwards;
-      animation-delay: calc((var(--delay-idx) * var(--stagger)) + 180ms);
+      animation-delay: calc((var(--delay-idx) * var(--stagger)) + 120ms);
     }
 
     .count-num { transition: opacity var(--dur-2) ease; }
     .count-num.is-animating { opacity: 0; }
     .count-num.is-visible { opacity: 1; }
+
+    /* Universal Active / Touch & Hover Highlight Engine */
+    .perf li:active,
+    .holdings li:active,
+    .perf li:focus-within,
+    .holdings li:focus-within,
+    .perf li.is-touched,
+    .holdings li.is-touched {
+      background: var(--row-hover) !important;
+      border-color: var(--line) !important;
+    }
 
     @media (hover: hover) and (pointer: fine) {
       .holdings:hover li:not(:hover)::before { opacity: 0.60; }
@@ -561,19 +588,18 @@
 
     .note {
       display: block;
-      margin-block: 0.22rem;
+      margin-block: 0.18rem;
       color: var(--muted);
       font-size: var(--fs-body);
       font-variant-numeric: tabular-nums lining-nums;
       font-feature-settings: "tnum" 1, "lnum" 1;
       -webkit-font-feature-settings: "tnum" 1, "lnum" 1;
       letter-spacing: var(--track-body);
-      line-height: 1.50;
+      line-height: 1.45;
     }
-    .note.sm { color: var(--muted-soft); font-size: var(--fs-fine); line-height: 1.45; }
+    .note.sm { color: var(--muted-soft); font-size: var(--fs-fine); line-height: 1.40; }
 
     @media (max-width: 34rem) {
-      :root { --pad: clamp(1.00rem, 4vw, 1.35rem); }
       .perf li, .holdings li {
         margin-inline: calc(var(--space-1) * -1);
         padding-inline: var(--space-1);
@@ -711,7 +737,7 @@
     }
     const formatPct = (value) => pctFormatter.format(value / 100);
 
-    /* Ambient Cursor Tracking (Filtered to Hardware Mouse/Trackpad to Preserve Mobile Battery) */
+    /* Ambient Cursor Tracking (Mouse/Trackpad Only) */
     if (finePointerQuery.matches && !reduceMotionQuery.matches) {
       let ticking = false;
       window.addEventListener("pointermove", (event) => {
@@ -725,6 +751,13 @@
       }, { passive: true });
     }
 
+    /* Mobile Touch Feedback Sync */
+    document.querySelectorAll(".perf li, .holdings li").forEach((item) => {
+      item.addEventListener("touchstart", () => item.classList.add("is-touched"), { passive: true });
+      item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 150), { passive: true });
+      item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
+    });
+
     /* Smooth Count-Up Animation System */
     const animateValue = (element, targetValue, delay = 0, duration = 850) => {
       window.setTimeout(() => {
@@ -737,7 +770,7 @@
 
         const frame = (now) => {
           const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 4); // Quartic Ease-Out
+          const eased = 1 - Math.pow(1 - progress, 4);
           const current = Math.round(targetValue * eased * 10) / 10;
           const formatted = formatPct(current);
 
@@ -757,38 +790,56 @@
       }, delay);
     };
 
-    /* Scroll-Observer Hydration Engine (Optimized for Landscape & Split-Screen Viewports) */
+    /* Robust Immediate Hydration Engine (Optimized for iOS WebKit & Mobile Viewports) */
+    const hydrateTarget = (target) => {
+      if (target.id === "holdings") {
+        target.classList.add("is-animated");
+      } else if (target.classList.contains("count-num") && !target.dataset.hydrated) {
+        target.dataset.hydrated = "true";
+        const rawValue = Number.parseFloat(target.dataset.value);
+        if (Number.isFinite(rawValue)) {
+          const parentItem = target.closest("li");
+          const delayIndex = parentItem ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10) : 0;
+          target.classList.add("is-animating");
+          animateValue(target, rawValue, (delayIndex * 45) + 80);
+        } else {
+          target.classList.add("is-visible");
+        }
+      }
+    };
+
     const initObserver = () => {
       const holdingsList = document.getElementById("holdings");
-      
+      const countEls = document.querySelectorAll(".count-num");
+
+      const checkViewportHydration = () => {
+        if (holdingsList && holdingsList.getBoundingClientRect().top < window.innerHeight + 100) {
+          hydrateTarget(holdingsList);
+        }
+        countEls.forEach((el) => {
+          if (el.getBoundingClientRect().top < window.innerHeight + 100) {
+            hydrateTarget(el);
+          }
+        });
+      };
+
       if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              if (entry.target.id === "holdings") {
-                entry.target.classList.add("is-animated");
-              } else if (entry.target.classList.contains("count-num")) {
-                const rawValue = Number.parseFloat(entry.target.dataset.value);
-                if (Number.isFinite(rawValue)) {
-                  const parentItem = entry.target.closest("li");
-                  const delayIndex = parentItem
-                    ? Number.parseInt(parentItem.style.getPropertyValue("--delay-idx") || "0", 10)
-                    : 0;
-                  entry.target.classList.add("is-animating");
-                  animateValue(entry.target, rawValue, (delayIndex * 45) + 120);
-                }
-              }
+              hydrateTarget(entry.target);
               observer.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.05, rootMargin: "10px" });
+        }, { threshold: 0.01, rootMargin: "50px" });
 
         if (holdingsList) observer.observe(holdingsList);
-        document.querySelectorAll(".count-num").forEach((el) => observer.observe(el));
-      } else {
-        if (holdingsList) holdingsList.classList.add("is-animated");
-        document.querySelectorAll(".count-num").forEach((el) => el.classList.add("is-visible"));
+        countEls.forEach((el) => observer.observe(el));
       }
+
+      // Synchronous immediate check + 200ms safeguard for instant iOS rendering
+      checkViewportHydration();
+      window.setTimeout(checkViewportHydration, 200);
     };
 
     if (document.readyState === "loading") {
@@ -797,7 +848,7 @@
       initObserver();
     }
 
-    /* Local Audit Engine: Logs warning if allocations do not sum to 100.0% */
+    /* Local Audit Engine */
     if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash === "#debug") {
       const weights = [...document.querySelectorAll("#holdings li")]
         .map((item) => Number.parseFloat(item.style.getPropertyValue("--weight")))
