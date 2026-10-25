@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <!-- 
+    ===========================================================================
+    SECTION 1: SITE METADATA & CONFIGURATION
+    ===========================================================================
+  -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <!-- Security Policy (Enforce frame-ancestors 'none' in production HTTP headers) -->
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    base-uri 'none';
+    object-src 'none';
+    form-action 'none';
+    frame-src 'none';
+    worker-src 'none';
+    manifest-src 'self';
+    connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+    img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com data:;
+    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com;
+    script-src-attr 'none';
+    upgrade-insecure-requests;
+  ">
+    <meta name="referrer" content="no-referrer">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="color-scheme" content="light dark">
+
+    <!-- Apple Standalone Web App Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Arkipelagos">
+
+    <!-- Core Page Metadata -->
+    <title>Arkipelagos</title>
+    <meta name="description" content="Arkipelagos — Patient, concentrated, long-only owners.">
+    <meta name="author" content="Arkipelagos">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://www.arkipelagos.com/">
+
+    <!-- Favicon & Apple Touch Icon -->
+    <meta name="theme-color" content="#ffffff">
+    <meta id="theme-color-light" name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta id="theme-color-dark" name="theme-color" content="#0a0a0d" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cstyle%3Epath%7Bfill:%23111113%7D@media(prefers-color-scheme:dark)%7Bpath%7Bfill:%23fcfcfd%7D%7D%3C/style%3E%3Cpath d='M50 12 84 88H69l-8-20H39l-8 20H16L50 12Zm0 27-7 18h14L50 39Z'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0d'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
+
+    <!-- Fonts & CDN Preconnects -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link id="inter-font" rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
+    <!-- OpenGraph / Twitter Social Previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Arkipelagos">
+    <meta property="og:title" content="Arkipelagos">
+    <meta property="og:description" content="Arkipelagos — Patient, concentrated, long-only owners.">
+    <meta property="og:url" content="https://www.arkipelagos.com/">
+    <meta property="og:image" content="https://www.arkipelagos.com/og.png">
+    <meta property="og:image:secure_url" content="https://www.arkipelagos.com/og.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Arkipelagos">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Arkipelagos">
+    <meta name="twitter:description" content="Arkipelagos — Patient, concentrated, long-only owners.">
+    <meta name="twitter:image" content="https://www.arkipelagos.com/og.png">
+    <meta name="twitter:image:alt" content="Arkipelagos">
+
+    <!-- Schema.org JSON-LD Institutional Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Arkipelagos",
+      "url": "https://www.arkipelagos.com/",
+      "description": "Arkipelagos — Patient, concentrated, long-only owners.",
+      "foundingDate": "2010-09-07",
+      "logo": "https://www.arkipelagos.com/og.png"
+    }
+  </script>
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MRY99NLBK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+
+        gtag("consent", "default", {
+            ad_storage: "denied",
+            analytics_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            wait_for_update: 500
+        });
+
+        gtag("js", new Date());
+        gtag("config", "G-8MRY99NLBK", {
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+        });
+    </script>
+
+    <!-- Marks that JS is running, so the circles can start hidden and animate in.
+       If the main script never starts, the class is removed and everything shows as plain content. -->
+    <script>
+        document.documentElement.classList.add("js");
+        setTimeout(function () {
+            if (!window.__orbsOk) document.documentElement.classList.remove("js");
+        }, 3000);
+    </script>
+
+    <!-- 
+    ===========================================================================
+    SECTION 2: EXECUTIVE DESIGN SYSTEM & HIGH-CRAFT CSS
+    ===========================================================================
+  -->
+    <style>
+        /* Zero-CLS Fallback Font Metric Alignment for Inter */
+        @font-face {
+            font-family: "Inter Fallback";
+            src: local("Arial"), local("Helvetica"), local("Segoe UI");
+            size-adjust: 98.2%;
+            ascent-override: 95.0%;
+            descent-override: 22.0%;
+            line-gap-override: 0%;
+        }
+
+        /* Core Design Tokens — Clean Pristine Neutral Palette */
+        :root {
+            --bg: #ffffff;
+            --fg-strong: #111113;
+            --fg: #383940;
+            --muted: #666872;
+            --muted-soft: #848692;
+
+            --line: rgba(17, 17, 19, 0.07);
+
+            /* Circle fills */
+            --bar-start: rgba(17, 17, 19, 0.06);
+            --bar-end: rgba(17, 17, 19, 0.008);
+
+            --bar-hover-start: rgba(17, 17, 19, 0.12);
+            --bar-hover-end: rgba(17, 17, 19, 0.02);
+
+            --spotlight: rgba(17, 17, 19, 0.012);
+            --vignette: rgba(17, 17, 19, 0.015);
+
+            /* Precise Metric Rhythm Tokens */
+            --space-1: 0.50rem;
+            /* 8px */
+            --space-2: 1.00rem;
+            /* 16px */
+            --space-3: 1.50rem;
+            /* 24px */
+            --space-4: 2.25rem;
+            /* 36px */
+            --space-5: 3.50rem;
+            /* 56px */
+
+            --space-divider: clamp(1.10rem, 2.5svh, 1.85rem);
+
+            --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --fs-fine: clamp(0.72rem, 0.68rem + 0.18vw, 0.80rem);
+            --fs-body: clamp(0.92rem, 0.88rem + 0.20vw, 1.00rem);
+            --fs-head: clamp(1.05rem, 0.98rem + 0.35vw, 1.20rem);
+            --fs-sub: clamp(1.12rem, 1.02rem + 0.38vw, 1.28rem);
+            --fs-display: clamp(2.45rem, 1.85rem + 2.7vw, 3.75rem);
+
+            --track-display: -0.055em;
+            --track-tight: -0.018em;
+            --track-body: -0.011em;
+
+            --radius: 0.375rem;
+            --radius-sm: 0.25rem;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --dur-1: 180ms;
+            --dur-2: 240ms;
+            --dur-3: 640ms;
+
+            /* Circle layout */
+            --orb-gap: clamp(0.5rem, 2.4vw, 1rem);
+            --orb-row-gap: clamp(1.1rem, 3.2vw, 1.7rem);
+
+            --page-max: 35.50rem;
+            --pad: clamp(1.25rem, 6vw, 3.50rem);
+
+            /* High-Precision OpenType Engine Settings */
+            --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
+            --font-features-numeric: "tnum" 1, "lnum" 1, "zero" 1, "cv05" 1;
+        }
+
+        /* OKLCH Color Engine Integration */
+        @supports (color: oklch(0% 0 0)) {
+            :root {
+                --bg: oklch(1 0 0);
+                --fg-strong: oklch(0.120 0.012 260);
+                --fg: oklch(0.300 0.010 260);
+                --muted: oklch(0.500 0.008 260);
+                --muted-soft: oklch(0.580 0.008 260);
+
+                --line: oklch(0.120 0.012 260 / 0.07);
+
+                --bar-start: oklch(0.120 0.012 260 / 0.06);
+                --bar-end: oklch(0.120 0.012 260 / 0.008);
+
+                --bar-hover-start: oklch(0.120 0.012 260 / 0.12);
+                --bar-hover-end: oklch(0.120 0.012 260 / 0.02);
+
+                --spotlight: oklch(0.120 0.012 260 / 0.012);
+                --vignette: oklch(0.120 0.012 260 / 0.015);
+            }
+        }
+
+        /* Dark Mode Theme Extensions — Deep Obsidian Slate */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0d;
+                --fg-strong: #fcfcfd;
+                --fg: #d4d5db;
+                --muted: #989aa6;
+                --muted-soft: #7d7f8c;
+
+                --line: rgba(252, 252, 253, 0.08);
+
+                --bar-start: rgba(252, 252, 253, 0.07);
+                --bar-end: rgba(252, 252, 253, 0.01);
+
+                --bar-hover-start: rgba(252, 252, 253, 0.14);
+                --bar-hover-end: rgba(252, 252, 253, 0.03);
+
+                --spotlight: rgba(252, 252, 253, 0.02);
+                --vignette: rgba(0, 0, 0, 0.28);
+            }
+
+            @supports (color: oklch(0% 0 0)) {
+                :root {
+                    --bg: oklch(0.090 0.005 260);
+                    --fg-strong: oklch(0.988 0.002 90);
+                    --fg: oklch(0.830 0.006 260);
+                    --muted: oklch(0.620 0.006 260);
+                    --muted-soft: oklch(0.530 0.006 260);
+
+                    --line: oklch(0.988 0.002 90 / 0.08);
+
+                    --bar-start: oklch(0.988 0.002 90 / 0.07);
+                    --bar-end: oklch(0.988 0.002 90 / 0.01);
+
+                    --bar-hover-start: oklch(0.988 0.002 90 / 0.14);
+                    --bar-hover-end: oklch(0.988 0.002 90 / 0.03);
+
+                    --spotlight: oklch(0.988 0.002 90 / 0.02);
+                    --vignette: oklch(0 0 0 / 0.28);
+                }
+            }
+
+            /* Dark-Mode Optical Weight Parity Compensation */
+            body {
+                font-variation-settings: "wght" 385;
+            }
+
+            .title {
+                font-variation-settings: "opsz" 36, "wght" 680, "cv05" 1, "cv08" 1, "ss01" 1;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Dynamic Theme-Aware Selection Token */
+        ::selection {
+            color: var(--bg);
+            background: var(--fg-strong);
+        }
+
+        html {
+            font-size: 100%;
+            height: 100%;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            overscroll-behavior: none;
+            background: var(--bg);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-width: 17.5rem;
+            min-height: 100dvh;
+            margin: 0;
+            padding: var(--pad);
+            padding-top: max(var(--pad), env(safe-area-inset-top));
+            padding-right: max(var(--pad), env(safe-area-inset-right));
+            padding-bottom: max(var(--pad), env(safe-area-inset-bottom));
+            padding-left: max(var(--pad), env(safe-area-inset-left));
+            color: var(--fg);
+            background:
+                radial-gradient(120rem 70rem at 50% -45rem, var(--spotlight), transparent 60%),
+                var(--bg);
+            font-family: var(--font-body);
+            font-feature-settings: var(--font-features-numeric);
+            -webkit-font-feature-settings: var(--font-features-numeric);
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+            line-height: 1.55;
+            overflow-x: clip;
+            /* circles roll in from beyond the screen edge; this keeps them from causing a scrollbar */
+            overflow-wrap: break-word;
+            position: relative;
+            isolation: isolate;
+            touch-action: manipulation;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-tap-highlight-color: transparent;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: min(100%, var(--page-max));
+            margin-inline: auto;
+            margin-block: auto;
+            padding-block-bottom: clamp(1.5rem, 4svh, 3rem);
+        }
+
+        /* Mobile Device Viewport Fitting */
+        @media (max-width: 48rem),
+        (max-height: 52rem) {
+            :root {
+                --pad: clamp(0.85rem, 3.5vw, 1.25rem);
+                --space-divider: clamp(0.70rem, 2.0vh, 1.10rem);
+                --fs-display: clamp(2.10rem, 1.70rem + 2.4vw, 2.85rem);
+                --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
+            }
+        }
+
+        /* Ambient Cursor Spotlight */
+        .spotlight-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
+            background: radial-gradient(46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
+                    var(--spotlight),
+                    transparent 66%);
+            contain: strict;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, transparent 60%, var(--vignette) 100%);
+        }
+
+        /* Clean Subtle Grain Overlay */
+        .noise-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0.012;
+            mix-blend-mode: overlay;
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            contain: strict;
+        }
+
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--fg-strong);
+            outline-offset: 3px;
+        }
+
+        /* Zero-Reflow Baseline Superscript Lock & Touch Cleanup */
+        sup {
+            font-size: 0.68em;
+            line-height: 0;
+            vertical-align: baseline;
+            position: relative;
+            top: -0.45em;
+        }
+
+        sup a {
+            position: relative;
+            display: inline-block;
+            padding: 0 0.12em;
+            color: var(--muted);
+            text-align: center;
+            -webkit-tap-highlight-color: transparent;
+            transition: color var(--dur-1) ease, transform var(--dur-1) ease;
+        }
+
+        sup a::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2.75rem;
+            height: 2.75rem;
+            transform: translate(-50%, -50%);
+        }
+
+        sup a:hover,
+        sup a:focus-visible {
+            color: var(--fg-strong);
+        }
+
+        sup a:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        sup a:active {
+            transform: scale(1.15);
+            color: var(--fg-strong);
+        }
+
+        /* Seamless Footnote Target Anchor (No Box Highlight) */
+        #footnote-fmv:target {
+            scroll-margin-block: 2rem;
+        }
+
+        .skip {
+            position: fixed;
+            inset-block-start: -4rem;
+            inset-inline-start: 0;
+            z-index: 9999;
+            padding: var(--space-1) var(--space-2);
+            color: var(--bg);
+            background: var(--fg-strong);
+            font-weight: 700;
+            transition: inset-block-start 180ms ease;
+        }
+
+        .skip:focus-visible {
+            inset-block-start: 0;
+            outline: 3px solid var(--fg-strong);
+            outline-offset: 2px;
+        }
+
+        @keyframes entrance {
+            from {
+                opacity: 0;
+                transform: translateY(0.30rem);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header,
+        section,
+        footer {
+            contain: layout style;
+            animation: entrance var(--dur-3) var(--ease) both;
+        }
+
+        header {
+            animation-delay: 30ms;
+            padding-block-start: clamp(0.10rem, 0.8vh, var(--space-1));
+        }
+
+        section:nth-of-type(1) {
+            animation-delay: 90ms;
+        }
+
+        section:nth-of-type(2) {
+            animation-delay: 150ms;
+        }
+
+        footer {
+            animation-delay: 210ms;
+        }
+
+        .title,
+        .heading {
+            text-wrap: balance;
+        }
+
+        .subtitle,
+        .note {
+            text-wrap: pretty;
+        }
+
+        /* Typographic Optical Sizing Lock */
+        .title {
+            margin-block-end: var(--space-1);
+            color: var(--fg-strong);
+            font-size: var(--fs-display);
+            font-weight: 700;
+            font-variation-settings: "opsz" 36, "cv05" 1, "cv08" 1, "ss01" 1;
+            font-feature-settings: var(--font-features-display);
+            -webkit-font-feature-settings: var(--font-features-display);
+            letter-spacing: var(--track-display);
+            line-height: 0.98;
+            text-rendering: geometryPrecision;
+        }
+
+        .subtitle {
+            color: var(--fg);
+            font-size: var(--fs-sub);
+            font-weight: 400;
+            font-variation-settings: "opsz" 18;
+            letter-spacing: var(--track-tight);
+            line-height: 1.35;
+        }
+
+        hr {
+            width: 100%;
+            height: 1px;
+            margin-block: var(--space-divider);
+            margin-inline: 0;
+            border: 0;
+            background: linear-gradient(90deg, transparent 0%, var(--line) 25%, var(--line) 75%, transparent 100%);
+            opacity: 0.70;
+        }
+
+        .heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: var(--space-2);
+            padding-block-end: 0.38rem;
+            margin-block: 0 0.45rem;
+            border-bottom: 1px solid var(--line);
+            line-height: 1.20;
+        }
+
+        .heading-title {
+            color: var(--muted);
+            font-size: var(--fs-fine);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .heading-meta {
+            color: var(--muted-soft);
+            font-size: var(--fs-fine);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        /* ───────────────────────────────────────────────────────────
+       Circles ("orbs"): used by both Performance and Holdings.
+       .orbs      one group (a column of rows)
+       .orb-row   one row of circles
+       .orb       circle + name + description
+       ─────────────────────────────────────────────────────────── */
+        .orbs {
+            --roll-dur: 1100ms;
+            /* JS overrides this so CSS and JS stay in sync */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--orb-row-gap);
+            margin-block: 1.1rem 0.4rem;
+        }
+
+        .orb-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: var(--orb-gap);
+            width: 100%;
+            list-style: none;
+        }
+
+        /* Holdings: every circle is a quarter of the row, so the row of 3 sits centered above the row of 4 */
+        .orbs.holdings .orb {
+            flex: 0 0 calc((100% - 3 * var(--orb-gap)) / 4);
+        }
+
+        /* Performance: one large circle over two medium ones */
+        .orbs.perf .row-1 .orb {
+            flex: 0 0 clamp(8.5rem, 44%, 11.5rem);
+        }
+
+        .orbs.perf .row-2 .orb {
+            flex: 0 0 clamp(6.25rem, 31%, 8.75rem);
+        }
+
+        .orb {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            min-width: 0;
+            text-align: center;
+            letter-spacing: var(--track-body);
+        }
+
+        /* The circle itself. DOM order is name, description, circle (so a screen reader says the name first); it is shown on top. */
+        .orb-disc {
+            order: -1;
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            aspect-ratio: 1;
+            container-type: inline-size;
+            /* lets the number scale with the circle (cqw) */
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 24%, var(--bar-start), var(--bar-end) 72%);
+            box-shadow: inset 0 0 0 1px var(--line);
+            transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease;
+        }
+
+        .ring {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .ring-track {
+            fill: none;
+            stroke: color-mix(in srgb, var(--fg-strong) 11%, transparent);
+            stroke-width: 2.5;
+        }
+
+        /* The progress line. Its length is --pct (0 to 100); JS animates it, this is the final state. */
+        .ring-fill {
+            fill: none;
+            stroke: var(--fg-strong);
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: var(--pct) 100;
+            transition: stroke-width var(--dur-1) ease;
+        }
+
+        /* Small notch at 12 o'clock: where the line starts, and what makes the roll visible */
+        .ring-dot {
+            fill: var(--fg-strong);
+            opacity: 0.5;
+        }
+
+        .orb-val {
+            position: relative;
+            z-index: 1;
+            font-size: 1.2rem;
+            /* fallback */
+            font-size: 21cqw;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--fg-strong);
+            font-variant-numeric: tabular-nums lining-nums;
+            font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+            -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+            transition: color var(--dur-1) ease;
+        }
+
+        .orb-name {
+            color: var(--fg-strong);
+            font-size: clamp(0.76rem, 0.64rem + 0.50vw, 0.98rem);
+            font-weight: 500;
+            line-height: 1.2;
+            text-wrap: balance;
+        }
+
+        .orb-desc {
+            color: var(--muted);
+            font-size: var(--fs-fine);
+            line-height: 1.3;
+            text-wrap: balance;
+        }
+
+        .orbs.perf .row-1 .orb-name {
+            font-size: var(--fs-head);
+        }
+
+        /* Hover and touch feedback */
+        .orb:active .orb-disc,
+        .orb.is-touched .orb-disc {
+            background: radial-gradient(circle at 30% 24%, var(--bar-hover-start), var(--bar-hover-end) 72%);
+            box-shadow: inset 0 0 0 1px var(--fg-strong);
+        }
+
+        .orb:active .ring-fill,
+        .orb.is-touched .ring-fill {
+            stroke-width: 4;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .orb:hover .orb-disc {
+                background: radial-gradient(circle at 30% 24%, var(--bar-hover-start), var(--bar-hover-end) 72%);
+                box-shadow: inset 0 0 0 1px var(--fg-strong);
+            }
+
+            .orb:hover .ring-fill {
+                stroke-width: 4;
+            }
+        }
+
+        /* ── entrance animation (only when JS is running; otherwise everything is simply visible) ── */
+        @keyframes roll-in {
+            from {
+                transform: translate3d(var(--roll-x, 0px), 0, 0);
+            }
+
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes spin-in {
+            from {
+                transform: rotate(var(--roll-rot, 0deg));
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes pop-in {
+            from {
+                opacity: 0;
+                transform: translateY(0.5rem) scale(0.94);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes label-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .js .orbs:not(.is-live) .orb {
+            opacity: 0;
+        }
+
+        /* Holdings: roll in. Top row from the right, bottom row from the left (data-from). The ring spins as the circle rolls; the number stays upright. */
+        .orbs.is-live .orb[data-from] {
+            animation: roll-in var(--roll-dur) var(--ease) calc(var(--i) * var(--stagger, 100ms)) both;
+        }
+
+        .orbs.is-live .orb[data-from] .ring {
+            animation: spin-in var(--roll-dur) var(--ease) calc(var(--i) * var(--stagger, 100ms)) both;
+        }
+
+        .orbs.is-live .orb[data-from] .orb-name,
+        .orbs.is-live .orb[data-from] .orb-desc {
+            animation: label-in 520ms ease calc(var(--i) * var(--stagger, 100ms) + var(--roll-dur) * 0.7) both;
+        }
+
+        /* Performance: a simple rise-in */
+        .orbs.is-live .orb:not([data-from]) {
+            animation: pop-in 700ms var(--ease) calc(var(--i) * 90ms) both;
+        }
+
+        footer.notes {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .note {
+            display: block;
+            margin-block: 0.18rem;
+            color: var(--muted);
+            font-size: var(--fs-body);
+            font-variant-numeric: tabular-nums lining-nums;
+            font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+            -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+            letter-spacing: var(--track-body);
+            line-height: 1.45;
+        }
+
+        .note.sm {
+            color: var(--muted-soft);
+            font-size: var(--fs-fine);
+            line-height: 1.40;
+            opacity: 0.85;
+        }
+
+        /* Accessibility Overrides */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto !important;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 1ms !important;
+            }
+
+            header,
+            section,
+            footer {
+                animation: none !important;
+            }
+
+            .orb,
+            .ring,
+            .orb-name,
+            .orb-desc {
+                animation: none !important;
+            }
+
+            .js .orbs:not(.is-live) .orb {
+                opacity: 1;
+            }
+        }
+
+        @media (forced-colors: active) {
+            body {
+                background: Canvas;
+            }
+
+            body::before,
+            body::after,
+            .noise-bg,
+            .spotlight-layer {
+                display: none;
+            }
+
+            .heading {
+                border-color: CanvasText;
+            }
+
+            hr {
+                background: CanvasText !important;
+            }
+
+            .title,
+            .heading,
+            .heading-title,
+            .orb-val,
+            .orb-name {
+                color: CanvasText;
+            }
+
+            .orb-disc {
+                box-shadow: inset 0 0 0 1px CanvasText;
+                background: none;
+            }
+
+            .ring-fill,
+            .ring-dot {
+                stroke: CanvasText;
+                fill: none;
+            }
+
+            .ring-dot {
+                fill: CanvasText;
+            }
+
+            .ring-track {
+                stroke: GrayText;
+            }
+        }
+
+        /* Institutional Print Mode */
+        @page {
+            size: portrait;
+            margin: 1.2cm;
+        }
+
+        @media print {
+            :root {
+                --bg: #ffffff;
+                --fg: #000000;
+                --fg-strong: #000000;
+                --muted: #000000;
+                --muted-soft: #000000;
+                --line: #000000;
+            }
+
+            body {
+                min-height: 0;
+                padding: 0;
+                color: #000000;
+                background: #ffffff;
+                overflow: visible;
+            }
+
+            body::before,
+            body::after,
+            .noise-bg,
+            .skip,
+            .spotlight-layer {
+                display: none !important;
+            }
+
+            .page {
+                width: auto;
+                max-width: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            header,
+            section,
+            footer {
+                contain: none !important;
+                animation: none !important;
+            }
+
+            .orb,
+            .ring,
+            .orb-name,
+            .orb-desc {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .orb-disc {
+                background: none;
+                box-shadow: inset 0 0 0 1px #000000;
+            }
+
+            .ring-track {
+                stroke: #bbbbbb;
+            }
+
+            .heading {
+                border-color: #000000;
+            }
+
+            hr {
+                background: #000000 !important;
+            }
+
+            section,
+            li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="spotlight-layer" aria-hidden="true"></div>
+    <div class="noise-bg" aria-hidden="true"></div>
+
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- 
+    ===========================================================================
+    SECTION 3: EDITABLE CONTENT & LEDGER DATA
+    ===========================================================================
+    Each circle is one <li class="orb">:
+      --pct   the number shown, and how far the ring fills (0 to 100). Keep it equal to the visible text.
+      --i     order in its group (0, 1, 2, ...). Controls the stagger, so number them top to bottom, left to right.
+      data-from   "right" or "left": which side the circle rolls in from (holdings only)
+  -->
+    <main id="main" class="page" tabindex="-1" aria-label="Arkipelagos summary">
+        <!-- Header: Title & Tagline -->
+        <header>
+            <h1 class="title">Arkipelagos</h1>
+            <p class="subtitle">Patient, concentrated, long-only owners</p>
+        </header>
+
+        <hr>
+
+        <!-- Performance: one large circle over two -->
+        <section aria-labelledby="perf-heading">
+            <h2 id="perf-heading" class="heading">
+                <span class="heading-title">Performance</span>
+                <span class="heading-meta">(annualized)</span>
+            </h2>
+
+            <div id="perf-orbs" class="orbs perf" role="group" aria-label="Annualized performance">
+                <ul class="orb-row row-1">
+                    <li class="orb" style="--pct: 32.1; --i: 0;">
+                        <span class="orb-name">Net Portfolio IRR</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">32.1%</span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="orb-row row-2">
+                    <li class="orb" style="--pct: 20.1; --i: 1;">
+                        <span class="orb-name">Nasdaq-100 Total Return</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">20.1%</span>
+                        </div>
+                    </li>
+                    <li class="orb" style="--pct: 15.2; --i: 2;">
+                        <span class="orb-name">S&amp;P 500 Total Return</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">15.2%</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Holdings: three circles (roll in from the right) over four (roll in from the left) -->
+        <section aria-labelledby="holdings-heading">
+            <h2 id="holdings-heading" class="heading">
+                <span class="heading-title">Holdings</span>
+                <span class="heading-meta">(allocation)</span>
+            </h2>
+
+            <div id="holdings" class="orbs holdings" role="group" aria-label="Portfolio holdings">
+                <ul class="orb-row" aria-label="Largest holdings">
+                    <li class="orb" data-from="right" style="--pct: 50.6; --i: 0;">
+                        <span class="orb-name">SpaceX</span>
+                        <span class="orb-desc">Rockets &amp; Starlink</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">50.6%</span>
+                        </div>
+                    </li>
+                    <li class="orb" data-from="right" style="--pct: 12.2; --i: 1;">
+                        <span class="orb-name">Microsoft</span>
+                        <span class="orb-desc">Cloud &amp; software</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">12.2%</span>
+                        </div>
+                    </li>
+                    <li class="orb" data-from="right" style="--pct: 11.5; --i: 2;">
+                        <span class="orb-name">Alphabet</span>
+                        <span class="orb-desc">Search &amp; cloud</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">11.5%</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="orb-row" aria-label="Other holdings">
+                    <li class="orb" data-from="left" style="--pct: 10.0; --i: 3;">
+                        <span class="orb-name">Anthropic<sup><a href="#footnote-fmv" role="doc-noteref"
+                                    aria-label="Private valuation note for Anthropic">*</a></sup></span>
+                        <span class="orb-desc">Claude AI</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">10.0%</span>
+                        </div>
+                    </li>
+                    <li class="orb" data-from="left" style="--pct: 7.8; --i: 4;">
+                        <span class="orb-name">OpenAI<sup><a href="#footnote-fmv" role="doc-noteref"
+                                    aria-label="Private valuation note for OpenAI">*</a></sup></span>
+                        <span class="orb-desc">ChatGPT maker</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">7.8%</span>
+                        </div>
+                    </li>
+                    <li class="orb" data-from="left" style="--pct: 5.4; --i: 5;">
+                        <span class="orb-name">Tesla</span>
+                        <span class="orb-desc">EVs &amp; energy</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">5.4%</span>
+                        </div>
+                    </li>
+                    <li class="orb" data-from="left" style="--pct: 2.5; --i: 6;">
+                        <span class="orb-name">Zipline<sup><a href="#footnote-fmv" role="doc-noteref"
+                                    aria-label="Private valuation note for Zipline">*</a></sup></span>
+                        <span class="orb-desc">Drone delivery</span>
+                        <div class="orb-disc">
+                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                                <circle class="ring-track" cx="50" cy="50" r="46" />
+                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
+                                    transform="rotate(-90 50 50)" />
+                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
+                            </svg>
+                            <span class="orb-val">2.5%</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Footer: Timestamp & Footnote Metadata -->
+        <footer class="notes">
+            <p class="note">
+                As of <time datetime="2026-08-07">Aug 7, 2026</time>
+                <span aria-hidden="true">·</span>
+                Inception <time datetime="2010-09-07">Sep 7, 2010</time>
+            </p>
+            <p id="footnote-fmv" class="note sm" role="doc-footnote" tabindex="-1">*Private holdings at fair market
+                value. Informational only.</p>
+        </footer>
+    </main>
+
+    <!-- 
+    ===========================================================================
+    SECTION 4: JAVASCRIPT ANIMATION & HYDRATION ENGINE
+    ===========================================================================
+  -->
+    <script type="module">
+        window.__orbsOk = true;   // tells the head script that this file started (so the circles are not left hidden)
+
+        const bodyNode = document.body;
+        const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+        /* Dynamic iOS Status Bar Theme Sync Bridge */
+        const updateThemeMeta = () => {
+            const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const themeMeta = document.querySelector('meta[name="theme-color"]');
+            if (themeMeta) {
+                themeMeta.setAttribute("content", isDark ? "#0a0a0d" : "#ffffff");
+            }
+        };
+        try {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeMeta);
+            updateThemeMeta();
+        } catch (_) { }
+
+        /* Locale Percentage Formatter */
+        let pctFormatter;
+        try {
+            pctFormatter = new Intl.NumberFormat("en-US", {
+                style: "percent",
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1
+            });
+        } catch (_) {
+            pctFormatter = { format: (num) => `${(num * 100).toFixed(1)}%` };
+        }
+        const formatPct = (value) => pctFormatter.format(value / 100);
+
+        /* Ambient Cursor Tracking (Mouse/Trackpad Only) */
+        if (finePointerQuery.matches && !reduceMotionQuery.matches) {
+            let ticking = false;
+            window.addEventListener("pointermove", (event) => {
+                if (event.pointerType !== "mouse" || ticking) return;
+                ticking = true;
+                window.requestAnimationFrame(() => {
+                    bodyNode.style.setProperty("--mouse-x", `${event.clientX}px`);
+                    bodyNode.style.setProperty("--mouse-y", `${event.clientY}px`);
+                    ticking = false;
+                });
+            }, { passive: true });
+        }
+
+        /* Mobile Touch Feedback Sync with Tactile Haptic Tap */
+        document.querySelectorAll(".orb").forEach((item) => {
+            item.addEventListener("touchstart", () => {
+                item.classList.add("is-touched");
+                if ("vibrate" in navigator) {
+                    navigator.vibrate(4);
+                }
+            }, { passive: true });
+            item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 150), { passive: true });
+            item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
+        });
+
+        /* ───────────────────────────────────────────────────────────
+           Circles: roll in, draw the ring and count the number up
+           ─────────────────────────────────────────────────────────── */
+        const ROLL = 1100;      // ms a circle takes to roll in (also set as --roll-dur)
+        const STAGGER = 100;    // ms between one circle and the next (also set as --stagger)
+        const COUNT = 1300;     // ms for the ring to draw and the number to rise
+
+        const groups = [...document.querySelectorAll(".orbs")];
+
+        const orbOf = (el) => ({
+            el,
+            disc: el.querySelector(".orb-disc"),
+            val: el.querySelector(".orb-val"),
+            ring: el.querySelector(".ring-fill"),
+            pct: Number.parseFloat(el.style.getPropertyValue("--pct")) || 0,
+            idx: Number.parseInt(el.style.getPropertyValue("--i") || "0", 10)
+        });
+        const orbsByGroup = new Map(groups.map((g) => [g, [...g.querySelectorAll(".orb")].map(orbOf)]));
+        const allOrbs = [...orbsByGroup.values()].flat();
+
+        /* Sets the number and the ring to a value between 0 and the circle's own percentage */
+        const setProgress = (o, v) => {
+            o.val.textContent = formatPct(v);
+            o.ring.style.strokeDasharray = `${v} 100`;
+            o.ring.style.opacity = v > 0 ? "" : "0";    // a zero-length line with round caps would show as a dot
+        };
+
+        /* Start from empty, so the circles have something to rise from (skipped with reduced motion) */
+        if (!reduceMotionQuery.matches) allOrbs.forEach((o) => setProgress(o, 0));
+
+        const countUp = (o, delay) => {
+            window.setTimeout(() => {
+                const start = performance.now();
+                let lastText = "";
+                const frame = (now) => {
+                    const progress = Math.min((now - start) / COUNT, 1);
+                    const eased = 1 - Math.pow(1 - progress, 4);     // quartic ease-out
+                    const exact = o.pct * eased;
+                    o.ring.style.strokeDasharray = `${exact} 100`;
+                    o.ring.style.opacity = exact > 0 ? "" : "0";
+                    const text = formatPct(Math.round(exact * 10) / 10);
+                    if (text !== lastText) { o.val.textContent = text; lastText = text; }
+                    if (progress < 1) {
+                        window.requestAnimationFrame(frame);
+                    } else {
+                        setProgress(o, o.pct);
+                    }
+                };
+                window.requestAnimationFrame(frame);
+            }, delay);
+        };
+
+        const startGroup = (group) => {
+            if (group.dataset.live) return;
+            group.dataset.live = "1";
+            const orbs = orbsByGroup.get(group) || [];
+
+            if (reduceMotionQuery.matches) {
+                orbs.forEach((o) => setProgress(o, o.pct));
+                group.classList.add("is-live");
+                return;
+            }
+
+            group.style.setProperty("--roll-dur", `${ROLL}ms`);
+            group.style.setProperty("--stagger", `${STAGGER}ms`);
+
+            /* Work out, per circle, how far offscreen it has to start and how far it turns on the way.
+               Rolling without slipping: angle = distance / radius. Measured before the animation is applied. */
+            orbs.forEach((o) => {
+                const side = o.el.dataset.from;
+                if (!side) return;
+                const rect = o.el.getBoundingClientRect();
+                const radius = (o.disc.getBoundingClientRect().width / 2) || 1;
+                const x = side === "right" ? window.innerWidth - rect.left + 24 : -(rect.right + 24);
+                o.el.style.setProperty("--roll-x", `${x}px`);
+                o.el.style.setProperty("--roll-rot", `${(x / radius) * (180 / Math.PI)}deg`);
+            });
+
+            group.classList.add("is-live");
+
+            /* Count starts as each circle lands (holdings) or just after it rises (performance) */
+            orbs.forEach((o) => {
+                const rolls = Boolean(o.el.dataset.from);
+                countUp(o, rolls ? o.idx * STAGGER + ROLL * 0.8 : o.idx * 90 + 300);
+            });
+        };
+
+        const initOrbs = () => {
+            const BEGIN_DELAY = 220;   // lets the page's own fade-in finish first
+
+            /* Guard so a group is only ever queued once */
+            const queued = new WeakSet();
+            const queue = (g) => {
+                if (queued.has(g) || g.dataset.live) return;
+                queued.add(g);
+                window.setTimeout(() => startGroup(g), BEGIN_DELAY);
+            };
+
+            if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            queue(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+                groups.forEach((g) => observer.observe(g));
+            }
+
+            /* Immediate check + safeguard timer (also the only path when reduced motion is on) */
+            const sweep = () => groups.forEach((g) => {
+                if (g.getBoundingClientRect().top < window.innerHeight * 0.88) queue(g);
+            });
+            sweep();
+            window.setTimeout(sweep, 300);
+        };
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initOrbs);
+        } else {
+            initOrbs();
+        }
+
+        /* Printing mid-animation should print the real numbers */
+        window.addEventListener("beforeprint", () => allOrbs.forEach((o) => setProgress(o, o.pct)));
+
+        /* Local Audit Engine */
+        if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash === "#debug") {
+            const weights = [...document.querySelectorAll("#holdings .orb")]
+                .map((item) => Number.parseFloat(item.style.getPropertyValue("--pct")))
+                .filter(Number.isFinite);
+
+            if (weights.length > 0) {
+                const total = Number(weights.reduce((sum, weight) => sum + weight, 0).toFixed(1));
+                if (total !== 100.0) {
+                    console.warn(`[Arkipelagos Audit] Rendered holdings allocation sum is ${total}%; expected 100.0%.`);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
