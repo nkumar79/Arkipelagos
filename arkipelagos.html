@@ -657,22 +657,24 @@
       transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
-    /* Inline MOIC Parenthetical Specification */
+    /* Unified Bold & Full-Scale MOIC Modifier */
     .moic-meta {
-      font-size: var(--fs-fine);
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.01em;
+      font-size: inherit;
+      font-weight: 600;
+      color: var(--fg-strong);
       margin-left: 0.35rem;
       white-space: nowrap;
       font-variant-numeric: tabular-nums lining-nums;
       font-feature-settings: var(--font-features-numeric);
       -webkit-font-feature-settings: var(--font-features-numeric);
-      transition: color var(--dur-1) ease;
     }
 
-    .perf li:hover .moic-meta {
-      color: var(--fg);
+    /* Small Screen (<360px) Scaling for Row Balance */
+    @media (max-width: 22.5rem) {
+      .moic-meta {
+        font-size: 0.88em;
+        margin-left: 0.20rem;
+      }
     }
 
     .perf li .val,
@@ -1057,6 +1059,7 @@
             if (e.touches && e.touches[0]) {
               var diffX = Math.abs(e.touches[0].clientX - startX);
               var diffY = Math.abs(e.touches[0].clientY - startY);
+              // Cancel touch feedback if the user is scrolling
               if (diffX > 8 || diffY > 8) {
                 isScrolling = true;
                 item.classList.remove("is-touched");
