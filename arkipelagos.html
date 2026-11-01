@@ -657,6 +657,24 @@
       transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
+    /* Inline MOIC Parenthetical Specification */
+    .moic-meta {
+      font-size: var(--fs-fine);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+      margin-left: 0.35rem;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums lining-nums;
+      font-feature-settings: var(--font-features-numeric);
+      -webkit-font-feature-settings: var(--font-features-numeric);
+      transition: color var(--dur-1) ease;
+    }
+
+    .perf li:hover .moic-meta {
+      color: var(--fg);
+    }
+
     .perf li .val,
     .holdings li .val {
       position: relative;
@@ -670,7 +688,7 @@
       transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
     }
 
-    /* Allocation Bar Hardware Acceleration (Unconditionally Accelerated in Pure CSS) */
+    /* Allocation Bar Hardware Acceleration */
     .holdings li::before {
       content: "";
       position: absolute;
@@ -714,7 +732,7 @@
       font-variation-settings: "opsz" 16 !important;
     }
 
-    /* Allocation %: 500 -> 600 (Deliberate, balanced Semi-Bold emphasis) */
+    /* Allocation %: 500 -> 600 */
     .holdings li:hover .val,
     .holdings li:active .val,
     .holdings li.is-touched .val,
@@ -883,11 +901,19 @@
       </h2>
 
       <ul class="perf" aria-label="Annualized performance">
-        <li style="--delay-idx: 0;"><span class="name">Net Portfolio IRR</span> <span class="val count-num"
-            data-value="32.1" aria-label="32.1%">32.1%</span></li>
-        <li style="--delay-idx: 1;"><span class="name">Nasdaq-100 Total Return</span> <span class="val">20.1%</span>
+        <li style="--delay-idx: 0;">
+          <span class="name">
+            Net Portfolio IRR <span class="moic-meta" aria-label="5.8 times Multiple on Invested Capital">(5.8x MOIC)</span>
+          </span>
+          <span class="val count-num" data-value="32.1" aria-label="32.1%">32.1%</span>
         </li>
-        <li style="--delay-idx: 2;"><span class="name">S&amp;P 500 Total Return</span> <span class="val">15.2%</span>
+        <li style="--delay-idx: 1;">
+          <span class="name">Nasdaq-100 Total Return</span>
+          <span class="val">20.1%</span>
+        </li>
+        <li style="--delay-idx: 2;">
+          <span class="name">S&amp;P 500 Total Return</span>
+          <span class="val">15.2%</span>
         </li>
       </ul>
     </section>
@@ -902,12 +928,9 @@
       </h2>
 
       <ul id="holdings" class="holdings" aria-label="Portfolio holdings">
-        <li style="--weight: 50.6%; --delay-idx: 0;"><span class="name">SpaceX</span> <span class="val">50.6%</span>
-        </li>
-        <li style="--weight: 12.2%; --delay-idx: 1;"><span class="name">Microsoft</span> <span class="val">12.2%</span>
-        </li>
-        <li style="--weight: 11.5%; --delay-idx: 2;"><span class="name">Alphabet</span> <span class="val">11.5%</span>
-        </li>
+        <li style="--weight: 50.6%; --delay-idx: 0;"><span class="name">SpaceX</span> <span class="val">50.6%</span></li>
+        <li style="--weight: 12.2%; --delay-idx: 1;"><span class="name">Microsoft</span> <span class="val">12.2%</span></li>
+        <li style="--weight: 11.5%; --delay-idx: 2;"><span class="name">Alphabet</span> <span class="val">11.5%</span></li>
         <li style="--weight: 10.0%; --delay-idx: 3;"><span class="name">Anthropic<sup><a href="#footnote-fmv"
                 role="doc-noteref" aria-label="Private valuation note for Anthropic">*</a></sup></span> <span
             class="val">10.0%</span></li>
@@ -957,7 +980,7 @@
 
         var targetVal = parseFloat(counterEl.getAttribute("data-value")) || 32.1;
         var duration = 1600; // 1600ms Deliberate Quartic Ease-Out
-        var startDelay = 180; // Perfectly synchronized with Section 1 entrance opacity
+        var startDelay = 180; // Synchronized with Section 1 entrance opacity
 
         // Prime text immediately to 0.0%
         counterEl.textContent = "0.0%";
@@ -1034,7 +1057,6 @@
             if (e.touches && e.touches[0]) {
               var diffX = Math.abs(e.touches[0].clientX - startX);
               var diffY = Math.abs(e.touches[0].clientY - startY);
-              // Cancel touch feedback if the user is scrolling
               if (diffX > 8 || diffY > 8) {
                 isScrolling = true;
                 item.classList.remove("is-touched");
