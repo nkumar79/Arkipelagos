@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="pending">
 
 <head>
     <!-- 
     ===========================================================================
-    SECTION 1: SITE METADATA & CONFIGURATION
+    SECTION 1: SITE METADATA, SECURITY & ANALYTICS CONFIGURATION
     ===========================================================================
   -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-    <!-- Security Policy (Enforce frame-ancestors 'none' in production HTTP headers) -->
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     base-uri 'none';
     object-src 'none';
     form-action 'none';
-    frame-src 'none';
     worker-src 'none';
     manifest-src 'self';
-    connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
+    connect-src 'self' https://arkipelagos-api.nkumar79.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
     img-src 'self' data: https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://stats.g.doubleclick.net;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com data:;
@@ -31,20 +28,20 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="color-scheme" content="light dark">
 
-    <!-- Apple Standalone Web App Meta -->
+    <!-- Standalone Web App Integration -->
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Arkipelagos">
 
-    <!-- Core Page Metadata -->
+    <!-- Core Metadata -->
     <title>Arkipelagos</title>
     <meta name="description" content="Arkipelagos — Patient, concentrated, long-only owners.">
     <meta name="author" content="Arkipelagos">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <link rel="canonical" href="https://www.arkipelagos.com/">
 
-    <!-- Favicon & Apple Touch Icon -->
-    <meta name="theme-color" content="#ffffff">
+    <!-- Favicon & Apple Touch Icons -->
     <meta id="theme-color-light" name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
     <meta id="theme-color-dark" name="theme-color" content="#0a0a0d" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml"
@@ -52,16 +49,16 @@
     <link rel="apple-touch-icon"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0d'/%3E%3Cpath fill='%23fcfcfd' d='M50 16 80 84H67l-7-18H40l-7 18H20L50 16Zm0 24-6 16h12L50 40Z'/%3E%3C/svg%3E">
 
-    <!-- Fonts & CDN Preconnects -->
+    <!-- Fonts & Transport Preconnections -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link id="inter-font" rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
 
-    <!-- OpenGraph / Twitter Social Previews -->
+    <!-- OpenGraph & Twitter Social Previews -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Arkipelagos">
     <meta property="og:title" content="Arkipelagos">
@@ -80,7 +77,7 @@
     <meta name="twitter:image" content="https://www.arkipelagos.com/og.png">
     <meta name="twitter:image:alt" content="Arkipelagos">
 
-    <!-- Schema.org JSON-LD Institutional Markup -->
+    <!-- Schema.org Institutional JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -114,22 +111,22 @@
         });
     </script>
 
-    <!-- Marks that JS is running, so the circles can start hidden and animate in.
-       If the main script never starts, the class is removed and everything shows as plain content. -->
-    <script>
-        document.documentElement.classList.add("js");
-        setTimeout(function () {
-            if (!window.__orbsOk) document.documentElement.classList.remove("js");
-        }, 3000);
-    </script>
+    <!-- If JS is off, the numbers never get fetched, so let the bars animate with the HTML values -->
+    <noscript>
+        <style>
+            .pending .holdings li::before {
+                animation-play-state: running !important;
+            }
+        </style>
+    </noscript>
 
     <!-- 
     ===========================================================================
-    SECTION 2: EXECUTIVE DESIGN SYSTEM & HIGH-CRAFT CSS
+    SECTION 2: EXECUTIVE DESIGN SYSTEM & STYLESHEET
     ===========================================================================
   -->
     <style>
-        /* Zero-CLS Fallback Font Metric Alignment for Inter */
+        /* Zero-CLS Fallback Font Metric Alignment */
         @font-face {
             font-family: "Inter Fallback";
             src: local("Arial"), local("Helvetica"), local("Segoe UI");
@@ -139,7 +136,7 @@
             line-gap-override: 0%;
         }
 
-        /* Core Design Tokens — Clean Pristine Neutral Palette */
+        /* Core System Tokens */
         :root {
             --bg: #ffffff;
             --fg-strong: #111113;
@@ -149,29 +146,26 @@
 
             --line: rgba(17, 17, 19, 0.07);
 
-            /* Circle fills */
-            --bar-start: rgba(17, 17, 19, 0.06);
+            /* Allocation Bar Fills & Warm Titanium Palette */
+            --bar-start: rgba(17, 17, 19, 0.055);
             --bar-end: rgba(17, 17, 19, 0.008);
 
-            --bar-hover-start: rgba(17, 17, 19, 0.12);
-            --bar-hover-end: rgba(17, 17, 19, 0.02);
+            --bar-hover-start: rgba(168, 155, 141, 0.16);
+            --bar-hover-end: rgba(168, 155, 141, 0.03);
+            --bar-edge-hover: rgba(168, 155, 141, 0.28);
 
             --spotlight: rgba(17, 17, 19, 0.012);
             --vignette: rgba(17, 17, 19, 0.015);
 
-            /* Precise Metric Rhythm Tokens */
+            /* Metric Rhythm Tokens */
             --space-1: 0.50rem;
-            /* 8px */
             --space-2: 1.00rem;
-            /* 16px */
             --space-3: 1.50rem;
-            /* 24px */
             --space-4: 2.25rem;
-            /* 36px */
             --space-5: 3.50rem;
-            /* 56px */
 
-            --space-divider: clamp(1.10rem, 2.5svh, 1.85rem);
+            --space-divider: clamp(1.10rem, 2.5vh, 1.85rem);
+            --space-row: 0.52rem;
 
             --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --fs-fine: clamp(0.72rem, 0.68rem + 0.18vw, 0.80rem);
@@ -190,20 +184,19 @@
             --dur-1: 180ms;
             --dur-2: 240ms;
             --dur-3: 640ms;
-
-            /* Circle layout */
-            --orb-gap: clamp(0.5rem, 2.4vw, 1rem);
-            --orb-row-gap: clamp(1.1rem, 3.2vw, 1.7rem);
+            --dur-4: 1850ms;
+            /* Unhurried institutional expansion */
+            --stagger: 80ms;
+            /* Cadenced row offset */
 
             --page-max: 35.50rem;
             --pad: clamp(1.25rem, 6vw, 3.50rem);
 
-            /* High-Precision OpenType Engine Settings */
             --font-features-display: "cv05" 1, "cv08" 1, "ss01" 1;
             --font-features-numeric: "tnum" 1, "lnum" 1, "zero" 1, "cv05" 1;
         }
 
-        /* OKLCH Color Engine Integration */
+        /* OKLCH Perceptual Color Space Integration */
         @supports (color: oklch(0% 0 0)) {
             :root {
                 --bg: oklch(1 0 0);
@@ -214,18 +207,19 @@
 
                 --line: oklch(0.120 0.012 260 / 0.07);
 
-                --bar-start: oklch(0.120 0.012 260 / 0.06);
+                --bar-start: oklch(0.120 0.012 260 / 0.055);
                 --bar-end: oklch(0.120 0.012 260 / 0.008);
 
-                --bar-hover-start: oklch(0.120 0.012 260 / 0.12);
-                --bar-hover-end: oklch(0.120 0.012 260 / 0.02);
+                --bar-hover-start: oklch(0.680 0.022 68 / 0.16);
+                --bar-hover-end: oklch(0.680 0.022 68 / 0.03);
+                --bar-edge-hover: oklch(0.680 0.022 68 / 0.28);
 
                 --spotlight: oklch(0.120 0.012 260 / 0.012);
                 --vignette: oklch(0.120 0.012 260 / 0.015);
             }
         }
 
-        /* Dark Mode Theme Extensions — Deep Obsidian Slate */
+        /* Dark Mode Extensions */
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg: #0a0a0d;
@@ -236,11 +230,12 @@
 
                 --line: rgba(252, 252, 253, 0.08);
 
-                --bar-start: rgba(252, 252, 253, 0.07);
-                --bar-end: rgba(252, 252, 253, 0.01);
+                --bar-start: rgba(252, 252, 253, 0.065);
+                --bar-end: rgba(252, 252, 253, 0.010);
 
-                --bar-hover-start: rgba(252, 252, 253, 0.14);
-                --bar-hover-end: rgba(252, 252, 253, 0.03);
+                --bar-hover-start: rgba(228, 220, 207, 0.14);
+                --bar-hover-end: rgba(228, 220, 207, 0.03);
+                --bar-edge-hover: rgba(228, 220, 207, 0.24);
 
                 --spotlight: rgba(252, 252, 253, 0.02);
                 --vignette: rgba(0, 0, 0, 0.28);
@@ -256,24 +251,25 @@
 
                     --line: oklch(0.988 0.002 90 / 0.08);
 
-                    --bar-start: oklch(0.988 0.002 90 / 0.07);
-                    --bar-end: oklch(0.988 0.002 90 / 0.01);
+                    --bar-start: oklch(0.988 0.002 90 / 0.065);
+                    --bar-end: oklch(0.988 0.002 90 / 0.010);
 
-                    --bar-hover-start: oklch(0.988 0.002 90 / 0.14);
-                    --bar-hover-end: oklch(0.988 0.002 90 / 0.03);
+                    --bar-hover-start: oklch(0.880 0.018 70 / 0.14);
+                    --bar-hover-end: oklch(0.880 0.018 70 / 0.03);
+                    --bar-edge-hover: oklch(0.880 0.018 70 / 0.24);
 
                     --spotlight: oklch(0.988 0.002 90 / 0.02);
                     --vignette: oklch(0 0 0 / 0.28);
                 }
             }
 
-            /* Dark-Mode Optical Weight Parity Compensation */
             body {
-                font-variation-settings: "wght" 385;
+                font-weight: 385;
             }
 
             .title {
-                font-variation-settings: "opsz" 36, "wght" 680, "cv05" 1, "cv08" 1, "ss01" 1;
+                font-weight: 680;
+                font-variation-settings: "opsz" 36;
             }
         }
 
@@ -283,7 +279,6 @@
             box-sizing: border-box;
         }
 
-        /* Dynamic Theme-Aware Selection Token */
         ::selection {
             color: var(--bg);
             background: var(--fg-strong);
@@ -291,16 +286,16 @@
 
         html {
             font-size: 100%;
-            height: 100%;
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
-            overscroll-behavior: none;
             background: var(--bg);
             scroll-behavior: smooth;
+            color-scheme: light dark;
         }
 
         body {
             min-width: 17.5rem;
+            min-height: 100vh;
             min-height: 100dvh;
             margin: 0;
             padding: var(--pad);
@@ -313,13 +308,13 @@
                 radial-gradient(120rem 70rem at 50% -45rem, var(--spotlight), transparent 60%),
                 var(--bg);
             font-family: var(--font-body);
+            font-optical-sizing: auto;
             font-feature-settings: var(--font-features-numeric);
             -webkit-font-feature-settings: var(--font-features-numeric);
             font-synthesis: none;
             text-rendering: optimizeLegibility;
             line-height: 1.55;
-            overflow-x: clip;
-            /* circles roll in from beyond the screen edge; this keeps them from causing a scrollbar */
+            overflow-x: hidden;
             overflow-wrap: break-word;
             position: relative;
             isolation: isolate;
@@ -336,22 +331,35 @@
             z-index: 1;
             width: min(100%, var(--page-max));
             margin-inline: auto;
-            margin-block: auto;
-            padding-block-bottom: clamp(1.5rem, 4svh, 3rem);
+            margin-block: clamp(1.25rem, 4vh, 2.50rem);
+            padding-block-end: clamp(1.50rem, 4vh, 3.00rem);
         }
 
-        /* Mobile Device Viewport Fitting */
-        @media (max-width: 48rem),
-        (max-height: 52rem) {
-            :root {
-                --pad: clamp(0.85rem, 3.5vw, 1.25rem);
-                --space-divider: clamp(0.70rem, 2.0vh, 1.10rem);
-                --fs-display: clamp(2.10rem, 1.70rem + 2.4vw, 2.85rem);
-                --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
+        /* Universal Display Centering for Laptops and Desktop Monitors */
+        @media (min-height: 40rem) {
+            .page {
+                margin-block: auto;
             }
         }
 
-        /* Ambient Cursor Spotlight */
+        /* Mobile Ergonomics & Viewport Adapters */
+        @media (max-width: 48rem),
+        (max-height: 48rem) {
+            :root {
+                --pad: clamp(0.95rem, 4.2vw, 1.35rem);
+                --space-divider: clamp(0.75rem, 2.0vh, 1.15rem);
+                --space-row: 0.46rem;
+                --fs-display: clamp(2.15rem, 1.75rem + 2.5vw, 2.90rem);
+                --fs-sub: clamp(1.02rem, 0.94rem + 0.30vw, 1.18rem);
+            }
+
+            .perf li,
+            .holdings li {
+                min-height: 2.35rem;
+            }
+        }
+
+        /* Ambient Cursor Spotlight Layer (Fine Pointer Only) */
         .spotlight-layer {
             position: fixed;
             inset: 0;
@@ -360,11 +368,16 @@
             transform: translateZ(0);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            will-change: transform;
             background: radial-gradient(46rem circle at var(--mouse-x, 50%) var(--mouse-y, 18%),
                     var(--spotlight),
                     transparent 66%);
             contain: strict;
+        }
+
+        @media (hover: none) or (pointer: coarse) {
+            .spotlight-layer {
+                display: none !important;
+            }
         }
 
         body::after {
@@ -376,7 +389,7 @@
             background: radial-gradient(circle at 50% 50%, transparent 60%, var(--vignette) 100%);
         }
 
-        /* Clean Subtle Grain Overlay */
+        /* Grain/Noise Overlay */
         .noise-bg {
             position: fixed;
             inset: 0;
@@ -387,7 +400,6 @@
             transform: translateZ(0);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            will-change: transform;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             contain: strict;
         }
@@ -411,7 +423,12 @@
             outline-offset: 3px;
         }
 
-        /* Zero-Reflow Baseline Superscript Lock & Touch Cleanup */
+        #main:focus,
+        #footnote-fmv:focus {
+            outline: none;
+        }
+
+        /* Asymmetric Superscript Note Ref (Prevents Text Intrusion) */
         sup {
             font-size: 0.68em;
             line-height: 0;
@@ -423,21 +440,22 @@
         sup a {
             position: relative;
             display: inline-block;
-            padding: 0 0.12em;
+            padding: 0 0.15em;
             color: var(--muted);
             text-align: center;
+            border-radius: 2px;
             -webkit-tap-highlight-color: transparent;
-            transition: color var(--dur-1) ease, transform var(--dur-1) ease;
+            transition: color var(--dur-1) ease;
         }
 
         sup a::after {
             content: "";
             position: absolute;
             top: 50%;
-            left: 50%;
-            width: 2.75rem;
-            height: 2.75rem;
-            transform: translate(-50%, -50%);
+            inset-inline-start: -0.20rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            transform: translateY(-50%);
         }
 
         sup a:hover,
@@ -445,16 +463,14 @@
             color: var(--fg-strong);
         }
 
+        sup a:focus-visible {
+            outline-offset: 1px;
+        }
+
         sup a:focus:not(:focus-visible) {
             outline: none;
         }
 
-        sup a:active {
-            transform: scale(1.15);
-            color: var(--fg-strong);
-        }
-
-        /* Seamless Footnote Target Anchor (No Box Highlight) */
         #footnote-fmv:target {
             scroll-margin-block: 2rem;
         }
@@ -489,10 +505,19 @@
             }
         }
 
+        @keyframes bar-grow {
+            from {
+                transform: scaleX(0);
+            }
+
+            to {
+                transform: scaleX(1);
+            }
+        }
+
         header,
         section,
         footer {
-            contain: layout style;
             animation: entrance var(--dur-3) var(--ease) both;
         }
 
@@ -523,13 +548,12 @@
             text-wrap: pretty;
         }
 
-        /* Typographic Optical Sizing Lock */
         .title {
             margin-block-end: var(--space-1);
             color: var(--fg-strong);
             font-size: var(--fs-display);
             font-weight: 700;
-            font-variation-settings: "opsz" 36, "cv05" 1, "cv08" 1, "ss01" 1;
+            font-variation-settings: "opsz" 36;
             font-feature-settings: var(--font-features-display);
             -webkit-font-feature-settings: var(--font-features-display);
             letter-spacing: var(--track-display);
@@ -584,223 +608,161 @@
             white-space: nowrap;
         }
 
-        /* ───────────────────────────────────────────────────────────
-       Circles ("orbs"): used by both Performance and Holdings.
-       .orbs      one group (a column of rows)
-       .orb-row   one row of circles
-       .orb       circle + name + description
-       ─────────────────────────────────────────────────────────── */
-        .orbs {
-            --roll-dur: 1100ms;
-            /* JS overrides this so CSS and JS stay in sync */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--orb-row-gap);
-            margin-block: 1.1rem 0.4rem;
-        }
-
-        .orb-row {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: var(--orb-gap);
-            width: 100%;
+        .perf,
+        .holdings {
             list-style: none;
-        }
-
-        /* Holdings: every circle is a quarter of the row, so the row of 3 sits centered above the row of 4 */
-        .orbs.holdings .orb {
-            flex: 0 0 calc((100% - 3 * var(--orb-gap)) / 4);
-        }
-
-        /* Performance: one large circle over two medium ones */
-        .orbs.perf .row-1 .orb {
-            flex: 0 0 clamp(8.5rem, 44%, 11.5rem);
-        }
-
-        .orbs.perf .row-2 .orb {
-            flex: 0 0 clamp(6.25rem, 31%, 8.75rem);
-        }
-
-        .orb {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
-            min-width: 0;
-            text-align: center;
+            margin-block: 0.20rem;
+            font-size: var(--fs-body);
+            font-variation-settings: "opsz" 16;
+            font-feature-settings: var(--font-features-numeric);
+            -webkit-font-feature-settings: var(--font-features-numeric);
             letter-spacing: var(--track-body);
         }
 
-        /* The circle itself. DOM order is name, description, circle (so a screen reader says the name first); it is shown on top. */
-        .orb-disc {
-            order: -1;
+        .perf li,
+        .holdings li {
+            --weight: 0%;
+            --delay-idx: 0;
             position: relative;
-            display: grid;
-            place-items: center;
-            width: 100%;
-            aspect-ratio: 1;
-            container-type: inline-size;
-            /* lets the number scale with the circle (cqw) */
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 24%, var(--bar-start), var(--bar-end) 72%);
-            box-shadow: inset 0 0 0 1px var(--line);
-            transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-2);
+            min-height: 2.45rem;
+            margin: 0 calc(var(--space-1) * -1) 0.08rem;
+            padding: var(--space-row) var(--space-2);
+            overflow: hidden;
+            color: var(--fg);
+            background: transparent;
+            border-radius: var(--radius);
+            cursor: default;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        .ring {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            overflow: visible;
+        .perf li:first-child .name {
+            font-weight: 600;
+            color: var(--fg-strong);
         }
 
-        .ring-track {
-            fill: none;
-            stroke: color-mix(in srgb, var(--fg-strong) 11%, transparent);
-            stroke-width: 2.5;
+        .perf li:first-child .val {
+            font-weight: 700;
+            color: var(--fg-strong);
         }
 
-        /* The progress line. Its length is --pct (0 to 100); JS animates it, this is the final state. */
-        .ring-fill {
-            fill: none;
-            stroke: var(--fg-strong);
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-dasharray: var(--pct) 100;
-            transition: stroke-width var(--dur-1) ease;
+        .perf li:not(:first-child) {
+            color: var(--muted);
+            font-weight: 400;
         }
 
-        /* Small notch at 12 o'clock: where the line starts, and what makes the roll visible */
-        .ring-dot {
-            fill: var(--fg-strong);
-            opacity: 0.5;
+        .perf li:not(:first-child) .val {
+            color: var(--muted);
+            font-weight: 400;
         }
 
-        .orb-val {
+        .perf li .name,
+        .holdings li .name {
             position: relative;
             z-index: 1;
-            font-size: 1.2rem;
-            /* fallback */
-            font-size: 21cqw;
+            flex: 1 1 auto;
+            min-width: 0;
+            padding-inline-end: 0.25rem;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: visible;
+            transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
+        }
+
+        /* Unified Bold & Full-Scale MOIC Modifier (Natural 1-space typographic flow) */
+        .moic-meta {
+            font-size: inherit;
             font-weight: 600;
-            line-height: 1;
-            letter-spacing: -0.03em;
             color: var(--fg-strong);
+            white-space: nowrap;
             font-variant-numeric: tabular-nums lining-nums;
-            font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
-            -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
-            transition: color var(--dur-1) ease;
+            font-feature-settings: var(--font-features-numeric);
+            -webkit-font-feature-settings: var(--font-features-numeric);
         }
 
-        .orb-name {
-            color: var(--fg-strong);
-            font-size: clamp(0.76rem, 0.64rem + 0.50vw, 0.98rem);
+        /* Small Screen (<360px) Scaling for Row Balance */
+        @media (max-width: 22.5rem) {
+            .moic-meta {
+                font-size: 0.88em;
+            }
+        }
+
+        .perf li .val,
+        .holdings li .val {
+            position: relative;
+            z-index: 1;
+            flex: 0 0 auto;
+            font-variant-numeric: tabular-nums lining-nums;
+            font-feature-settings: var(--font-features-numeric);
+            -webkit-font-feature-settings: var(--font-features-numeric);
             font-weight: 500;
-            line-height: 1.2;
-            text-wrap: balance;
+            white-space: nowrap;
+            transition: color var(--dur-1) ease, font-weight var(--dur-1) ease;
         }
 
-        .orb-desc {
-            color: var(--muted);
-            font-size: var(--fs-fine);
-            line-height: 1.3;
-            text-wrap: balance;
+        /* Allocation Bar Hardware Acceleration */
+        .holdings li::before {
+            content: "";
+            position: absolute;
+            inset-block: 0;
+            inset-inline-start: 0;
+            z-index: 0;
+            width: var(--weight);
+            pointer-events: none;
+            background: linear-gradient(90deg, var(--bar-start) 0%, var(--bar-end) 100%);
+            border-radius: var(--radius);
+            box-shadow: inset -1px 0 0 var(--line);
+            transform: scaleX(0);
+            transform-origin: 0% 50%;
+            -webkit-transform-origin: 0% 50%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transition: background var(--dur-1) ease, box-shadow var(--dur-1) ease, opacity var(--dur-2) ease;
+            opacity: 0.85;
+            animation: bar-grow var(--dur-4) var(--ease) both;
+            animation-delay: calc((var(--delay-idx) * var(--stagger)) + 180ms);
+            will-change: transform;
         }
 
-        .orbs.perf .row-1 .orb-name {
-            font-size: var(--fs-head);
+        /* Hold the bars at zero until the Worker numbers have been applied (or the fetch has failed) */
+        .pending .holdings li::before {
+            animation-play-state: paused;
         }
 
-        /* Hover and touch feedback */
-        .orb:active .orb-disc,
-        .orb.is-touched .orb-disc {
-            background: radial-gradient(circle at 30% 24%, var(--bar-hover-start), var(--bar-hover-end) 72%);
-            box-shadow: inset 0 0 0 1px var(--fg-strong);
+        /* Unified Hover, Active & Touch States: Full Desktop & Mobile Parity */
+        .holdings li:hover::before,
+        .holdings li:active::before,
+        .holdings li.is-touched::before,
+        .holdings li.is-selected::before {
+            background: linear-gradient(90deg, var(--bar-hover-start) 0%, var(--bar-hover-end) 100%) !important;
+            box-shadow: inset -1px 0 0 var(--bar-edge-hover) !important;
+            opacity: 1.0 !important;
         }
 
-        .orb:active .ring-fill,
-        .orb.is-touched .ring-fill {
-            stroke-width: 4;
+        /* Company Name: 400 -> 520 */
+        .holdings li:hover .name,
+        .holdings li:active .name,
+        .holdings li.is-touched .name,
+        .holdings li.is-selected .name {
+            color: var(--fg-strong) !important;
+            font-weight: 520 !important;
+            font-variation-settings: "opsz" 16 !important;
         }
 
-        @media (hover: hover) and (pointer: fine) {
-            .orb:hover .orb-disc {
-                background: radial-gradient(circle at 30% 24%, var(--bar-hover-start), var(--bar-hover-end) 72%);
-                box-shadow: inset 0 0 0 1px var(--fg-strong);
-            }
-
-            .orb:hover .ring-fill {
-                stroke-width: 4;
-            }
-        }
-
-        /* ── entrance animation (only when JS is running; otherwise everything is simply visible) ── */
-        @keyframes roll-in {
-            from {
-                transform: translate3d(var(--roll-x, 0px), 0, 0);
-            }
-
-            to {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        @keyframes spin-in {
-            from {
-                transform: rotate(var(--roll-rot, 0deg));
-            }
-
-            to {
-                transform: rotate(0deg);
-            }
-        }
-
-        @keyframes pop-in {
-            from {
-                opacity: 0;
-                transform: translateY(0.5rem) scale(0.94);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        @keyframes label-in {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .js .orbs:not(.is-live) .orb {
-            opacity: 0;
-        }
-
-        /* Holdings: roll in. Top row from the right, bottom row from the left (data-from). The ring spins as the circle rolls; the number stays upright. */
-        .orbs.is-live .orb[data-from] {
-            animation: roll-in var(--roll-dur) var(--ease) calc(var(--i) * var(--stagger, 100ms)) both;
-        }
-
-        .orbs.is-live .orb[data-from] .ring {
-            animation: spin-in var(--roll-dur) var(--ease) calc(var(--i) * var(--stagger, 100ms)) both;
-        }
-
-        .orbs.is-live .orb[data-from] .orb-name,
-        .orbs.is-live .orb[data-from] .orb-desc {
-            animation: label-in 520ms ease calc(var(--i) * var(--stagger, 100ms) + var(--roll-dur) * 0.7) both;
-        }
-
-        /* Performance: a simple rise-in */
-        .orbs.is-live .orb:not([data-from]) {
-            animation: pop-in 700ms var(--ease) calc(var(--i) * 90ms) both;
+        /* Allocation %: 500 -> 600 */
+        .holdings li:hover .val,
+        .holdings li:active .val,
+        .holdings li.is-touched .val,
+        .holdings li.is-selected .val {
+            color: var(--fg-strong) !important;
+            font-weight: 600 !important;
+            font-variation-settings: "opsz" 16 !important;
+            font-feature-settings: var(--font-features-numeric) !important;
+            -webkit-font-feature-settings: var(--font-features-numeric) !important;
         }
 
         footer.notes {
@@ -815,8 +777,8 @@
             color: var(--muted);
             font-size: var(--fs-body);
             font-variant-numeric: tabular-nums lining-nums;
-            font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
-            -webkit-font-feature-settings: "tnum" 1, "lnum" 1, "zero" 1;
+            font-feature-settings: var(--font-features-numeric);
+            -webkit-font-feature-settings: var(--font-features-numeric);
             letter-spacing: var(--track-body);
             line-height: 1.45;
         }
@@ -828,38 +790,16 @@
             opacity: 0.85;
         }
 
-        /* Accessibility Overrides */
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto !important;
-            }
+        @media (max-width: 34rem) {
 
-            *,
-            *::before,
-            *::after {
-                animation-duration: 1ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 1ms !important;
-            }
-
-            header,
-            section,
-            footer {
-                animation: none !important;
-            }
-
-            .orb,
-            .ring,
-            .orb-name,
-            .orb-desc {
-                animation: none !important;
-            }
-
-            .js .orbs:not(.is-live) .orb {
-                opacity: 1;
+            .perf li,
+            .holdings li {
+                margin-inline: calc(var(--space-1) * -1);
+                padding-inline: var(--space-1);
             }
         }
 
+        /* Windows Forced High-Contrast Support */
         @media (forced-colors: active) {
             body {
                 background: Canvas;
@@ -868,10 +808,13 @@
             body::before,
             body::after,
             .noise-bg,
+            .holdings li::before,
             .spotlight-layer {
                 display: none;
             }
 
+            .perf li,
+            .holdings li,
             .heading {
                 border-color: CanvasText;
             }
@@ -883,32 +826,13 @@
             .title,
             .heading,
             .heading-title,
-            .orb-val,
-            .orb-name {
+            .perf li .val,
+            .holdings li .val {
                 color: CanvasText;
-            }
-
-            .orb-disc {
-                box-shadow: inset 0 0 0 1px CanvasText;
-                background: none;
-            }
-
-            .ring-fill,
-            .ring-dot {
-                stroke: CanvasText;
-                fill: none;
-            }
-
-            .ring-dot {
-                fill: CanvasText;
-            }
-
-            .ring-track {
-                stroke: GrayText;
             }
         }
 
-        /* Institutional Print Mode */
+        /* Print Stylesheet Overrides */
         @page {
             size: portrait;
             margin: 1.2cm;
@@ -935,6 +859,7 @@
             body::before,
             body::after,
             .noise-bg,
+            .holdings li::before,
             .skip,
             .spotlight-layer {
                 display: none !important;
@@ -950,26 +875,7 @@
             header,
             section,
             footer {
-                contain: none !important;
                 animation: none !important;
-            }
-
-            .orb,
-            .ring,
-            .orb-name,
-            .orb-desc {
-                animation: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
-
-            .orb-disc {
-                background: none;
-                box-shadow: inset 0 0 0 1px #000000;
-            }
-
-            .ring-track {
-                stroke: #bbbbbb;
             }
 
             .heading {
@@ -997,188 +903,82 @@
 
     <!-- 
     ===========================================================================
-    SECTION 3: EDITABLE CONTENT & LEDGER DATA
+    SECTION 3: SEMANTIC HTML5 DOM & PORTFOLIO LEDGER DATA
+    (These values are the fallback. Live numbers come from the Worker.)
     ===========================================================================
-    Each circle is one <li class="orb">:
-      --pct   the number shown, and how far the ring fills (0 to 100). Keep it equal to the visible text.
-      --i     order in its group (0, 1, 2, ...). Controls the stagger, so number them top to bottom, left to right.
-      data-from   "right" or "left": which side the circle rolls in from (holdings only)
   -->
     <main id="main" class="page" tabindex="-1" aria-label="Arkipelagos summary">
-        <!-- Header: Title & Tagline -->
+        <!-- Header -->
         <header>
             <h1 class="title">Arkipelagos</h1>
             <p class="subtitle">Patient, concentrated, long-only owners</p>
         </header>
 
-        <hr>
+        <hr aria-hidden="true">
 
-        <!-- Performance: one large circle over two -->
+        <!-- Section 1: Performance Ledger -->
         <section aria-labelledby="perf-heading">
             <h2 id="perf-heading" class="heading">
                 <span class="heading-title">Performance</span>
                 <span class="heading-meta">(annualized)</span>
             </h2>
 
-            <div id="perf-orbs" class="orbs perf" role="group" aria-label="Annualized performance">
-                <ul class="orb-row row-1">
-                    <li class="orb" style="--pct: 32.1; --i: 0;">
-                        <span class="orb-name">Net Portfolio IRR</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">32.1%</span>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="orb-row row-2">
-                    <li class="orb" style="--pct: 20.1; --i: 1;">
-                        <span class="orb-name">Nasdaq-100 Total Return</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">20.1%</span>
-                        </div>
-                    </li>
-                    <li class="orb" style="--pct: 15.2; --i: 2;">
-                        <span class="orb-name">S&amp;P 500 Total Return</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">15.2%</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <ul class="perf" aria-label="Annualized performance">
+                <li style="--delay-idx: 0;">
+                    <span class="name">Net Portfolio IRR <span class="moic-meta"
+                            aria-label="5.8 times Multiple on Invested Capital">(5.8x MOIC)</span></span>
+                    <span class="val count-num" data-value="32.1" aria-label="32.1%">32.1%</span>
+                </li>
+                <li style="--delay-idx: 1;">
+                    <span class="name">Nasdaq-100 Total Return</span>
+                    <span class="val">20.1%</span>
+                </li>
+                <li style="--delay-idx: 2;">
+                    <span class="name">S&amp;P 500 Total Return</span>
+                    <span class="val">15.2%</span>
+                </li>
+            </ul>
         </section>
 
-        <hr>
+        <hr aria-hidden="true">
 
-        <!-- Holdings: three circles (roll in from the right) over four (roll in from the left) -->
+        <!-- Section 2: Holdings Allocation Ledger -->
         <section aria-labelledby="holdings-heading">
             <h2 id="holdings-heading" class="heading">
                 <span class="heading-title">Holdings</span>
                 <span class="heading-meta">(allocation)</span>
             </h2>
 
-            <div id="holdings" class="orbs holdings" role="group" aria-label="Portfolio holdings">
-                <ul class="orb-row" aria-label="Largest holdings">
-                    <li class="orb" data-from="right" style="--pct: 50.6; --i: 0;">
-                        <span class="orb-name">SpaceX</span>
-                        <span class="orb-desc">Rockets &amp; Starlink</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">50.6%</span>
-                        </div>
-                    </li>
-                    <li class="orb" data-from="right" style="--pct: 12.2; --i: 1;">
-                        <span class="orb-name">Microsoft</span>
-                        <span class="orb-desc">Cloud &amp; software</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">12.2%</span>
-                        </div>
-                    </li>
-                    <li class="orb" data-from="right" style="--pct: 11.5; --i: 2;">
-                        <span class="orb-name">Alphabet</span>
-                        <span class="orb-desc">Search &amp; cloud</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">11.5%</span>
-                        </div>
-                    </li>
-                </ul>
-
-                <ul class="orb-row" aria-label="Other holdings">
-                    <li class="orb" data-from="left" style="--pct: 10.0; --i: 3;">
-                        <span class="orb-name">Anthropic<sup><a href="#footnote-fmv" role="doc-noteref"
-                                    aria-label="Private valuation note for Anthropic">*</a></sup></span>
-                        <span class="orb-desc">Claude AI</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">10.0%</span>
-                        </div>
-                    </li>
-                    <li class="orb" data-from="left" style="--pct: 7.8; --i: 4;">
-                        <span class="orb-name">OpenAI<sup><a href="#footnote-fmv" role="doc-noteref"
-                                    aria-label="Private valuation note for OpenAI">*</a></sup></span>
-                        <span class="orb-desc">ChatGPT maker</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">7.8%</span>
-                        </div>
-                    </li>
-                    <li class="orb" data-from="left" style="--pct: 5.4; --i: 5;">
-                        <span class="orb-name">Tesla</span>
-                        <span class="orb-desc">EVs &amp; energy</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">5.4%</span>
-                        </div>
-                    </li>
-                    <li class="orb" data-from="left" style="--pct: 2.5; --i: 6;">
-                        <span class="orb-name">Zipline<sup><a href="#footnote-fmv" role="doc-noteref"
-                                    aria-label="Private valuation note for Zipline">*</a></sup></span>
-                        <span class="orb-desc">Drone delivery</span>
-                        <div class="orb-disc">
-                            <svg class="ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                                <circle class="ring-track" cx="50" cy="50" r="46" />
-                                <circle class="ring-fill" cx="50" cy="50" r="46" pathLength="100"
-                                    transform="rotate(-90 50 50)" />
-                                <circle class="ring-dot" cx="50" cy="4" r="1.9" />
-                            </svg>
-                            <span class="orb-val">2.5%</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <ul id="holdings" class="holdings" aria-label="Portfolio holdings">
+                <li style="--weight: 50.6%; --delay-idx: 0;"><span class="name">SpaceX</span> <span
+                        class="val">50.6%</span>
+                </li>
+                <li style="--weight: 12.2%; --delay-idx: 1;"><span class="name">Microsoft</span> <span
+                        class="val">12.2%</span>
+                </li>
+                <li style="--weight: 11.5%; --delay-idx: 2;"><span class="name">Alphabet</span> <span
+                        class="val">11.5%</span>
+                </li>
+                <li style="--weight: 10.0%; --delay-idx: 3;"><span class="name">Anthropic<sup><a href="#footnote-fmv"
+                                role="doc-noteref" aria-label="Private valuation note for Anthropic">*</a></sup></span>
+                    <span class="val">10.0%</span>
+                </li>
+                <li style="--weight: 7.8%; --delay-idx: 4;"><span class="name">OpenAI<sup><a href="#footnote-fmv"
+                                role="doc-noteref" aria-label="Private valuation note for OpenAI">*</a></sup></span>
+                    <span class="val">7.8%</span>
+                </li>
+                <li style="--weight: 5.4%; --delay-idx: 5;"><span class="name">Tesla</span> <span
+                        class="val">5.4%</span></li>
+                <li style="--weight: 2.5%; --delay-idx: 6;"><span class="name">Zipline<sup><a href="#footnote-fmv"
+                                role="doc-noteref" aria-label="Private valuation note for Zipline">*</a></sup></span>
+                    <span class="val">2.5%</span>
+                </li>
+            </ul>
         </section>
 
-        <hr>
+        <hr aria-hidden="true">
 
-        <!-- Footer: Timestamp & Footnote Metadata -->
+        <!-- Section 3: Institutional Metadata & Footnotes -->
         <footer class="notes">
             <p class="note">
                 As of <time datetime="2026-08-07">Aug 7, 2026</time>
@@ -1186,214 +986,214 @@
                 Inception <time datetime="2010-09-07">Sep 7, 2010</time>
             </p>
             <p id="footnote-fmv" class="note sm" role="doc-footnote" tabindex="-1">*Private holdings at fair market
-                value. Informational only.</p>
+                value.
+                Informational only.</p>
         </footer>
     </main>
 
     <!-- 
     ===========================================================================
-    SECTION 4: JAVASCRIPT ANIMATION & HYDRATION ENGINE
+    SECTION 4: VANILLA JS ENGINE (UNCONDITIONAL RUNTIME & TOUCH PARITY)
     ===========================================================================
   -->
-    <script type="module">
-        window.__orbsOk = true;   // tells the head script that this file started (so the circles are not left hidden)
+    <script>
+        (function () {
+            "use strict";
 
-        const bodyNode = document.body;
-        const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+            // 1. Unlock native iOS Safari :active touch CSS pseudo-class
+            document.addEventListener("touchstart", function () { }, { passive: true });
 
-        /* Dynamic iOS Status Bar Theme Sync Bridge */
-        const updateThemeMeta = () => {
-            const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            const themeMeta = document.querySelector('meta[name="theme-color"]');
-            if (themeMeta) {
-                themeMeta.setAttribute("content", isDark ? "#0a0a0d" : "#ffffff");
-            }
-        };
-        try {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateThemeMeta);
-            updateThemeMeta();
-        } catch (_) { }
+            // 1b. Load numbers from the Worker (falls back to the HTML values above if it fails)
+            var API = "https://arkipelagos-api.nkumar79.workers.dev/api/numbers";
+            var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            function f1(n) { return Number(n).toFixed(1); }
 
-        /* Locale Percentage Formatter */
-        let pctFormatter;
-        try {
-            pctFormatter = new Intl.NumberFormat("en-US", {
-                style: "percent",
-                minimumFractionDigits: 1,
-                maximumFractionDigits: 1
-            });
-        } catch (_) {
-            pctFormatter = { format: (num) => `${(num * 100).toFixed(1)}%` };
-        }
-        const formatPct = (value) => pctFormatter.format(value / 100);
+            function applyNumbers(d) {
+                var irr = document.querySelector(".count-num");
+                irr.setAttribute("data-value", f1(d.irr));
+                irr.setAttribute("aria-label", f1(d.irr) + "%");
+                irr.textContent = f1(d.irr) + "%";
 
-        /* Ambient Cursor Tracking (Mouse/Trackpad Only) */
-        if (finePointerQuery.matches && !reduceMotionQuery.matches) {
-            let ticking = false;
-            window.addEventListener("pointermove", (event) => {
-                if (event.pointerType !== "mouse" || ticking) return;
-                ticking = true;
-                window.requestAnimationFrame(() => {
-                    bodyNode.style.setProperty("--mouse-x", `${event.clientX}px`);
-                    bodyNode.style.setProperty("--mouse-y", `${event.clientY}px`);
-                    ticking = false;
+                var moic = document.querySelector(".moic-meta");
+                moic.textContent = "(" + f1(d.moic) + "x MOIC)";
+                moic.setAttribute("aria-label", f1(d.moic) + " times Multiple on Invested Capital");
+
+                var bench = document.querySelectorAll(".perf li:not(:first-child) .val");
+                bench[0].textContent = f1(d.nasdaq) + "%";
+                bench[1].textContent = f1(d.sp) + "%";
+
+                var rows = document.querySelectorAll(".holdings li");
+                d.holdings.forEach(function (h, i) {
+                    if (!rows[i]) return;
+                    rows[i].style.setProperty("--weight", f1(h.weight) + "%");
+                    rows[i].querySelector(".val").textContent = f1(h.weight) + "%";
                 });
-            }, { passive: true });
-        }
 
-        /* Mobile Touch Feedback Sync with Tactile Haptic Tap */
-        document.querySelectorAll(".orb").forEach((item) => {
-            item.addEventListener("touchstart", () => {
-                item.classList.add("is-touched");
-                if ("vibrate" in navigator) {
-                    navigator.vibrate(4);
-                }
-            }, { passive: true });
-            item.addEventListener("touchend", () => window.setTimeout(() => item.classList.remove("is-touched"), 150), { passive: true });
-            item.addEventListener("touchcancel", () => item.classList.remove("is-touched"), { passive: true });
-        });
-
-        /* ───────────────────────────────────────────────────────────
-           Circles: roll in, draw the ring and count the number up
-           ─────────────────────────────────────────────────────────── */
-        const ROLL = 1100;      // ms a circle takes to roll in (also set as --roll-dur)
-        const STAGGER = 100;    // ms between one circle and the next (also set as --stagger)
-        const COUNT = 1300;     // ms for the ring to draw and the number to rise
-
-        const groups = [...document.querySelectorAll(".orbs")];
-
-        const orbOf = (el) => ({
-            el,
-            disc: el.querySelector(".orb-disc"),
-            val: el.querySelector(".orb-val"),
-            ring: el.querySelector(".ring-fill"),
-            pct: Number.parseFloat(el.style.getPropertyValue("--pct")) || 0,
-            idx: Number.parseInt(el.style.getPropertyValue("--i") || "0", 10)
-        });
-        const orbsByGroup = new Map(groups.map((g) => [g, [...g.querySelectorAll(".orb")].map(orbOf)]));
-        const allOrbs = [...orbsByGroup.values()].flat();
-
-        /* Sets the number and the ring to a value between 0 and the circle's own percentage */
-        const setProgress = (o, v) => {
-            o.val.textContent = formatPct(v);
-            o.ring.style.strokeDasharray = `${v} 100`;
-            o.ring.style.opacity = v > 0 ? "" : "0";    // a zero-length line with round caps would show as a dot
-        };
-
-        /* Start from empty, so the circles have something to rise from (skipped with reduced motion) */
-        if (!reduceMotionQuery.matches) allOrbs.forEach((o) => setProgress(o, 0));
-
-        const countUp = (o, delay) => {
-            window.setTimeout(() => {
-                const start = performance.now();
-                let lastText = "";
-                const frame = (now) => {
-                    const progress = Math.min((now - start) / COUNT, 1);
-                    const eased = 1 - Math.pow(1 - progress, 4);     // quartic ease-out
-                    const exact = o.pct * eased;
-                    o.ring.style.strokeDasharray = `${exact} 100`;
-                    o.ring.style.opacity = exact > 0 ? "" : "0";
-                    const text = formatPct(Math.round(exact * 10) / 10);
-                    if (text !== lastText) { o.val.textContent = text; lastText = text; }
-                    if (progress < 1) {
-                        window.requestAnimationFrame(frame);
-                    } else {
-                        setProgress(o, o.pct);
-                    }
-                };
-                window.requestAnimationFrame(frame);
-            }, delay);
-        };
-
-        const startGroup = (group) => {
-            if (group.dataset.live) return;
-            group.dataset.live = "1";
-            const orbs = orbsByGroup.get(group) || [];
-
-            if (reduceMotionQuery.matches) {
-                orbs.forEach((o) => setProgress(o, o.pct));
-                group.classList.add("is-live");
-                return;
+                var p = d.asof.split("-"), t = document.querySelector("footer time");
+                t.setAttribute("datetime", d.asof);
+                t.textContent = MONTHS[+p[1] - 1] + " " + (+p[2]) + ", " + p[0];
             }
 
-            group.style.setProperty("--roll-dur", `${ROLL}ms`);
-            group.style.setProperty("--stagger", `${STAGGER}ms`);
-
-            /* Work out, per circle, how far offscreen it has to start and how far it turns on the way.
-               Rolling without slipping: angle = distance / radius. Measured before the animation is applied. */
-            orbs.forEach((o) => {
-                const side = o.el.dataset.from;
-                if (!side) return;
-                const rect = o.el.getBoundingClientRect();
-                const radius = (o.disc.getBoundingClientRect().width / 2) || 1;
-                const x = side === "right" ? window.innerWidth - rect.left + 24 : -(rect.right + 24);
-                o.el.style.setProperty("--roll-x", `${x}px`);
-                o.el.style.setProperty("--roll-rot", `${(x / radius) * (180 / Math.PI)}deg`);
-            });
-
-            group.classList.add("is-live");
-
-            /* Count starts as each circle lands (holdings) or just after it rises (performance) */
-            orbs.forEach((o) => {
-                const rolls = Boolean(o.el.dataset.from);
-                countUp(o, rolls ? o.idx * STAGGER + ROLL * 0.8 : o.idx * 90 + 300);
-            });
-        };
-
-        const initOrbs = () => {
-            const BEGIN_DELAY = 220;   // lets the page's own fade-in finish first
-
-            /* Guard so a group is only ever queued once */
-            const queued = new WeakSet();
-            const queue = (g) => {
-                if (queued.has(g) || g.dataset.live) return;
-                queued.add(g);
-                window.setTimeout(() => startGroup(g), BEGIN_DELAY);
-            };
-
-            if ("IntersectionObserver" in window && !reduceMotionQuery.matches) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            queue(entry.target);
-                            observer.unobserve(entry.target);
+            function loadNumbers() {
+                var ctl = new AbortController();
+                var timer = setTimeout(function () { ctl.abort(); }, 3000);
+                return fetch(API, { signal: ctl.signal, cache: "no-store" })
+                    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+                    .then(function (d) {
+                        if (!d || !Array.isArray(d.holdings) || ![d.irr, d.moic, d.nasdaq, d.sp].every(isFinite) || !/^\d{4}-\d{2}-\d{2}$/.test(d.asof)) {
+                            throw new Error("bad shape");
                         }
+                        applyNumbers(d);
+                    })
+                    .catch(function () { /* keep the numbers already in the HTML */ })
+                    .then(function () {
+                        clearTimeout(timer);
+                        document.documentElement.classList.remove("pending");
                     });
-                }, { threshold: 0.12 });
-                groups.forEach((g) => observer.observe(g));
+            }
+            var numbersReady = loadNumbers();
+
+            // 2. Unconditional Mobile & Desktop Counter Engine (0.0% -> IRR)
+            var counterExecuted = false;
+            function startCounterAnimation() {
+                if (counterExecuted) return;
+                var counterEl = document.querySelector(".count-num");
+                if (!counterEl) return;
+                counterExecuted = true;
+
+                var targetVal = parseFloat(counterEl.getAttribute("data-value")) || 32.1;
+                var duration = 1600; // 1600ms Deliberate Quartic Ease-Out
+                var startDelay = 180; // Synchronized with Section 1 entrance opacity
+
+                // Prime text immediately to 0.0%
+                counterEl.textContent = "0.0%";
+
+                window.setTimeout(function () {
+                    var startTime = null;
+
+                    function renderFrame(timestamp) {
+                        if (!startTime) {
+                            startTime = (typeof timestamp === "number") ? timestamp : (window.performance && performance.now ? performance.now() : Date.now());
+                        }
+                        var nowTime = (typeof timestamp === "number") ? timestamp : (window.performance && performance.now ? performance.now() : Date.now());
+                        var elapsed = Math.max(0, nowTime - startTime);
+                        var progress = Math.min(elapsed / duration, 1);
+
+                        // Quartic Ease-Out: 1 - (1 - progress)^4
+                        var eased = 1 - Math.pow(1 - progress, 4);
+                        var currentNumber = (targetVal * eased).toFixed(1);
+
+                        counterEl.textContent = currentNumber + "%";
+
+                        if (progress < 1) {
+                            window.requestAnimationFrame(renderFrame);
+                        } else {
+                            counterEl.textContent = targetVal.toFixed(1) + "%";
+                        }
+                    }
+
+                    window.requestAnimationFrame(renderFrame);
+                }, startDelay);
             }
 
-            /* Immediate check + safeguard timer (also the only path when reduced motion is on) */
-            const sweep = () => groups.forEach((g) => {
-                if (g.getBoundingClientRect().top < window.innerHeight * 0.88) queue(g);
-            });
-            sweep();
-            window.setTimeout(sweep, 300);
-        };
+            // Start the counter once the Worker numbers are in (or the fetch has failed / timed out)
+            numbersReady.then(startCounterAnimation);
 
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", initOrbs);
-        } else {
-            initOrbs();
-        }
+            // 3. Desktop Ambient Cursor Spotlight (Fine Pointer Only)
+            var spotlightNode = document.querySelector(".spotlight-layer");
+            var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+            if (spotlightNode && finePointer.matches) {
+                var ticking = false;
+                window.addEventListener("pointermove", function (event) {
+                    if (event.pointerType !== "mouse" || ticking) return;
+                    ticking = true;
+                    window.requestAnimationFrame(function () {
+                        spotlightNode.style.setProperty("--mouse-x", event.clientX + "px");
+                        spotlightNode.style.setProperty("--mouse-y", event.clientY + "px");
+                        ticking = false;
+                    });
+                }, { passive: true });
+            }
 
-        /* Printing mid-animation should print the real numbers */
-        window.addEventListener("beforeprint", () => allOrbs.forEach((o) => setProgress(o, o.pct)));
+            // 4. Mobile Passive Touch & Tap-Selection Engine (Full Parity With Desktop Hover)
+            var holdingItems = document.querySelectorAll(".holdings li");
+            for (var i = 0; i < holdingItems.length; i++) {
+                (function (item) {
+                    var startX = 0;
+                    var startY = 0;
+                    var isScrolling = false;
 
-        /* Local Audit Engine */
-        if (["localhost", "127.0.0.1"].includes(window.location.hostname) || window.location.hash === "#debug") {
-            const weights = [...document.querySelectorAll("#holdings .orb")]
-                .map((item) => Number.parseFloat(item.style.getPropertyValue("--pct")))
-                .filter(Number.isFinite);
+                    item.addEventListener("touchstart", function (e) {
+                        if (e.touches && e.touches[0]) {
+                            startX = e.touches[0].clientX;
+                            startY = e.touches[0].clientY;
+                        }
+                        isScrolling = false;
+                        item.classList.add("is-touched");
+                    }, { passive: true });
 
-            if (weights.length > 0) {
-                const total = Number(weights.reduce((sum, weight) => sum + weight, 0).toFixed(1));
-                if (total !== 100.0) {
-                    console.warn(`[Arkipelagos Audit] Rendered holdings allocation sum is ${total}%; expected 100.0%.`);
+                    item.addEventListener("touchmove", function (e) {
+                        if (e.touches && e.touches[0]) {
+                            var diffX = Math.abs(e.touches[0].clientX - startX);
+                            var diffY = Math.abs(e.touches[0].clientY - startY);
+                            // Cancel touch feedback if the user is scrolling
+                            if (diffX > 8 || diffY > 8) {
+                                isScrolling = true;
+                                item.classList.remove("is-touched");
+                            }
+                        }
+                    }, { passive: true });
+
+                    item.addEventListener("touchend", function () {
+                        if (!isScrolling) {
+                            var wasSelected = item.classList.contains("is-selected");
+                            for (var j = 0; j < holdingItems.length; j++) {
+                                holdingItems[j].classList.remove("is-selected");
+                                holdingItems[j].classList.remove("is-touched");
+                            }
+                            if (!wasSelected) {
+                                item.classList.add("is-selected");
+                            }
+                        } else {
+                            item.classList.remove("is-touched");
+                        }
+                    }, { passive: true });
+
+                    item.addEventListener("touchcancel", function () {
+                        item.classList.remove("is-touched");
+                        isScrolling = false;
+                    }, { passive: true });
+                })(holdingItems[i]);
+            }
+
+            // Clear selection when tapping anywhere outside the holdings list
+            document.addEventListener("click", function (e) {
+                if (!e.target.closest || !e.target.closest(".holdings")) {
+                    for (var k = 0; k < holdingItems.length; k++) {
+                        holdingItems[k].classList.remove("is-selected");
+                        holdingItems[k].classList.remove("is-touched");
+                    }
                 }
-            }
-        }
+            });
+
+            // 5. Production Audit Engine (Active on localhost or ?debug)
+            //    Runs after the Worker numbers are applied so it checks the live weights.
+            numbersReady.then(function () {
+                if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) !== -1 || window.location.hash.indexOf("debug") !== -1 || window.location.search.indexOf("debug") !== -1) {
+                    var weights = [];
+                    for (var w = 0; w < holdingItems.length; w++) {
+                        var val = parseFloat(holdingItems[w].style.getPropertyValue("--weight"));
+                        if (!isNaN(val)) weights.push(val);
+                    }
+                    if (weights.length > 0) {
+                        var total = parseFloat(weights.reduce(function (sum, wt) { return sum + wt; }, 0).toFixed(1));
+                        if (total !== 100.0) {
+                            console.warn("[Arkipelagos Audit] Rendered holdings allocation sum is " + total + "%; expected 100.0%.");
+                        }
+                    }
+                }
+            });
+        })();
     </script>
 </body>
 

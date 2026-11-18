@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; base-uri 'none'; object-src 'none'; form-action 'none'; connect-src  https://arkipelagos-api.nkumar79.workers.dev; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'">
+    <meta name="referrer" content="no-referrer">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="color-scheme" content="light dark">
+    <title>Arkipelagos Admin</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg-strong: #111113;
+            --fg: #383940;
+            --muted: #666872;
+            --line: rgba(17, 17, 19, 0.12);
+            --field: rgba(17, 17, 19, 0.04);
+            --ok: #1a7f37;
+            --bad: #c62828;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0d;
+                --fg-strong: #fcfcfd;
+                --fg: #d4d5db;
+                --muted: #989aa6;
+                --line: rgba(252, 252, 253, 0.14);
+                --field: rgba(252, 252, 253, 0.06);
+                --ok: #56d364;
+                --bad: #ff7b72;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+        }
+
+        body {
+            font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            padding: clamp(1rem, 5vw, 2.5rem);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        main {
+            max-width: 34rem;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin: 0 0 .15rem;
+            font-size: 1.6rem;
+            letter-spacing: -0.03em;
+            color: var(--fg-strong);
+        }
+
+        h2 {
+            margin: 1.75rem 0 .5rem;
+            padding-bottom: .35rem;
+            border-bottom: 1px solid var(--line);
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        p.sub {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: .3rem 0;
+        }
+
+        .row label {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .row .suffix {
+            color: var(--muted);
+            width: 1.2rem;
+        }
+
+        input {
+            font: inherit;
+            color: var(--fg-strong);
+            background: var(--field);
+            border: 1px solid var(--line);
+            border-radius: .375rem;
+            padding: .45rem .6rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        input:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--fg-strong);
+            outline-offset: 2px;
+        }
+
+        input.num {
+            width: 6.5rem;
+            text-align: right;
+        }
+
+        input.wide {
+            width: 100%;
+        }
+
+        .stack label {
+            display: block;
+            margin: .6rem 0 .2rem;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        .inline {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin-top: .5rem;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        .inline input {
+            width: auto;
+        }
+
+        button {
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: .375rem;
+            border: 1px solid var(--fg-strong);
+            background: var(--fg-strong);
+            color: var(--bg);
+            padding: .5rem 1rem;
+        }
+
+        button.ghost {
+            background: transparent;
+            color: var(--fg-strong);
+            border-color: var(--line);
+        }
+
+        button:disabled {
+            opacity: .45;
+            cursor: not-allowed;
+        }
+
+        .actions {
+            display: flex;
+            gap: .6rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sum {
+            margin-top: .5rem;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .sum.ok {
+            color: var(--ok);
+        }
+
+        .sum.bad {
+            color: var(--bad);
+        }
+
+        #status {
+            margin-top: 1rem;
+            min-height: 1.5rem;
+            white-space: pre-wrap;
+        }
+
+        #status.ok {
+            color: var(--ok);
+        }
+
+        #status.bad {
+            color: var(--bad);
+        }
+
+        #editor {
+            display: none;
+        }
+
+        .hint {
+            color: var(--muted);
+            font-size: .8rem;
+            margin-top: .5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Arkipelagos Admin</h1>
+
+
+        <h2>Access</h2>
+        <div class="stack">
+            <label for="token">Admin token (needed to save, not to load)</label>
+            <input id="token" class="wide" type="password" autocomplete="off" spellcheck="false">
+            <div class="inline"><input id="remember" type="checkbox"><label for="remember" style="margin:0">Remember
+                    token on this device</label></div>
+        </div>
+        <div class="actions"><button id="load" type="button">Sign in</button></div>
+
+        <div id="editor">
+            <h2>Performance (annualized)</h2>
+            <div class="row"><label for="irr">Net Portfolio IRR</label><input id="irr" class="num" type="number"
+                    step="0.1" min="0"><span class="suffix">%</span></div>
+            <div class="row"><label for="moic">MOIC</label><input id="moic" class="num" type="number" step="0.1"
+                    min="0"><span class="suffix">x</span></div>
+            <div class="row"><label for="nasdaq">Nasdaq-100 Total Return</label><input id="nasdaq" class="num"
+                    type="number" step="0.1"><span class="suffix">%</span></div>
+            <div class="row"><label for="sp">S&amp;P 500 Total Return</label><input id="sp" class="num" type="number"
+                    step="0.1"><span class="suffix">%</span></div>
+
+            <h2>Holdings (allocation)</h2>
+            <div id="holdings"></div>
+            <div id="sum" class="sum"></div>
+
+            <h2>As of</h2>
+            <div class="row"><label for="asof">Date</label><input id="asof" class="num" style="width:auto" type="date">
+            </div>
+
+            <div class="actions">
+                <button id="save" type="button">Save</button>
+                <button id="reset" type="button" class="ghost">Reset</button>
+            </div>
+        </div>
+
+        <div id="status" role="status" aria-live="polite"></div>
+    </main>
+
+    <script>
+        (function () {
+            "use strict";
+            var API = "https://arkipelagos-api.nkumar79.workers.dev/api/numbers";
+            var $ = function (s) { return document.querySelector(s); };
+            var state = { data: null, original: null };
+
+            function getTok() { try { return localStorage.getItem("ark_tok") || sessionStorage.getItem("ark_tok") || ""; } catch (e) { return ""; } }
+            function setTok(v, remember) {
+                try {
+                    sessionStorage.setItem("ark_tok", v);
+                    if (remember) localStorage.setItem("ark_tok", v); else localStorage.removeItem("ark_tok");
+                } catch (e) { }
+            }
+            $("#token").value = getTok();
+            try { $("#remember").checked = !!localStorage.getItem("ark_tok"); } catch (e) { }
+
+            function status(text, cls) { var s = $("#status"); s.textContent = text || ""; s.className = cls || ""; }
+            function fmt(v) { return Number(v).toFixed(1); }
+
+            function fill(d) {
+                $("#irr").value = fmt(d.irr); $("#moic").value = fmt(d.moic);
+                $("#nasdaq").value = fmt(d.nasdaq); $("#sp").value = fmt(d.sp);
+                $("#asof").value = d.asof;
+                var box = $("#holdings"); box.textContent = "";
+                d.holdings.forEach(function (h, i) {
+                    var row = document.createElement("div"); row.className = "row";
+                    var lab = document.createElement("label"); lab.textContent = h.name; lab.htmlFor = "h" + i;
+                    var inp = document.createElement("input"); inp.id = "h" + i; inp.className = "num"; inp.type = "number"; inp.step = "0.1"; inp.min = "0"; inp.max = "100"; inp.value = fmt(h.weight);
+                    inp.addEventListener("input", sum);
+                    var suf = document.createElement("span"); suf.className = "suffix"; suf.textContent = "%";
+                    row.appendChild(lab); row.appendChild(inp); row.appendChild(suf); box.appendChild(row);
+                });
+                sum();
+            }
+            function total() {
+                var t = 0;
+                state.data.holdings.forEach(function (h, i) { t += parseFloat($("#h" + i).value) || 0; });
+                return Math.round(t * 10) / 10;
+            }
+            function sum() {
+                var t = total(), el = $("#sum");
+                el.textContent = "Total " + t.toFixed(1) + "%";
+                el.className = "sum " + (t === 100 ? "ok" : "bad");
+            }
+            function collect() {
+                var out = {
+                    irr: parseFloat($("#irr").value), moic: parseFloat($("#moic").value),
+                    nasdaq: parseFloat($("#nasdaq").value), sp: parseFloat($("#sp").value),
+                    asof: $("#asof").value,
+                    holdings: state.data.holdings.map(function (h, i) { return { name: h.name, weight: parseFloat($("#h" + i).value) }; })
+                };
+                var nums = [out.irr, out.moic, out.nasdaq, out.sp].concat(out.holdings.map(function (h) { return h.weight; }));
+                if (!nums.every(isFinite)) throw new Error("One of the numbers is empty or invalid.");
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(out.asof)) throw new Error("Pick a valid “As of” date.");
+                return out;
+            }
+
+            $("#load").addEventListener("click", async function () {
+                var tok = $("#token").value.trim();
+                $("#editor").style.display = "none";
+                if (!tok) return status("Enter the admin token.", "bad");
+                status("Checking…");
+                try {
+                    var v = await fetch(API.replace("/numbers", "/verify"), {
+                        headers: { "Authorization": "Bearer " + tok }, cache: "no-store"
+                    });
+                    if (v.status === 401) throw new Error("Wrong admin token.");
+                    if (!v.ok) throw new Error("Worker returned " + v.status + ".");
+
+                    var r = await fetch(API, { cache: "no-store" });
+                    if (!r.ok) throw new Error("Worker returned " + r.status + ".");
+                    var d = await r.json();
+
+                    setTok(tok, $("#remember").checked);
+                    state.data = d; state.original = JSON.parse(JSON.stringify(d));
+                    fill(d); $("#editor").style.display = "block";
+                    status("Unlocked.", "ok");
+                } catch (e) { status(e.message || String(e), "bad"); }
+            });
+
+            $("#reset").addEventListener("click", function () {
+                if (state.original) { state.data = JSON.parse(JSON.stringify(state.original)); fill(state.data); status("Reset."); }
+            });
+
+            $("#save").addEventListener("click", async function () {
+                var btn = $("#save"), tok = $("#token").value.trim();
+                try {
+                    if (!tok) throw new Error("Enter the admin token to save.");
+                    var body = collect();
+                    if (total() !== 100 && !confirm("Holdings add up to " + total().toFixed(1) + "%, not 100.0%. Save anyway?")) return;
+                    btn.disabled = true; status("Saving…");
+                    var r = await fetch(API, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + tok },
+                        body: JSON.stringify(body)
+                    });
+                    var j = await r.json().catch(function () { return {}; });
+                    if (r.status === 401) throw new Error("Wrong admin token.");
+                    if (!r.ok) throw new Error(j.error || ("Worker returned " + r.status + "."));
+                    setTok(tok, $("#remember").checked);
+                    state.data = j; state.original = JSON.parse(JSON.stringify(j));
+                    status("Saved. The page shows the new numbers on its next load.", "ok");
+                } catch (e) { status(e.message || String(e), "bad"); }
+                finally { btn.disabled = false; }
+            });
+        })();
+    </script>
+</body>
+
+</html>

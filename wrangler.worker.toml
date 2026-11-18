@@ -1,0 +1,7 @@
+name = "arkipelagos-api"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[[kv_namespaces]]
+binding = "ARK_KV"
+id = "d2f3f2670bf1467c9d296b12844afa37"
