@@ -1,11 +1,12 @@
 const ALLOWED_ORIGINS = [
     "https://www.arkipelagos.com",
     "https://arkipelagos.com",
+    "https://arkipelagos-router.nkumar79.workers.dev/",
+    "https://arkipelagos.pages.dev",
     "http://localhost:8000",
     "http://127.0.0.1:5500",
     "http://localhost:5500",
 ];
-
 // Served until the first PUT. These are your current numbers.
 const DEFAULTS = {
     irr: 32.1, moic: 5.8, nasdaq: 20.1, sp: 15.2, asof: "2026-08-07",
@@ -53,7 +54,7 @@ export default {
     async fetch(req, env) {
         const url = new URL(req.url);
         const origin = req.headers.get("Origin") || "";
-        const cors = ALLOWED_ORIGINS.includes(origin)
+        const cors = (ALLOWED_ORIGINS.includes(origin) || /^https:\/\/[a-z0-9-]+\.arkipelagos\.pages\.dev$/.test(origin))
             ? {
                 "Access-Control-Allow-Origin": origin,
                 "Access-Control-Allow-Methods": "GET, PUT, OPTIONS",
