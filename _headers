@@ -21,12 +21,6 @@
 /favicon.ico
   Cache-Control: public, max-age=2592000, immutable
 
-/favicon-16.png
-  Cache-Control: public, max-age=2592000, immutable
-
-/favicon-32.png
-  Cache-Control: public, max-age=2592000, immutable
-
 /apple-touch-icon.png
   Cache-Control: public, max-age=2592000, immutable
 
@@ -36,9 +30,6 @@
 # ── Machine-Readable — moderate cache (1 day) ──────────
 
 /sitemap.xml
-  Cache-Control: public, max-age=86400, must-revalidate
-
-/llms.txt
   Cache-Control: public, max-age=86400, must-revalidate
 
 /robots.txt
